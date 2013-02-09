@@ -1,0 +1,43 @@
+
+<h4>Basic Information</h4>
+<br />
+
+<%= form_for @cs_application, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :first, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :first, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :middle, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :middle, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :last, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :tuid, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :tuid, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field', :value => current_user.email %>
+    </div>
+  </div>
+	<%= f.hidden_field :user_id, :value => current_user.id%>
+  <div class="form-actions">
+    <%= f.submit "Next", :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                cs_applications_path, :class => 'btn' %>
+  </div>
+  
+<% end %>
