@@ -30,7 +30,10 @@
         	<li><%= link_to "About CS Department"%></li>
         	<li><%= link_to "About Cyber Security"%></li>
         	<li><%= link_to "Contact Form"%></li>
-        	<li><%= link_to "Your Account"%></li>
+        	<li><% if !current_admin_user.nil? %>
+        			<%= link_to "Admin Dashboard", "/admin" %>
+        		<% end%>
+        	</li>
         </ul>
       </div>
  	      <form class="navbar-search pull-left">
