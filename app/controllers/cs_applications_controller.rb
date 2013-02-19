@@ -47,6 +47,8 @@ class CsApplicationsController < ApplicationController
 
     respond_to do |format|
       if @cs_application.save
+        @cs_application.progress=20
+        @cs_application.save
         format.html { redirect_to @cs_application, notice: 'Cs application was successfully created.' }
         format.json { render json: @cs_application, status: :created, location: @cs_application }
       else
