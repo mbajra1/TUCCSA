@@ -9,6 +9,7 @@ gem 'rails', '3.2.11'
 gem 'mysql2' , :group => :development
 gem 'pg', :group => :production
 gem 'devise'
+gem 'activeadmin'
 
 # Gems used only for assets and not required
 # in production environments by default.
