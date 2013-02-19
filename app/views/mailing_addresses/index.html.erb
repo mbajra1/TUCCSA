@@ -1,0 +1,33 @@
+<h1>Listing mailing_addresses</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Line1</th>
+    <th>Line2</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mailing_addresses.each do |mailing_address| %>
+  <tr>
+    <td><%= mailing_address.name %></td>
+    <td><%= mailing_address.line1 %></td>
+    <td><%= mailing_address.line2 %></td>
+    <td><%= mailing_address.city %></td>
+    <td><%= mailing_address.state_id %></td>
+    <td><%= mailing_address.zip %></td>
+    <td><%= link_to 'Show', mailing_address %></td>
+    <td><%= link_to 'Edit', edit_mailing_address_path(mailing_address) %></td>
+    <td><%= link_to 'Destroy', mailing_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mailing address', new_mailing_address_path %>

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  recommendation_id: 1
+  intellect: 1
+  leadership: 1
+  written: 1
+  verbal: 1
+  reliability: 1
+  timeliness: 1
+  maturity: 1
+  skill: 1
+  commitment: 1
+  independent: 1
+
+two:
+  recommendation_id: 1
+  intellect: 1
+  leadership: 1
+  written: 1
+  verbal: 1
+  reliability: 1
+  timeliness: 1
+  maturity: 1
+  skill: 1
+  commitment: 1
+  independent: 1

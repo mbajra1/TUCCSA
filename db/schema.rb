@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219001008) do
+ActiveRecord::Schema.define(:version => 20130219022250) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,6 +53,70 @@ ActiveRecord::Schema.define(:version => 20130219001008) do
     t.string   "last"
     t.integer  "tuid"
     t.string   "email"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "telephone"
+    t.boolean  "is_citizen"
+    t.string   "signed_name"
+    t.integer  "status"
+    t.integer  "progress"
+    t.integer  "mailing_address_id"
+    t.text     "purpose_statement"
+  end
+
+  create_table "institutions", :force => true do |t|
+    t.string   "institution"
+    t.string   "city"
+    t.integer  "state_id"
+    t.datetime "attended_from"
+    t.datetime "attended_to"
+    t.string   "degree"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "mailing_addresses", :force => true do |t|
+    t.string   "name"
+    t.string   "line1"
+    t.string   "line2"
+    t.string   "city"
+    t.integer  "state_id"
+    t.integer  "zip"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "recommendation_id"
+    t.integer  "intellect"
+    t.integer  "leadership"
+    t.integer  "written"
+    t.integer  "verbal"
+    t.integer  "reliability"
+    t.integer  "timeliness"
+    t.integer  "maturity"
+    t.integer  "skill"
+    t.integer  "commitment"
+    t.integer  "independent"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "recommendations", :force => true do |t|
+    t.integer  "cs_application_id"
+    t.string   "name"
+    t.string   "title"
+    t.string   "email"
+    t.datetime "time_known_from"
+    t.datetime "time_known_to"
+    t.integer  "status"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

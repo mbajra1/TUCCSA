@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  institution: MyString
+  city: MyString
+  state_id: 1
+  attended_from: 2013-02-18 20:55:19
+  attended_to: 2013-02-18 20:55:19
+  degree: MyString
+
+two:
+  institution: MyString
+  city: MyString
+  state_id: 1
+  attended_from: 2013-02-18 20:55:19
+  attended_to: 2013-02-18 20:55:19
+  degree: MyString

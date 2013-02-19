@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @mailing_address.name %>
+</p>
+
+<p>
+  <b>Line1:</b>
+  <%= @mailing_address.line1 %>
+</p>
+
+<p>
+  <b>Line2:</b>
+  <%= @mailing_address.line2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @mailing_address.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @mailing_address.state_id %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%= @mailing_address.zip %>
+</p>
+
+
+<%= link_to 'Edit', edit_mailing_address_path(@mailing_address) %> |
+<%= link_to 'Back', mailing_addresses_path %>

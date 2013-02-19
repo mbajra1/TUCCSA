@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cs application:</b>
+  <%= @recommendation.cs_application_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @recommendation.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @recommendation.title %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @recommendation.email %>
+</p>
+
+<p>
+  <b>Time known from:</b>
+  <%= @recommendation.time_known_from %>
+</p>
+
+<p>
+  <b>Time known to:</b>
+  <%= @recommendation.time_known_to %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @recommendation.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
+<%= link_to 'Back', recommendations_path %>

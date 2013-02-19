@@ -1,4 +1,16 @@
 TUCCSA2::Application.routes.draw do
+  resources :ratings
+
+
+  resources :recommendations
+
+
+  resources :institutions
+
+
+  resources :mailing_addresses
+
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

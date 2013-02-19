@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Institution:</b>
+  <%= @institution.institution %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @institution.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @institution.state_id %>
+</p>
+
+<p>
+  <b>Attended from:</b>
+  <%= @institution.attended_from %>
+</p>
+
+<p>
+  <b>Attended to:</b>
+  <%= @institution.attended_to %>
+</p>
+
+<p>
+  <b>Degree:</b>
+  <%= @institution.degree %>
+</p>
+
+
+<%= link_to 'Edit', edit_institution_path(@institution) %> |
+<%= link_to 'Back', institutions_path %>
