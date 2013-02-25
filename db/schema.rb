@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219022250) do
+ActiveRecord::Schema.define(:version => 20130225224506) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,14 +53,13 @@ ActiveRecord::Schema.define(:version => 20130219022250) do
     t.string   "last"
     t.integer  "tuid"
     t.string   "email"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "telephone"
     t.boolean  "is_citizen"
     t.string   "signed_name"
     t.integer  "status"
     t.integer  "progress"
-    t.integer  "mailing_address_id"
     t.text     "purpose_statement"
   end
 
@@ -71,8 +70,9 @@ ActiveRecord::Schema.define(:version => 20130219022250) do
     t.datetime "attended_from"
     t.datetime "attended_to"
     t.string   "degree"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "cs_application_id"
   end
 
   create_table "mailing_addresses", :force => true do |t|
@@ -82,8 +82,9 @@ ActiveRecord::Schema.define(:version => 20130219022250) do
     t.string   "city"
     t.integer  "state_id"
     t.integer  "zip"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "cs_application_id"
   end
 
   create_table "ratings", :force => true do |t|

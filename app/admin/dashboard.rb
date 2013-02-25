@@ -18,6 +18,7 @@ ActiveAdmin.register_page "Dashboard" do
         column :first
         column :last
         column :tuid
+        column :progress
         column :created_at
       end
     end
