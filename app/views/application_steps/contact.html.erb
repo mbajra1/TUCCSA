@@ -1,0 +1,52 @@
+<%= form_for @cs_application, url: wizard_path, :html => { :class => 'form-horizontal' }  do |f|  %>
+
+	<h1>Provide us your contact information</h1>
+	
+	<%= fields_for @contact do |contact|%>
+		
+		<div class="control-group">
+    	<%= contact.label :name, :class => 'control-label' %>
+    	<div class="controls">
+      		<%= contact.text_field :name, :class => 'text_field' %>
+    	</div>
+	  	</div>
+   	  <div class="control-group">
+	    <%= contact.label :line1, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= contact.text_field :line1, :class => 'text_field' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= contact.label :line2, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= contact.text_field :line2, :class => 'text_field' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= contact.label :city, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= contact.text_field :city, :class => 'text_field' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= contact.label :state_id, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= contact.number_field :state_id, :class => 'number_field' %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <%= contact.label :zip, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= contact.number_field :zip, :class => 'number_field' %>
+	    </div>
+	  </div>
+		
+		
+	<% end%>
+	
+  	<div class="form-actions">
+    	<%= f.submit "Next", :class => 'btn btn-primary' %>
+    	<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>
+  	</div>
+  	
+<% end%>
