@@ -1,6 +1,8 @@
-<h1>Purpose and Transcripts</h1>
 <%= form_for @cs_application, url: wizard_path, :html => { :class => 'form-horizontal' }  do |f|  %>
-	
+	<div class="page-header">
+  		<h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
+	</div>
+	<h3>Purpose and Transcripts</h3>
 	<div class="control-group">
 	    <%= f.label :purpose_statement, :class => 'control-label' %>
 	    <div class="controls">
