@@ -28,13 +28,13 @@
 		<div class="control-group">
 			<%= institute.label :attended_from, :class => 'control-label' %>
 			<div class="controls">
-				<%= institute.date_select :attended_from, :class => 'date_select' %>
+				<%= institute.text_field :attended_from, :class => 'datepicker' %>
 			</div>
 		</div>
 		<div class="control-group">
 			<%= institute.label :attended_to, :class => 'control-label' %>
 			<div class="controls">
-				<%= institute.date_select :attended_to, :class => 'date_select' %>
+				<%= institute.text_field :attended_to, :class => 'datepicker' %>
 			</div>
 		</div>
 		<div class="control-group">
@@ -50,5 +50,9 @@
 		<%= f.submit "Next", :class => 'btn btn-primary' %>
 		<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>
 	</div>
-
 <% end%>
+
+<script>
+	$('.datepicker').datepicker()
+</script>
+

@@ -1,3 +1,9 @@
+#Clear database
+CsApplication.delete_all
+Institution.delete_all
+MailingAddress.delete_all
+Recommendation.delete_all
+
 #States U.S.
 State.delete_all
 State.create({:name=> 'Alaska',:code=> 'AK'})
