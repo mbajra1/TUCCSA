@@ -47,9 +47,45 @@
 	<% end%>
 
 	<div class="form-actions">
+		<%= f.button "Add more", :class => 'btn' %>
 		<%= f.submit "Next", :class => 'btn btn-primary' %>
 		<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>
 	</div>
+<% end%>
+<% @institution_all.each do |institution|%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Institution</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Dates Attended</th>
+      <th>Degree</th>
+    </tr>
+  </thead>
+  <tbody>
+	  <h3>Saved Institutions</h3>
+	  <tr>
+        <td><%= institution.institution %></td>
+        <td><%= institution.city %></td>
+        <td><%= State.find_by_id(institution.state_id).name unless institution.state_id.nil? %></td>
+        <td><%= institution.attended_from %> - <%= institution.attended_to %></td>
+        <td><%= institution.degree %></td>
+        <td>
+        	<% if !institution.id.nil? %>
+	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+	                      edit_institution_path(institution), :class => 'btn btn-mini' %>
+	          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	                      institution_path(institution),
+	                      :method => :delete,
+	                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+	                      :class => 'btn btn-mini btn-danger' %>
+            <%end%>
+        </td>
+      </tr>
+	</tbody>
+</table>
+
 <% end%>
 
 <script>

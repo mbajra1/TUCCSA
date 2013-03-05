@@ -15,8 +15,10 @@ class ApplicationStepsController < ApplicationController
       end
     when :educational
       if @cs_application.institutions.present?
+        @institution_all = @cs_application.institutions
         @institution = @cs_application.institutions.first
       else
+        @institution_all = @cs_application.institutions
         @institution = @cs_application.institutions.build
       end
     when :purpose
