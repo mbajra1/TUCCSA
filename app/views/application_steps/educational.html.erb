@@ -1,1 +1,51 @@
-Educational Information
+<%= form_for @cs_application, url: wizard_path, :html => { :class => 'form-horizontal' }  do |f|  %>
+
+<h1>Provide Your Educational Information</h1>
+
+	<%= fields_for @institution do |institute|%>
+
+		<div class="control-group">
+			<%= institute.label :institution, :class => 'control-label' %>
+			<div class="controls">
+				<%= institute.text_field :institution, :class => 'text_field' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= institute.label :city, :class => 'control-label' %>
+			<div class="controls">
+				<%= institute.text_field :city, :class => 'text_field' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= institute.label :state_id, :class => 'control-label' %>
+			<div class="controls">
+				<%=institute.collection_select(:state_id, State.all, :id, :name, {:include_blank => '-- Please select your state --'}) %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= institute.label :attended_from, :class => 'control-label' %>
+			<div class="controls">
+				<%= institute.date_select :attended_from, :class => 'date_select' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= institute.label :attended_to, :class => 'control-label' %>
+			<div class="controls">
+				<%= institute.date_select :attended_to, :class => 'date_select' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= institute.label :degree, :class => 'control-label' %>
+			<div class="controls">
+				<%= institute.text_field :degree, :class => 'text_field' %>
+			</div>
+		</div>
+
+	<% end%>
+
+	<div class="form-actions">
+		<%= f.submit "Next", :class => 'btn btn-primary' %>
+		<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>
+	</div>
+
+<% end%>

@@ -1,40 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Recommendation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Cs application:</b>
-  <%= @recommendation.cs_application_id %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:cs_application_id) %>:</strong></dt>
+  <dd><%= @recommendation.cs_application_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @recommendation.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @recommendation.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @recommendation.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:time_known_from) %>:</strong></dt>
+  <dd><%= @recommendation.time_known_from %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:time_known_to) %>:</strong></dt>
+  <dd><%= @recommendation.time_known_to %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @recommendation.status %></dd>
+</dl>
 
-<p>
-  <b>Name:</b>
-  <%= @recommendation.name %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @recommendation.title %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @recommendation.email %>
-</p>
-
-<p>
-  <b>Time known from:</b>
-  <%= @recommendation.time_known_from %>
-</p>
-
-<p>
-  <b>Time known to:</b>
-  <%= @recommendation.time_known_to %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @recommendation.status %>
-</p>
-
-
-<%= link_to 'Edit', edit_recommendation_path(@recommendation) %> |
-<%= link_to 'Back', recommendations_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              recommendations_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_recommendation_path(@recommendation), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              recommendation_path(@recommendation),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

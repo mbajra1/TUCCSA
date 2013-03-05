@@ -1,35 +1,48 @@
-<h1>Listing recommendations</h1>
-
-<table>
-  <tr>
-    <th>Cs application</th>
-    <th>Name</th>
-    <th>Title</th>
-    <th>Email</th>
-    <th>Time known from</th>
-    <th>Time known to</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @recommendations.each do |recommendation| %>
-  <tr>
-    <td><%= recommendation.cs_application_id %></td>
-    <td><%= recommendation.name %></td>
-    <td><%= recommendation.title %></td>
-    <td><%= recommendation.email %></td>
-    <td><%= recommendation.time_known_from %></td>
-    <td><%= recommendation.time_known_to %></td>
-    <td><%= recommendation.status %></td>
-    <td><%= link_to 'Show', recommendation %></td>
-    <td><%= link_to 'Edit', edit_recommendation_path(recommendation) %></td>
-    <td><%= link_to 'Destroy', recommendation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Recommendation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:cs_application_id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:time_known_from) %></th>
+      <th><%= model_class.human_attribute_name(:time_known_to) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recommendations.each do |recommendation| %>
+      <tr>
+        <td><%= link_to recommendation.id, recommendation_path(recommendation) %></td>
+        <td><%= recommendation.cs_application_id %></td>
+        <td><%= recommendation.name %></td>
+        <td><%= recommendation.title %></td>
+        <td><%= recommendation.email %></td>
+        <td><%= recommendation.time_known_from %></td>
+        <td><%= recommendation.time_known_to %></td>
+        <td><%= recommendation.status %></td>
+        <td><%=l recommendation.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_recommendation_path(recommendation), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      recommendation_path(recommendation),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Recommendation', new_recommendation_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_recommendation_path,
+            :class => 'btn btn-primary' %>

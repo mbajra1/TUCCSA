@@ -65,7 +65,7 @@ class CsApplicationsController < ApplicationController
 
     respond_to do |format|
       if @cs_application.update_attributes(params[:cs_application])
-        format.html { redirect_to @cs_application, notice: 'Cs application was successfully updated.' }
+        format.html { redirect_to application_steps_path, notice: 'Cs application was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

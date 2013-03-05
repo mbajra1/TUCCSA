@@ -1,60 +1,41 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Rating -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Recommendation:</b>
-  <%= @rating.recommendation_id %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:recommendation_id) %>:</strong></dt>
+  <dd><%= @rating.recommendation_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:intellect) %>:</strong></dt>
+  <dd><%= @rating.intellect %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:leadership) %>:</strong></dt>
+  <dd><%= @rating.leadership %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:written) %>:</strong></dt>
+  <dd><%= @rating.written %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:verbal) %>:</strong></dt>
+  <dd><%= @rating.verbal %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:reliability) %>:</strong></dt>
+  <dd><%= @rating.reliability %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:timeliness) %>:</strong></dt>
+  <dd><%= @rating.timeliness %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:maturity) %>:</strong></dt>
+  <dd><%= @rating.maturity %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:skill) %>:</strong></dt>
+  <dd><%= @rating.skill %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:commitment) %>:</strong></dt>
+  <dd><%= @rating.commitment %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:independent) %>:</strong></dt>
+  <dd><%= @rating.independent %></dd>
+</dl>
 
-<p>
-  <b>Intellect:</b>
-  <%= @rating.intellect %>
-</p>
-
-<p>
-  <b>Leadership:</b>
-  <%= @rating.leadership %>
-</p>
-
-<p>
-  <b>Written:</b>
-  <%= @rating.written %>
-</p>
-
-<p>
-  <b>Verbal:</b>
-  <%= @rating.verbal %>
-</p>
-
-<p>
-  <b>Reliability:</b>
-  <%= @rating.reliability %>
-</p>
-
-<p>
-  <b>Timeliness:</b>
-  <%= @rating.timeliness %>
-</p>
-
-<p>
-  <b>Maturity:</b>
-  <%= @rating.maturity %>
-</p>
-
-<p>
-  <b>Skill:</b>
-  <%= @rating.skill %>
-</p>
-
-<p>
-  <b>Commitment:</b>
-  <%= @rating.commitment %>
-</p>
-
-<p>
-  <b>Independent:</b>
-  <%= @rating.independent %>
-</p>
-
-
-<%= link_to 'Edit', edit_rating_path(@rating) %> |
-<%= link_to 'Back', ratings_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              ratings_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_rating_path(@rating), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              rating_path(@rating),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

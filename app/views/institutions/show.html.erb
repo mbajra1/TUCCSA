@@ -1,35 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Institution -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Institution:</b>
-  <%= @institution.institution %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:institution) %>:</strong></dt>
+  <dd><%= @institution.institution %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= @institution.city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:state_id) %>:</strong></dt>
+  <dd><%= @institution.state_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:attended_from) %>:</strong></dt>
+  <dd><%= @institution.attended_from %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:attended_to) %>:</strong></dt>
+  <dd><%= @institution.attended_to %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:degree) %>:</strong></dt>
+  <dd><%= @institution.degree %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cs_application_id) %>:</strong></dt>
+  <dd><%= @institution.cs_application_id %></dd>
+</dl>
 
-<p>
-  <b>City:</b>
-  <%= @institution.city %>
-</p>
-
-<p>
-  <b>State:</b>
-  <%= @institution.state_id %>
-</p>
-
-<p>
-  <b>Attended from:</b>
-  <%= @institution.attended_from %>
-</p>
-
-<p>
-  <b>Attended to:</b>
-  <%= @institution.attended_to %>
-</p>
-
-<p>
-  <b>Degree:</b>
-  <%= @institution.degree %>
-</p>
-
-
-<%= link_to 'Edit', edit_institution_path(@institution) %> |
-<%= link_to 'Back', institutions_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              institutions_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_institution_path(@institution), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              institution_path(@institution),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

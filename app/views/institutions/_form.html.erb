@@ -1,41 +1,50 @@
-<%= form_for(@institution) do |f| %>
-  <% if @institution.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@institution.errors.count, "error") %> prohibited this institution from being saved:</h2>
-
-      <ul>
-      <% @institution.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @institution, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :institution, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :institution, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :city, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :city, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :state_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :state_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :attended_from, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :attended_from, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :attended_to, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :attended_to, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :degree, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :degree, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cs_application_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :cs_application_id, :class => 'number_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :institution %><br />
-    <%= f.text_field :institution %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :state_id %><br />
-    <%= f.number_field :state_id %>
-  </div>
-  <div class="field">
-    <%= f.label :attended_from %><br />
-    <%= f.datetime_select :attended_from %>
-  </div>
-  <div class="field">
-    <%= f.label :attended_to %><br />
-    <%= f.datetime_select :attended_to %>
-  </div>
-  <div class="field">
-    <%= f.label :degree %><br />
-    <%= f.text_field :degree %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                institutions_path, :class => 'btn' %>
   </div>
 <% end %>

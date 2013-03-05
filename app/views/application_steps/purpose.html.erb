@@ -1,1 +1,16 @@
-Purpose and Transcripts
+<h1>Purpose and Transcripts</h1>
+<%= form_for @cs_application, url: wizard_path, :html => { :class => 'form-horizontal' }  do |f|  %>
+	
+	<div class="control-group">
+	    <%= f.label :purpose_statement, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_area :purpose_statement, :class => 'text_area' %>
+	    </div>
+	</div>
+	
+  	<div class="form-actions">
+    	<%= f.submit "Next", :class => 'btn btn-primary' %>
+    	<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>
+  	</div>
+  	
+<% end%>

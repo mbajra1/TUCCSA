@@ -1,61 +1,74 @@
-<%= form_for(@rating) do |f| %>
-  <% if @rating.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
-
-      <ul>
-      <% @rating.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @rating, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :recommendation_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :recommendation_id, :class => 'number_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :intellect, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :intellect, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :leadership, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :leadership, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :written, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :written, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :verbal, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :verbal, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reliability, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :reliability, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :timeliness, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :timeliness, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :maturity, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :maturity, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :skill, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :skill, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :commitment, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :commitment, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :independent, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :independent, :class => 'number_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :recommendation_id %><br />
-    <%= f.number_field :recommendation_id %>
-  </div>
-  <div class="field">
-    <%= f.label :intellect %><br />
-    <%= f.number_field :intellect %>
-  </div>
-  <div class="field">
-    <%= f.label :leadership %><br />
-    <%= f.number_field :leadership %>
-  </div>
-  <div class="field">
-    <%= f.label :written %><br />
-    <%= f.number_field :written %>
-  </div>
-  <div class="field">
-    <%= f.label :verbal %><br />
-    <%= f.number_field :verbal %>
-  </div>
-  <div class="field">
-    <%= f.label :reliability %><br />
-    <%= f.number_field :reliability %>
-  </div>
-  <div class="field">
-    <%= f.label :timeliness %><br />
-    <%= f.number_field :timeliness %>
-  </div>
-  <div class="field">
-    <%= f.label :maturity %><br />
-    <%= f.number_field :maturity %>
-  </div>
-  <div class="field">
-    <%= f.label :skill %><br />
-    <%= f.number_field :skill %>
-  </div>
-  <div class="field">
-    <%= f.label :commitment %><br />
-    <%= f.number_field :commitment %>
-  </div>
-  <div class="field">
-    <%= f.label :independent %><br />
-    <%= f.number_field :independent %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                ratings_path, :class => 'btn' %>
   </div>
 <% end %>
