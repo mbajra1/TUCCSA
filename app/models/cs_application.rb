@@ -6,4 +6,7 @@ class CsApplication < ActiveRecord::Base
   has_one :mailing_address
   has_many :institutions
   
+  has_attached_file :purpose
+  accepts_nested_attributes_for :recommendations
+  
 end

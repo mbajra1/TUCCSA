@@ -1,6 +1,6 @@
 class ApplicationStepsController < ApplicationController
   include Wicked::Wizard
-  steps :contact, :educational, :purpose, :send_recommendations, :complete
+  steps :contact, :educational, :purpose, :send_recommendations, :send_email, :complete
   
   def show
     @cs_application = current_user.cs_application
@@ -24,10 +24,15 @@ class ApplicationStepsController < ApplicationController
     when :purpose
       
     when :send_recommendations
-      if @cs_application.recommendations.present?
-        @recommendation = @cs_application.recommendations.first
+      if @cs_application.recommendations.size==1
+        @recommendation1 = @cs_application.recommendations.first
+        @recommendation2 = @cs_application.recommendations.build
+      elsif @cs_application.recommendations.size==2
+        @recommendation1 = @cs_application.recommendations.first
+        @recommendation2 = @cs_application.recommendations.second
       else
-        @recommendation = @cs_application.recommendations.build
+        @recommendation1 = @cs_application.recommendations.build
+        @recommendation2 = @cs_application.recommendations.build
       end
     end
     render_wizard
@@ -64,19 +69,39 @@ class ApplicationStepsController < ApplicationController
       @cs_application.save
       
     when :purpose
-      @cs_application.purpose_statement = params[:cs_application][:purpose_statement]
-      @cs_application.progress = 70
-      @cs_application.save
+      if !params[:cs_application].blank?
+        @cs_application.purpose = params[:cs_application][:purpose]
+        @cs_application.progress = 70
+        @cs_application.save
+      end
       
     when :send_recommendations
-      if @cs_application.recommendations.present?
-        @recommendation = @cs_application.recommendations.first
-        @recommendation.update_attributes(params[:recommendation])
+      if @cs_application.recommendations.size==1
+        @recommendation1 = @cs_application.recommendations.first
+        @recommendation1.update_attributes(params[:recommendation1])
+        @recommendation2 = Recommendation.new(params[:recommendation2])
+        @recommendation2.cs_application_id = @cs_application.id
+        @recommendation2.save
+        @recommendation1.cs_application_id = @cs_application.id
+        @recommendation1.save
+      elsif @cs_application.recommendations.size==2
+        @recommendation1 = @cs_application.recommendations.first
+        @recommendation2 = @cs_application.recommendations.second
+        @recommendation1.update_attributes(params[:recommendation1])
+        @recommendation2.update_attributes(params[:recommendation2])
+        @recommendation1.cs_application_id = @cs_application.id
+        @recommendation1.save
+        @recommendation2.cs_application_id = @cs_application.id
+        @recommendation2.save
       else
-        @recommendation = Recommendation.new(params[:recommendation])
+        @recommendation1 = Recommendation.new(params[:recommendation1])
+        @recommendation2 = Recommendation.new(params[:recommendation2])
+        @recommendation1.cs_application_id = @cs_application.id
+        @recommendation1.save
+        @recommendation2.cs_application_id = @cs_application.id
+        @recommendation2.save
       end
-      @recommendation.cs_application_id = @cs_application.id
-      @recommendation.save
+      
       @cs_application.progress = 90
       @cs_application.save
     end

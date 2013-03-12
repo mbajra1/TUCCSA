@@ -4,12 +4,26 @@
 	</div>
 	<h3>Purpose and Transcripts</h3>
 	<div class="control-group">
-	    <%= f.label :purpose_statement, :class => 'control-label' %>
+	    <%= f.label :purpose, :class => 'control-label' %>
 	    <div class="controls">
-	      <%= f.text_area :purpose_statement, :class => 'text_area', :style => "width:670px;" %>
+	      Attach a MS-Word or equivalent format file containing a brief statement of purpose describing your goals
+	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)
+	       <br />
+	       <% if !@cs_application.purpose.nil?%>
+	       	<strong>File received: <%= link_to @cs_application.purpose_file_name, @cs_application.purpose.url%></strong>
+	       	<br /> <br />
+	       	Use the button to replace your file <br />
+	       <% end%>
+	      <%= f.file_field :purpose %>
 	    </div>
 	</div>
-	
+	<hr />
+	<div class="control-group">
+		Transcripts
+		<div class="controls">
+			Attach your transcripts here
+		</div>
+	</div>
   	<div class="form-actions">
     	<%= f.submit "Next", :class => 'btn btn-primary' %>
     	<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>

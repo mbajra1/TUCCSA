@@ -11,6 +11,8 @@ gem 'pg', :group => :production
 gem 'devise'
 gem 'activeadmin'
 gem 'wicked'
+gem 'paperclip'
+gem 'validates_email_format_of'
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'bootstrap-datepicker-rails'
