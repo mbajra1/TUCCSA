@@ -1,73 +1,73 @@
+Please fill this form as accurately as possible. Your input will help us decide whether to accept this application or
+to discard it. 5 is the highest score where as 1 is the lowest.
+<br />
 <%= form_for @rating, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :recommendation_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :recommendation_id, :class => 'number_field' %>
-    </div>
-  </div>
+  <br />
+  <%= f.hidden_field :recommendation_id %>
+
   <div class="control-group">
     <%= f.label :intellect, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :intellect, :class => 'number_field' %>
+      <%= f.select :intellect,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :leadership, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :leadership, :class => 'number_field' %>
+    	<%= f.select :leadership,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :written, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :written, :class => 'number_field' %>
+    	<%= f.select :written,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :verbal, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :verbal, :class => 'number_field' %>
+    	<%= f.select :verbal,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :reliability, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :reliability, :class => 'number_field' %>
+    	<%= f.select :reliability,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :timeliness, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :timeliness, :class => 'number_field' %>
+    	<%= f.select :timeliness,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :maturity, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :maturity, :class => 'number_field' %>
+    	<%= f.select :maturity,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :skill, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :skill, :class => 'number_field' %>
+    	<%= f.select :skill,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :commitment, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :commitment, :class => 'number_field' %>
+    	<%= f.select :commitment,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :independent, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :independent, :class => 'number_field' %>
+    	<%= f.select :independent,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
     </div>
   </div>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit 'Send Your Ratings', :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 ratings_path, :class => 'btn' %>
   </div>

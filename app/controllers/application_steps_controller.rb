@@ -14,12 +14,17 @@ class ApplicationStepsController < ApplicationController
         @contact = @cs_application.build_mailing_address
       end
     when :educational
-      if @cs_application.institutions.present?
-        @institution_all = @cs_application.institutions
-        @institution = @cs_application.institutions.first
-      else
-        @institution_all = @cs_application.institutions
+      if !params[:new].nil?
         @institution = @cs_application.institutions.build
+        @institution_all = @cs_application.institutions
+      else
+        if @cs_application.institutions.present?
+          @institution_all = @cs_application.institutions
+          @institution = @cs_application.institutions.last
+        else
+          @institution_all = @cs_application.institutions
+          @institution = @cs_application.institutions.build
+        end
       end
     when :purpose
       
@@ -55,24 +60,38 @@ class ApplicationStepsController < ApplicationController
       @cs_application.is_citizen = params[:cs_application][:is_citizen]
       @cs_application.telephone = params[:cs_application][:telephone]
       @cs_application.save
+      render_wizard @cs_application
       
     when :educational
-      if @cs_application.institutions.present?
-        @institution = @cs_application.institutions.first
-        @institution.update_attributes(params[:institution])
-      else
-        @institution = Institution.new(params[:institution])
-      end
-      @institution.cs_application_id = @cs_application.id
-      @institution.save
-      @cs_application.progress = 60
-      @cs_application.save
       
+      if params[:commit]== "new"
+        @institution = Institution.new(params[:institution])
+        @institution.cs_application_id = @cs_application.id
+        @institution.save
+        @cs_application.progress = 60
+        @cs_application.save
+        render_wizard params[:new => true]
+      else
+        if @cs_application.institutions.present?
+          @institution = @cs_application.institutions.last
+          @institution.update_attributes(params[:institution])
+        else
+          @institution = Institution.new(params[:institution])
+        end
+          @institution.cs_application_id = @cs_application.id
+          @institution.save
+          @cs_application.progress = 60
+          @cs_application.save
+          render_wizard @cs_application
+      end
     when :purpose
       if !params[:cs_application].blank?
         @cs_application.purpose = params[:cs_application][:purpose]
         @cs_application.progress = 70
         @cs_application.save
+        render_wizard @cs_application
+      else
+        render_wizard @cs_application
       end
       
     when :send_recommendations
@@ -104,8 +123,11 @@ class ApplicationStepsController < ApplicationController
       
       @cs_application.progress = 90
       @cs_application.save
+      render_wizard @cs_application
+
+    when :send_email
+      render_wizard @cs_application
     end
-    render_wizard @cs_application
   end
   
   

@@ -47,12 +47,12 @@
 	<% end%>
 
 	<div class="form-actions">
-		<%= f.button "Add more", :class => 'btn' %>
+		<%= f.submit "Save", :value => 'new' ,:class => 'btn' %>
 		<%= f.submit "Next", :class => 'btn btn-primary' %>
 		<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>
 	</div>
 <% end%>
-<% @institution_all.each do |institution|%>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -65,6 +65,7 @@
   </thead>
   <tbody>
 	  <h3>Saved Institutions</h3>
+	  <% current_user.cs_application.institutions.each do |institution|%>
 	  <tr>
         <td><%= institution.institution %></td>
         <td><%= institution.city %></td>
@@ -83,10 +84,11 @@
             <%end%>
         </td>
       </tr>
+      <% end%>
 	</tbody>
 </table>
 
-<% end%>
+
 
 <script>
 	$('.datepicker').datepicker()
