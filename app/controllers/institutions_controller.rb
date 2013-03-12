@@ -18,7 +18,7 @@ class InstitutionsController < InheritedResources::Base
     @institution.destroy
 
     respond_to do |format|
-      format.html { redirect_to '/application_steps/educational' }
+      format.html { redirect_to '/application_steps/educational', :notice => 'Institution removed' }
       format.json { head :no_content }
     end
   end
