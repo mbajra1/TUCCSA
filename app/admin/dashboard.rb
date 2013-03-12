@@ -8,6 +8,8 @@ ActiveAdmin.register_page "Dashboard" do
         column :id
         column :email
         column :created_at
+        column :current_sign_in_at
+        column :sign_in_count
       end
       strong {link_to "View all users", admin_users_path}
     end
