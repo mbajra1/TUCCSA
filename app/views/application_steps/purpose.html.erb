@@ -4,7 +4,7 @@
 	</div>
 	<h3>Purpose and Transcripts</h3>
 	<div class="control-group">
-	    <%= f.label :purpose, :class => 'control-label' %>
+	    <%= f.label :purpose_statement, :class => 'control-label' %>
 	    <div class="controls">
 	      Attach a MS-Word or equivalent format file containing a brief statement of purpose describing your goals
 	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)
@@ -19,9 +19,23 @@
 	</div>
 	<hr />
 	<div class="control-group">
-		Transcripts
+		<%= f.label :submit_transcripts, :class => 'control-label' %>
 		<div class="controls">
-			Attach your transcripts here
+			Attach your transcripts. Click on 'Upload' after selecting your file to add another attachment. Attachments can be 
+			images of your scanned transcripts.
+			<br />
+			<%= f.fields_for :transcripts do |transcript|%>
+				<%= transcript.file_field :document %>
+				<%= transcript.submit "Save", :value => 'Upload' ,:class => 'btn' %>
+			<%end%>
+			<br /><br />
+			<strong>Here are your uploaded transcripts</strong> <br />
+			<ol>
+				<% @transcript_all = @cs_application.transcripts%>
+				<% @transcript_all.each do |transcript|%>
+					<li><%=link_to transcript.document_file_name, transcript.document.url%></li>
+				<% end%>
+			</ol>
 		</div>
 	</div>
   	<div class="form-actions">

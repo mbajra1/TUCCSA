@@ -5,6 +5,7 @@ class CsApplication < ActiveRecord::Base
   has_many :recommendations
   has_one :mailing_address
   has_many :institutions
+  has_many :transcripts, :dependent => :destroy
   
   has_attached_file :purpose
   accepts_nested_attributes_for :recommendations

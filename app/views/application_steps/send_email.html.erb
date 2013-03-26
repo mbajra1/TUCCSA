@@ -11,7 +11,12 @@
 		Name: <%= @recommendation1.name%> <br />
 		Title: <%= @recommendation1.title%> <br />
 		Email: <%= @recommendation1.email%> <br />
-		<%= link_to 'Send Invitation'%>
+		<% if !@recommendation1.email.nil? %>
+			<%= link_to t('.send_invitation'), root_url, :class => 'btn' %>
+			
+		<% else %>
+			*Please enter all information
+		<% end %>
 	<% else%>
 		Information not available
 	<% end%>
@@ -21,7 +26,11 @@
 		Name: <%= @recommendation2.name%> <br />
 		Title: <%= @recommendation2.title%> <br />
 		Email: <%= @recommendation2.email%> <br />
-		<%= link_to 'Send Invitation'%>
+		<% if !@recommendation2.email.size==0 %>
+			<%= link_to t('.send_invitation'), root_url, :class => 'btn' %>
+		<% else %>
+			*Please enter all information
+		<% end%>
 	<% else%>
 		Information not available
 	<% end%>

@@ -27,6 +27,11 @@ class ApplicationStepsController < ApplicationController
         end
       end
     when :purpose
+      #if !params[:new].nil?
+        @transcript = @cs_application.transcripts.build
+        @transcript_all = @cs_application.transcripts
+      #else
+        
       
     when :send_recommendations
       if @cs_application.recommendations.size==1
@@ -85,13 +90,22 @@ class ApplicationStepsController < ApplicationController
           render_wizard @cs_application
       end
     when :purpose
-      if !params[:cs_application].blank?
-        @cs_application.purpose = params[:cs_application][:purpose]
-        @cs_application.progress = 70
-        @cs_application.save
-        render_wizard @cs_application
+      
+      if params[:commit]== "Upload"
+        @transcript = Transcript.new(:document => params[:cs_application][:transcripts][:document])
+        @transcript.cs_application_id = @cs_application.id
+        @transcript.save
+        #@cs_application.save
+        render_wizard
       else
-        render_wizard @cs_application
+        if !params[:cs_application].blank?
+          @cs_application.purpose = params[:cs_application][:purpose]
+          @cs_application.progress = 70
+          @cs_application.save
+          render_wizard @cs_application
+        else
+          render_wizard @cs_application
+        end
       end
       
     when :send_recommendations

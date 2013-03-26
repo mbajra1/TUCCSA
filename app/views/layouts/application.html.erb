@@ -28,16 +28,12 @@
         <ul class="nav">
         	<li><%= link_to "About TU"%></li>
         	<li><%= link_to "About Cyber Security"%></li>
-        	<li><%= link_to "Contact Form"%></li>
         	<li><% if !current_admin_user.nil? %>
         			<%= link_to "Admin Dashboard", "/admin" %>
         		<% end%>
         	</li>
         </ul>
       </div>
- 	      <form class="navbar-search pull-left">
-  		<input type="text" class="search-query" placeholder="Search TU">
-	  </form>
     </div>
   </div>
 </div>
