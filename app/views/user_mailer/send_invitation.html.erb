@@ -1,0 +1,25 @@
+Hello <%= @invite.name%>,
+
+<br />
+
+This email is sent on behalf of a student applying for TU cyber security scholarship. Your recommendation or ratings will be very
+helpful for the scholarship comittee to select appropriate candidate for the scholarship.
+
+<br />
+Here is the student detail: <br />
+Student's Name: <%= @invite.cs_application.first%>&nbsp;<%= @invite.cs_application.middle unless @invite.cs_application.middle.nil? %>&nbsp;<%= @invite.cs_application.last%><br />
+Student's TU ID: <%= @invite.cs_application.tuid%><br />
+Student's email: <%= @invite.cs_application.email%><br />
+
+<br />
+Please follow the link given below to complete the recommendation online. Each invitation is given a unique password which is
+required to complete the form. Thank you. <br />
+Your Password: 4ksd32K <br />
+Link: <%= link_to @link, @link%> <br />
+
+<br />
+Contact CS department if you want to validate authenticity of this email.<br />
+<br />
+(C)Towson University<br />
+Dept of Computer Science<br />
+

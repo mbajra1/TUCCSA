@@ -1,5 +1,18 @@
 Please fill this form as accurately as possible. Your input will help us decide whether to accept this application or
 to discard it. 5 is the highest score where as 1 is the lowest.
+<br /><br />
+<strong>Student Details </strong>
+<br />
+Student's Name: <%= @rating.recommendation.cs_application.first%>&nbsp;<%= @rating.recommendation.cs_application.middle unless @rating.recommendation.cs_application.middle.nil? %>&nbsp;<%= @rating.recommendation.cs_application.last%><br />
+Student's TU ID: <%= @rating.recommendation.cs_application.tuid%><br />
+Student's email: <%= @rating.recommendation.cs_application.email%><br />
+<br /><br />
+<strong>Recommender's Details (as provided by the student)</strong><br />
+Name: <%= @rating.recommendation.name%> <br />
+Title: <%=@rating.recommendation.title%> <br />
+Contact: <%=@rating.recommendation.email%>
+<br /><hr />
+
 <br />
 <%= form_for @rating, :html => { :class => 'form-horizontal' } do |f| %>
   <br />
@@ -8,67 +21,71 @@ to discard it. 5 is the highest score where as 1 is the lowest.
   <div class="control-group">
     <%= f.label :intellect, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :intellect,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+      <%= f.select :intellect,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :leadership, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :leadership,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :leadership,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :written, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :written,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :written,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :verbal, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :verbal,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :verbal,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :reliability, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :reliability,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :reliability,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :timeliness, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :timeliness,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :timeliness,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :maturity, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :maturity,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :maturity,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :skill, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :skill,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :skill,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :commitment, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :commitment,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :commitment,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :independent, :class => 'control-label' %>
     <div class="controls">
-    	<%= f.select :independent,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Exicelent',5]], :class => 'number_field' %>
+    	<%= f.select :independent,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
-
+  <div class="control-group">
+    <%= f.label :additional_notes, :class => 'control-label' %>
+    <div class="controls">
+    	<%= f.text_area :notes %>
+    </div>
+  </div>
   <div class="form-actions">
-    <%= f.submit 'Send Your Ratings', :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                ratings_path, :class => 'btn' %>
+    <%= f.submit 'Submit My Ratings', :class => 'btn btn-primary' %>
+
   </div>
 <% end %>

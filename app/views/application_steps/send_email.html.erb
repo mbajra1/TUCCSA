@@ -12,10 +12,14 @@
 		Title: <%= @recommendation1.title%> <br />
 		Email: <%= @recommendation1.email%> <br />
 		<% if !@recommendation1.email.nil? %>
-			<%= link_to t('.send_invitation'), root_url, :class => 'btn' %>
+			<% if @recommendation1.status==1 || @recommendation1.status==2%>
+				<strong>Invitation Sent</strong>
+			<%else%>
+				<%= link_to "Send Invitation", send_invitation_path(@recommendation1) %>
+			<% end%>
 			
 		<% else %>
-			*Please enter all information
+			<strong>*Please enter all information</strong>
 		<% end %>
 	<% else%>
 		Information not available
@@ -27,7 +31,7 @@
 		Title: <%= @recommendation2.title%> <br />
 		Email: <%= @recommendation2.email%> <br />
 		<% if !@recommendation2.email.size==0 %>
-			<%= link_to t('.send_invitation'), root_url, :class => 'btn' %>
+			<%= f.submit "Send Invitation", :value => 'Request Recommendation', :email => @recommendation2.email %>
 		<% else %>
 			*Please enter all information
 		<% end%>

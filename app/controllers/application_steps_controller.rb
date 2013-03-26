@@ -44,6 +44,9 @@ class ApplicationStepsController < ApplicationController
         @recommendation1 = @cs_application.recommendations.build
         @recommendation2 = @cs_application.recommendations.build
       end
+      
+    when :send_email
+      
     end
     render_wizard
   end
@@ -140,6 +143,7 @@ class ApplicationStepsController < ApplicationController
       render_wizard @cs_application
 
     when :send_email
+      
       render_wizard @cs_application
     end
   end

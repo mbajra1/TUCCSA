@@ -86,8 +86,17 @@ class CsApplicationsController < ApplicationController
     end
   end
   
-  def send_email
-    
+  def send_invitation
+    recommendation = Recommendation.find_by_id(params[:recommendation_id])
+    rating = Rating.new()
+    recommendation.status = Recommendation::STATUS_SENT
+    recommendation.save
+    rating.recommendation_id = recommendation.id
+    rating.notes = "Enter you additional notes"
+    rating.save
+    link = "http://#{request.host}:#{request.port}/ratings/#{rating.id}/edit"
+    UserMailer.send_invitation(recommendation, link).deliver
+    redirect_to '/application_steps/send_email/', :notice => 'Invitation Email Sent' 
   end
   
 end
