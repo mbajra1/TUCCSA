@@ -30,11 +30,16 @@
 		Name: <%= @recommendation2.name%> <br />
 		Title: <%= @recommendation2.title%> <br />
 		Email: <%= @recommendation2.email%> <br />
-		<% if !@recommendation2.email.size==0 %>
-			<%= f.submit "Send Invitation", :value => 'Request Recommendation', :email => @recommendation2.email %>
+		<% if !@recommendation2.email.nil?%>
+			<% if @recommendation2.status==1 || @recommendation2.status==2%>
+				<strong>Invitation Sent</strong>
+			<%else%>
+				<%= link_to "Send Invitation", send_invitation_path(@recommendation2) %>
+			<% end%>
+			
 		<% else %>
-			*Please enter all information
-		<% end%>
+			<strong>*Please enter all information</strong>
+		<% end %>
 	<% else%>
 		Information not available
 	<% end%>
