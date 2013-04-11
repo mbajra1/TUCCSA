@@ -2,4 +2,6 @@
 <h2>Review and submit your application</h2>
 <h3>We will notify via email when your application is accepted.</h3>
 
-<h3><%= link_to 'Review Application' ,edit_cs_application_path(@cs_application), :class=>'btn'%> <%= link_to 'Send' ,root_url, :class=>'btn'%></h3>
+<!-- <edit_cs_application_path(@cs_application)> -->
+
+<h3><%= link_to t('.back'), previous_wizard_path, :class => 'btn' %> <%= link_to 'Review Application' ,review_application_path, :class=>'btn'%> <%= link_to 'Send' ,root_url, :class=>'btn'%></h3>

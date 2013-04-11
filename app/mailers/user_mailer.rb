@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   
-  default :from => 'cybersecurityapp@towson.edu'
+  default :from => 'cybercorps@towson.edu'
   
   def send_invitation(invite, link)
     @invite = invite

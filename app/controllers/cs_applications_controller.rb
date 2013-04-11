@@ -99,4 +99,19 @@ class CsApplicationsController < ApplicationController
     redirect_to '/application_steps/send_email/', :notice => 'Invitation Email Sent' 
   end
   
+  def review
+    @cs_application = CsApplication.find_by_user_id(current_user.id)
+    
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ApplicationReviewPdf.new(@cs_application, view_context)
+          send_data pdf.render, filename: "applicant_#{current_user.id}_#{@cs_application.id}.pdf",
+                                type: "application/pdf",
+                                disposition: "inline"
+
+      end
+    end
+  end
+  
 end

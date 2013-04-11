@@ -60,6 +60,7 @@
 	    </div>
 	  </div>
   	<div class="form-actions">
+  		<%= link_to t('.back'), edit_cs_application_path(@cs_application), :class => 'btn' %>
     	<%= f.submit "Next", :class => 'btn btn-primary' %>
     	<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>
   	</div>

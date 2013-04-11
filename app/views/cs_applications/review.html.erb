@@ -1,0 +1,237 @@
+<style type="text/css">
+#wrap {
+   width:700px;
+   margin:0 auto;
+   padding: 5px;
+   float:left;
+   border: 1px solid;
+   border-radius: 5px;
+}
+.left_col {
+   float:left;
+   width:340px;
+}
+.right_col {
+   float:right;
+   width:340px;
+}
+.title {
+	clear:both;
+	padding-top: 8px;
+	padding-bottom: 2px;
+}
+.empty {
+	padding-top: 3px;
+}
+</style>
+<h2>Review Your Application</h2>
+
+<br />
+<div id="wrap">
+	<div class="title">
+		<h4>Basic Information (<%= link_to "Edit", edit_cs_application_path(@cs_application) %>)</h4>
+	</div>
+	<div class="left_col">
+		First Name
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.first.blank? ? @cs_application.first : 'Not Provided' %>
+	</div>
+	<div class="left_col">
+		Middle Name
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.middle.blank? ? @cs_application.middle : 'Not Provided' %>
+	</div>
+	<div class="left_col">
+		Last Name
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.last.blank? ? @cs_application.last : 'Not Provided' %>
+	</div>
+		<div class="left_col">
+		TU ID
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.tuid.blank? ? @cs_application.tuid : 'Not Provided' %>
+	</div>
+	<div class="left_col">
+		Contact Email
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.email.blank? ? @cs_application.email : 'Not Provided' %>
+	</div>
+		<div class="left_col">
+		US Citizen?
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.is_citizen.blank? ? @cs_application.is_citizen : 'Not Provided' %>
+	</div>
+	
+	
+	<div class="title">
+		<h4>Contact Information (<%= link_to "Edit", application_steps_path %>)</h4>
+	</div>
+		<div class="left_col">
+		Name
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.mailing_address.name.blank? ? @cs_application.mailing_address.name : 'Not Provided' %>
+	</div>
+	<div class="left_col">
+		Address Line1
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.mailing_address.line1.blank? ? @cs_application.mailing_address.line1 : 'Not Provided' %>
+	</div>
+	<div class="left_col">
+		Address Line2
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.mailing_address.line2.blank? ? @cs_application.mailing_address.line2 : 'Not Provided' %>
+	</div>
+		<div class="left_col">
+		City
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.mailing_address.city.blank? ? @cs_application.mailing_address.city : 'Not Provided' %>
+	</div>
+	<div class="left_col">
+		State
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.mailing_address.state_id.blank? ? @cs_application.mailing_address.state.name : 'Not Provided' %>
+	</div>
+	<div class="left_col">
+		Zip
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.mailing_address.zip.blank? ? @cs_application.mailing_address.zip : 'Not Provided' %>
+	</div>
+	<div class="left_col">
+		Telephone
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.telephone.blank? ? @cs_application.telephone : 'Not Provided' %>
+	</div>
+	
+	<div class="title">
+		<h4>Educational Information (<%= link_to "Edit", application_steps_path %>)</h4>
+	</div>
+	<% @cs_application.institutions.each do |institution|%>
+		<div class="left_col">
+			Institution
+		</div>
+		<div id="right_col">
+			<%= !institution.institution.blank? ? institution.institution : 'Not Provided' %>
+		</div>
+		<div class="left_col">
+			City
+		</div>
+		<div id="right_col">
+			<%= !institution.city.blank? ? institution.city : 'Not Provided' %>
+		</div>
+		<div class="left_col">
+			Attended From
+		</div>
+		<div id="right_col">
+			<%= !institution.attended_from.blank? ? institution.attended_from : 'Not Provided' %>
+		</div>
+		<div class="left_col">
+			Attended To
+		</div>
+		<div id="right_col">
+			<%= !institution.attended_to.blank? ? institution.attended_to : 'Not Provided' %>
+		</div>
+		<div class="left_col">
+			Degree
+		</div>
+		<div id="right_col">
+			<%= !institution.degree.blank? ? institution.degree : 'Not Provided' %>
+		</div>
+		<div id="empty"> &nbsp; </div>
+	<% end%>
+	
+	<div class="title">
+		<h4>Purpose and Transcripts (<%= link_to "Edit", application_steps_path %>)</h4>
+	</div>
+	<div class="left_col">
+		Purpose Statement
+	</div>
+	<div id="right_col">
+		<%= !@cs_application.purpose.nil? ? (link_to @cs_application.purpose_file_name, @cs_application.purpose.url) : "Not Provided"%>
+	</div>
+	<div class="left_col">
+		Transcript(s)
+	</div>
+	<div id="right_col">
+		<% @transcript_all = @cs_application.transcripts%>
+		<% @transcript_all.each do |transcript|%>
+			<%=link_to transcript.document_file_name, transcript.document.url%>
+		<% end%>
+	</div>
+	
+	<div class="title">
+		<h4>Recommendations (<%= link_to "Edit", application_steps_path %>)</h4>
+	</div>
+	<% if !@cs_application.recommendations.first.nil? %>
+		<% @recommendation1 = @cs_application.recommendations.first%>
+		<div class="left_col">
+			Name: <%= @recommendation1.name%> 
+		</div>
+		<div id="right_col">
+			Status:
+			<% if @recommendation1.status==1 || @recommendation1.status==2%>
+				Invitation Sent
+			<% else%>
+				Not Sent
+			<% end%>
+		</div>
+	<% else %>
+		<div class="left_col">
+			Name: Not Provided
+		</div>
+		<div id="right_col">
+			Status: -
+		</div>
+	<% end%>
+	
+	<% if !@cs_application.recommendations.second.nil? %>
+		<% @recommendation1 = @cs_application.recommendations.second%>
+		<div class="left_col">
+			Name: <%= @recommendation1.name%> 
+		</div>
+		<div id="right_col">
+			Status:
+			<% if @recommendation1.status==1 || @recommendation1.status==2%>
+				Invitation Sent
+			<% else%>
+				Not Sent
+			<% end%>
+		</div>
+	<% else %>
+		<div class="left_col">
+			Name: Not Provided
+		</div>
+		<div id="right_col">
+			Status: -
+		</div>
+	<% end%>
+
+</div>
+<br /><br />
+
+<div style="clear: both; padding-top: 10px; padding-bottom: 10px;">
+	&nbsp;
+	<%= link_to t('.Send_Application'),
+                cs_applications_path, :class => 'btn btm-primary' %>
+	
+    <%= link_to t('.print_review'),
+                review_application_path(format: "pdf"), :target => '_blank', :class => 'btn btm-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                cs_applications_path, :class => 'btn' %>
+</div>
+	
+	
+
+<br />

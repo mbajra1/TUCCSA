@@ -11,5 +11,5 @@ TUCCSA2::Application.routes.draw do
   root :to => 'cs_applications#index'
   
   get '/cs_application/send_invitation/:recommendation_id', :controller => 'cs_applications', :action => 'send_invitation', :as => :send_invitation
-  
+  get '/cs_application/review', :controller => 'cs_applications', :action => 'review', :as => :review_application
 end
