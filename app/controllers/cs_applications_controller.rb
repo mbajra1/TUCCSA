@@ -92,11 +92,13 @@ class CsApplicationsController < ApplicationController
     recommendation.status = Recommendation::STATUS_SENT
     recommendation.save
     rating.recommendation_id = recommendation.id
+    rating.password = generate_rating_code(8)
     rating.notes = "Enter you additional notes"
     rating.save
-    link = "http://#{request.host}:#{request.port}/ratings/#{rating.id}/edit"
-    UserMailer.send_invitation(recommendation, link).deliver
+    link = "http://#{request.host}:#{request.port}/ratings/verify_password/#{rating.id}"
+    UserMailer.send_invitation(recommendation, link, rating).deliver
     redirect_to '/application_steps/send_email/', :notice => 'Invitation Email Sent' 
+    #redirect_to verify_password_path(rating.id), :notice => 'Invitation Email Sent' 
   end
   
   def review
@@ -112,6 +114,11 @@ class CsApplicationsController < ApplicationController
 
       end
     end
+  end
+  
+  def generate_rating_code(size = 8)
+    charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
+    (0...size).map{ charset.to_a[rand(charset.size)] }.join
   end
   
 end

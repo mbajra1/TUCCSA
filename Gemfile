@@ -5,8 +5,6 @@ gem 'rails', '3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
-gem 'mysql2' , :group => :development
 gem 'pg', :group => :production
 gem 'devise'
 gem 'activeadmin'
@@ -26,6 +24,13 @@ group :assets do
   gem 'less-rails'
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'mysql2'
+  gem 'better_errors'
+  #gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 gem 'jquery-rails'

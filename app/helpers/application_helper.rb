@@ -6,4 +6,5 @@ module ApplicationHelper
     end
     progress
   end
+
 end

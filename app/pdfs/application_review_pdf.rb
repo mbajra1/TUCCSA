@@ -71,8 +71,8 @@ class ApplicationReviewPdf < Prawn::Document
     move_down 5
     text "3.  Two recommendations", size: 10, :inline_format=>true
     move_down 3
-    text "First recommendation from:      <u><i>#{!@cs_application.recommendations.first.nil? ? @cs_application.recommendations.first.name : "Not Provided"}</i></u>       Status:      <u><i>#{@cs_application.recommendations.first.status.blank? ? "Invitition Not Sent" : "Invitition Sent"}</i></u>", size: 10, :inline_format=>true 
-    text "Second recommendation from:      <u><i>#{!@cs_application.recommendations.second.nil? ? @cs_application.recommendations.second.name : "Not Provided"}</i></u>       Status:      <u><i>#{@cs_application.recommendations.second.status.blank? ? "Invitition Not Sent" : "Invitition Sent"}</i></u>", size: 10, :inline_format=>true
+    text "First recommendation from:      <u><i>#{!@cs_application.recommendations.first.nil? ? @cs_application.recommendations.first.name : "Not Provided"}</i></u>       Status:      <u><i>#{@cs_application.recommendations.first.nil? ? "Invitition Not Sent" : "Invitition Sent"}</i></u>", size: 10, :inline_format=>true 
+    text "Second recommendation from:      <u><i>#{!@cs_application.recommendations.second.nil? ? @cs_application.recommendations.second.name : "Not Provided"}</i></u>       Status:      <u><i>#{@cs_application.recommendations.second.nil? ? "Invitition Not Sent" : "Invitition Sent"}</i></u>", size: 10, :inline_format=>true
     move_down 5
     text "4.  A brief description of any academic recognition, honors, disctinction, or awards that you", size: 10
     text "    have received.", size: 10

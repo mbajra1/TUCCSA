@@ -23,6 +23,7 @@ ActiveAdmin.register_page "Dashboard" do
         column :progress
         column :created_at
       end
+      strong {link_to "View all applications", admin_cs_applications_path}
     end
     
   end

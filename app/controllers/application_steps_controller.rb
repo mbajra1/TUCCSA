@@ -73,7 +73,7 @@ class ApplicationStepsController < ApplicationController
     when :educational
       
       if params[:commit]== "new"
-        @institution = Institution.new(params[:institution])
+        @institution = Institution.new
         @institution.cs_application_id = @cs_application.id
         @institution.save
         @cs_application.progress = 60

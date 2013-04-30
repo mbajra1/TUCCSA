@@ -12,4 +12,8 @@ TUCCSA2::Application.routes.draw do
   
   get '/cs_application/send_invitation/:recommendation_id', :controller => 'cs_applications', :action => 'send_invitation', :as => :send_invitation
   get '/cs_application/review', :controller => 'cs_applications', :action => 'review', :as => :review_application
+  
+  get '/ratings/verify_password/:id', :controller=>'ratings', :action=>'verify_password', :as => :verify_password
+  get '/ratings/submit_password/:id', :controller=>'ratings', :action=>'submit_password', :as => :submit_password
+  
 end

@@ -1,5 +1,4 @@
-Please fill this form as accurately as possible. Your input will help us decide whether to accept this application or
-to discard it. 5 is the highest score where as 1 is the lowest.
+Please fill this form as accurately as possible. 5 is the highest score where as 1 is the lowest.
 <br /><br />
 <strong>Student Details </strong>
 <br />
@@ -17,7 +16,7 @@ Contact: <%=@rating.recommendation.email%>
 <%= form_for @rating, :html => { :class => 'form-horizontal' } do |f| %>
   <br />
   <%= f.hidden_field :recommendation_id %>
-
+  <%= f.hidden_field :status, :value=>Rating::STATUS_COMPLETED %>
   <div class="control-group">
     <%= f.label :intellect, :class => 'control-label' %>
     <div class="controls">
