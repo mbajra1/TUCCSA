@@ -22,22 +22,22 @@ ActiveAdmin.register CsApplication do
   
   action_item :only => :show do
     link_to t('.download'),
-                review_application_path(format: "pdf"), :target => '_blank', :class => 'btn btm-primary'
+                download_package_path(cs_application)
   end
   
   action_item :only => :show do
     link_to t('.mark_reviewed'),
-                review_application_path(format: "pdf"), :target => '_blank', :class => 'btn btm-primary'
+                mark_as_reviewed_path(cs_application)
   end
   
   action_item :only => :show do
     link_to t('.mark_denied'),
-                review_application_path(format: "pdf"), :target => '_blank', :class => 'btn btm-primary'
+                mark_as_denied_path(cs_application)
   end
   
   action_item :only => :show do
     link_to t('.mark_approved'),
-                review_application_path(format: "pdf"), :target => '_blank', :class => 'btn btm-primary'
+                mark_as_approved_path(cs_application)
   end
   
   show do
@@ -142,7 +142,7 @@ ActiveAdmin.register CsApplication do
         end
       end
     end
-    
+    active_admin_comments
   end
 
 end

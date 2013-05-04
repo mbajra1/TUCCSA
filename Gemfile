@@ -12,6 +12,7 @@ gem 'wicked'
 gem 'paperclip'
 gem 'validates_email_format_of'
 gem 'prawn'
+gem 'rubyzip', :require => 'zip/zip'
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'bootstrap-datepicker-rails'

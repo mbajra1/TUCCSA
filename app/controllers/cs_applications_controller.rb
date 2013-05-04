@@ -1,7 +1,6 @@
 class CsApplicationsController < ApplicationController
-  
   before_filter :authenticate_user!
-  
+
   # GET /cs_applications
   # GET /cs_applications.json
   def index
@@ -108,12 +107,76 @@ class CsApplicationsController < ApplicationController
       format.html
       format.pdf do
         pdf = ApplicationReviewPdf.new(@cs_application, view_context)
-          send_data pdf.render, filename: "applicant_#{current_user.id}_#{@cs_application.id}.pdf",
+          send_data pdf.render, 
+                                filename: "user_#{current_user.id}_#{@cs_application.id}.pdf",
                                 type: "application/pdf",
                                 disposition: "inline"
-
+                                
+        #Saving file
+        pdf = ApplicationReviewPdf.new(@cs_application, view_context)
+        save_path = Rails.root.join('pdfs_out',"filename.pdf")
+        File.open(save_path, 'wb') do |file|
+          file << pdf
+        end
+          
       end
     end
+  end
+  
+  def mark_as_reviewed
+    cs_application = CsApplication.find_by_id(params[:id])
+    if cs_application.progress!=100
+      redirect_to :back, :notice=>'You cannot mark this application as reviewed. The application is not yet submitted by the student.'
+    else
+      cs_application.status = CsApplication::STATUS_REVIEWED
+      cs_application.save
+    end
+  end
+  
+  def mark_as_denied
+    cs_application = CsApplication.find_by_id(params[:id])
+    if cs_application.progress!=100
+      redirect_to :back, :notice=>'You cannot mark this application as denied. The application is not yet submitted by the student.'
+    else
+      cs_application.status = CsApplication::STATUS_DENIED
+      cs_application.save
+      UserMailer.send_denied_message(cs_application).deliver
+    end
+  end
+  
+  def mark_as_approved
+    cs_application = CsApplication.find_by_id(params[:id])
+    if cs_application.progress!=100
+      redirect_to :back, :notice=>'You cannot mark this application as approved. The application is not yet submitted by the student.'
+    else
+      cs_application.status = CsApplication::STATUS_APPROVED
+      cs_application.save
+      UserMailer.send_approved_message(cs_application).deliver
+    end
+  end
+  
+  def download_package
+      cs_application = CsApplication.find_by_id(params[:id])
+      file_name = "package.zip"
+      purpose = cs_application
+      transcripts_list      = cs_application.transcripts
+      file_name  = "applicant_#{cs_application.user.id}_application_#{cs_application.id}"
+      file_name  = "#{file_name}.zip"
+      
+      temp_file  = Tempfile.new("#{file_name}-#{cs_application.id}")
+      Zip::ZipOutputStream.open(temp_file.path) do |zos|
+        zos.put_next_entry(purpose.purpose_file_name)
+        zos.print IO.read(purpose.purpose.path)
+        transcripts_list.each do |file|
+          zos.put_next_entry(file.document_file_name)
+          zos.print IO.read(file.document.path)
+        end
+      end
+      
+      send_file temp_file.path, :type => 'application/zip',
+                                :disposition => 'attachment',
+                                :filename => file_name
+      temp_file.close
   end
   
   def generate_rating_code(size = 8)

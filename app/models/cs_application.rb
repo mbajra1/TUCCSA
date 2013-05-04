@@ -10,4 +10,10 @@ class CsApplication < ActiveRecord::Base
   has_attached_file :purpose
   accepts_nested_attributes_for :recommendations
   
+  STATUS_SUBMITTED = 1
+  STATUS_REVIEWED = 2
+  STATUS_DENIED = 3
+  STATUS_APPROVED = 4
+  
+  
 end
