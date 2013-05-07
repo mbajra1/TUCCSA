@@ -21,5 +21,6 @@ TUCCSA2::Application.routes.draw do
   get '/cs_application/mark_as_reviewed/:id', :controller=>'cs_applications', :action=>'mark_as_reviewed', :as => :mark_as_reviewed
   get '/cs_application/mark_as_denied/:id', :controller=>'cs_applications', :action=>'mark_as_denied', :as => :mark_as_denied
   get '/cs_application/mark_as_approved/:id', :controller=>'cs_applications', :action=>'mark_as_approved', :as => :mark_as_approved
+  get '/cs_application/submit_application/:id', :controller=>'cs_applications', :action=>'submit_application', :as => :submit_application
   
 end

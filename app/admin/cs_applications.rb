@@ -27,17 +27,17 @@ ActiveAdmin.register CsApplication do
   
   action_item :only => :show do
     link_to t('.mark_reviewed'),
-                mark_as_reviewed_path(cs_application)
+                mark_as_reviewed_path(cs_application), :confirm => 'You are about to mark this application as reviewd. Applicant will be notified. Continue?'
   end
   
   action_item :only => :show do
     link_to t('.mark_denied'),
-                mark_as_denied_path(cs_application)
+                mark_as_denied_path(cs_application), :confirm => 'You are about to mark this application as denied. Applicant will be notified. Continue?'
   end
   
   action_item :only => :show do
     link_to t('.mark_approved'),
-                mark_as_approved_path(cs_application)
+                mark_as_approved_path(cs_application), :confirm => 'You are about to mark this application as approved. Applicant will be notified. Continue?'
   end
   
   show do

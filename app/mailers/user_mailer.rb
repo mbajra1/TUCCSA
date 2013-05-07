@@ -11,12 +11,24 @@ class UserMailer < ActionMailer::Base
   
   def send_denied_message(application)
     @application = application
-    mail(:to => "#application.email", :subject => "Towson University CyberCorps Application Status")
+    mail(:to => "#{application.email}", :subject => "Towson University CyberCorps Application Status")
   end
   
   def send_approved_message(application)
     @application = application
-    mail(:to => "#application.email", :subject => "Towson University CyberCorps Application Status")
+    mail(:to => "#{application.email}", :subject => "Towson University CyberCorps Application Status")
+  end
+  
+  
+  #Change to_email to real admin email cybercorps@towson.edu
+  def submit_application_admin(application)
+    @application = application
+    mail(:to => "surajbh@hotmail.com", :subject => "TU CyberCorps Application Submitted")
+  end
+  
+  def submit_application_applicant(application)
+    @application = application
+    mail(:to => "#{application.email}", :subject => "TU CyberCorps::You application has been submitted")
   end
   
 end
