@@ -104,7 +104,8 @@ class CsApplicationsController < ApplicationController
   end
   
   def review
-    @cs_application = CsApplication.find_by_user_id(current_user.id)
+    
+    @cs_application = CsApplication.find_by_id(params[:id])
     
     respond_to do |format|
       format.html

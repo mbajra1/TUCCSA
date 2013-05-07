@@ -2,20 +2,19 @@
 <div class="page-header">
   <h1><%=t '.title', :default => "Your Application" %></h1>
 </div>
-<% if @cs_application.status==0%>
-	<table class="table table-striped">
-  		<thead>
-    		<tr>
-      		<th><%= model_class.human_attribute_name(:id) %></th>
-      
-      		<th><%= model_class.human_attribute_name(:started_at) %></th>
-   			</tr>
-  		</thead>
-  		<tbody>
-  	
+  
   		<% if !(current_user.cs_application.nil?)%>
-	      	<tr>
-	        	<td><%= link_to @cs_application.id, cs_application_path(@cs_application) %></td>
+  			<% if (@cs_application.status==0)%>
+  			<table class="table table-striped">
+  			<thead>
+    			<tr>
+      			<th><%= model_class.human_attribute_name(:id) %></th>
+      			<th><%= model_class.human_attribute_name(:started_at) %></th>
+   				</tr>
+  			</thead>
+  			<tbody>
+	      	  <tr>
+	        	<td><%= @cs_application.id %></td>
 	        	<td><%=l @cs_application.created_at %></td>
 	        	<td>
 	          		<%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -28,14 +27,19 @@
 	          		<%= link_to t('.review'),
 	                      review_application_path, :class => 'btn btn-mini' %>
 	        	</td>
-	      	</tr>
-    	<% end%>
-  	</tbody>
-	</table>
-<% else %>
-	You have already submitted your application. Please check on left panel of this page to view your application status.
-	<br />
-	You are not allowed to edit your application after it has been submitted.
+	      	  </tr>
+	      	</tbody>
+		    </table>
+    	
+  	
+	<% else %>
+		You have already submitted your application. Please check on left panel of this page to view your application status.
+		<br />
+		You are not allowed to edit your application after it has been submitted.
+		<br /><br />
+		View your submitted application: <%= link_to t('.view'),
+	                review_application_path(format: "pdf", id: CsApplication.find_by_user_id(current_user.id)), :target => '_blank', :class => 'btn btm-primary' %>
+	<% end%>
 <% end%>
 
 

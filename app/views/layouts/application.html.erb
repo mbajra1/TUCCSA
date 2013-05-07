@@ -57,32 +57,35 @@
 		<div class = "span9"><%= yield %></div>
 		<% if params[:controller]!="ratings" %>
 			<div class = "span3">
-				<h3>Your Application Status</h3>
-				
+				<h3>Your Application Status: </h3>
 				<% if user_signed_in? %>
-					<% application = current_user.cs_application%>
-					<% case application.status %>
-					<% when CsApplication::STATUS_STARTED %>
-						<h3>Started</h3>
-					<% when CsApplication::STATUS_SUBMITTED %>
-						<h3>Submitted</h3>
-					<% when CsApplication::STATUS_REVIEWED %>
-						<h3>Reviewed</h3>
-					<% when CsApplication::STATUS_DENIED %>
-						<h3>Denied</h3>
-					<% when CsApplication::STATUS_APPROVED %>
-						<h3>Approved. Congratulations!!</h3>
-					<% else %>
-						<h3>You have not submitted your application yet.</h3>
-					<% end%>
+					<% if !current_user.cs_application.nil? %>
+						<% application = current_user.cs_application%>
+						<% case application.status %>
+						<% when CsApplication::STATUS_STARTED %>
+							<h3>Started</h3>
+						<% when CsApplication::STATUS_SUBMITTED %>
+							<h3>Submitted</h3>
+						<% when CsApplication::STATUS_REVIEWED %>
+							<h3>Reviewed</h3>
+						<% when CsApplication::STATUS_DENIED %>
+							<h3>Denied</h3>
+						<% when CsApplication::STATUS_APPROVED %>
+							<h3>Approved. Congratulations!!</h3>
+						<% else %>
+							<h4>You have not submitted your application yet.</h4>
+						<% end %>
 					<h4>Progress</h4>
 						<div class="progress progress-striped active">
 	  					<div class="bar" style="width: <%=get_progress%>%;"></div>
 					</div>
-				
+					<% else %>
+						Application not started
+					<% end %>
 				<% else %>
 					Please sign in to view your progress on the application. If you do not have your log-in username and password, you need to register
 					to the site first.
+				
 				<% end %>
 				<h2>About this scholarship</h2>
 				Please refer to application rules and conditions before applying this application.

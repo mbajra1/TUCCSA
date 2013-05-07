@@ -17,7 +17,7 @@ ActiveAdmin.register CsApplication do
 
   action_item :only => :show do
     link_to t('.print'),
-                review_application_path(format: "pdf"), :target => '_blank', :class => 'btn btm-primary'
+                review_application_path(format: "pdf", id: cs_application.id), :target => '_blank', :class => 'btn btm-primary'
   end
   
   action_item :only => :show do

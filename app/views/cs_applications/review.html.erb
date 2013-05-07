@@ -227,7 +227,7 @@
                 submit_application_path(@cs_application.id), :class => 'btn btm-primary', :confirm =>  'You will not be able to edit your application after it is submitted. Continue?' %>
 	
     <%= link_to t('.print_review'),
-                review_application_path(format: "pdf"), :target => '_blank', :class => 'btn btm-primary' %>
+                review_application_path(format: "pdf", id: @cs_application.id), :target => '_blank', :class => 'btn btm-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 cs_applications_path, :class => 'btn' %>
 </div>
