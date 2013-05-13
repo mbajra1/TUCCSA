@@ -31,30 +31,38 @@ the following resources handy:
 
 == Gems used
 
-Pg:	Gem to integrate with Postgres database
-Devise:	Devise is the authentication solution used in this system
-Activeadmin:	Framework to create administration style interface.
-                It integrates with devise to provide authentication necessary
-Wicked:	Used to make step-by-step wizards during scholarship application process
-Paperclip:	File attachment library for active record. Also helps in validating file size and types
-Prawn:	PDF generation library used to generate completed application
-Rubyzip:	Library to read and write zip files
-Twitter-bootstrap-rails:	Toolkit from Twitter to help development and design
-Better_errors:	Replaces the standard Rails error page with better and useful error page. Great help in debugging
+* Pg
+	Gem to integrate with Postgres database
+* Devise
+	Devise is the authentication solution used in this system
+* Activeadmin
+	Framework to create administration style interface. It integrates with devise to provide authentication necessary
+* Wicked
+	Used to make step-by-step wizards during scholarship application process
+* Paperclip
+	File attachment library for active record. Also helps in validating file size and types
+* Prawn
+	PDF generation library used to generate completed application
+* Rubyzip
+	Library to read and write zip files
+* Twitter-bootstrap-rails
+	Toolkit from Twitter to help development and design
+* Better_errors
+	Replaces the standard Rails error page with better and useful error page. Great help in debugging
 
 
 
 == Rails models
 
-admin_user	
-cs_application
-institution
-mailing_address
-rating
-recommendation
-state	
-transcript
-user
+* admin_user
+* cs_application
+* institution
+* mailing_address
+* rating
+* recommendation
+* state	
+* transcript
+* user
 
 == Directory structure
 
