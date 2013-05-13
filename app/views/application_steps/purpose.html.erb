@@ -10,9 +10,11 @@
 	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)
 	       <br />
 	       <% if !@cs_application.purpose.nil?%>
-	       	<strong>File received: <%= link_to @cs_application.purpose_file_name, @cs_application.purpose.url%></strong>
+	       	<% if !@cs_application.purpose_file_name.nil?%>
+	       	<strong>File received: <%= link_to @cs_application.purpose_file_name, @cs_application.purpose.url, :target => '_blank'%></strong>
 	       	<br /> <br />
 	       	Use the button to replace your file <br />
+	       	<% end%>
 	       <% end%>
 	      <%= f.file_field :purpose %>
 	    </div>
@@ -33,7 +35,13 @@
 			<ol>
 				<% @transcript_all = @cs_application.transcripts%>
 				<% @transcript_all.each do |transcript|%>
-					<li><%=link_to transcript.document_file_name, transcript.document.url%></li>
+					 <% if !transcript.id.nil? %>
+					 <li>
+							<%=link_to transcript.document_file_name, transcript.document.url%>
+							<%=link_to t('.Remove'), remove_attachment_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?'%>
+					</li>
+					<% end%>
+					
 				<% end%>
 			</ol>
 		</div>

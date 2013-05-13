@@ -43,10 +43,11 @@ class CsApplicationsController < ApplicationController
   # POST /cs_applications.json
   def create
     @cs_application = CsApplication.new(params[:cs_application])
-    
+   
     respond_to do |format|
       if @cs_application.save
         @cs_application.progress=20
+         @cs_application.status=0
         @cs_application.save
         format.html { redirect_to application_steps_path, notice: 'Cs application was successfully created.' }
         format.json { render json: @cs_application, status: :created, location: @cs_application }
@@ -204,6 +205,13 @@ class CsApplicationsController < ApplicationController
       UserMailer.submit_application_admin(application).deliver
       redirect_to root_url, :notice => "Congratulations!! You have successfully submitted the application. You will be notified via email about the approval."
     end
+  end
+  
+  def remove_attachment
+    
+    attachment = current_user.cs_application.transcripts.find_by_id(params[:id])
+    attachment.destroy
+    redirect_to :back, :notice => 'Attachment removed'
   end
   
 end

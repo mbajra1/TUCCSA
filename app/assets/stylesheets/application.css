@@ -12,3 +12,16 @@
  *= require_tree
  *= require bootstrap-datepicker
  */
+
+.towson-line {
+	height: 10px;
+	background-color: #ffcc00;
+}
+.towson-footer {
+	height: 40px;
+	background-color: #ffcc00;
+	color: black;
+	text-align: center;
+	padding-top: 5px;
+	text-decoration: bold;
+}

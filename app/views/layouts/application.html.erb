@@ -7,8 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	
+<div class="towson-line"></div>
 <div class="navbar navbar-inverse">
+	
   <div class="navbar-inner">
     <div class="container">
  
@@ -21,13 +22,13 @@
 
  
       <!-- Be sure to leave the brand out there if you want it shown -->
-      <a class="brand" href="/">TU Cyber Security Application</a>
+      <a class="brand" href="/"><%= image_tag 'tucsa.png', :size=> '20x20' %> TU Cyber Security Scholarship Application</a>
  
       <!-- Everything you want hidden at 940px or less, place within here -->
       <div class="nav-collapse collapse">
         <ul class="nav">
-        	<li><%= link_to "About TU"%></li>
-        	<li><%= link_to "About Cyber Security"%></li>
+        	<li><%= link_to "About TU", "http://www.towson.edu/main/abouttu/index.asp", :target=>'_blank'%></li>
+        	<li><%= link_to "About Cyber Security","http://cis1.towson.edu/~cisweb/",:target=>'_blank'%></li>
         	<li><% if !current_admin_user.nil? %>
         			<%= link_to "Admin Dashboard", "/admin" %>
         		<% end%>
@@ -108,6 +109,10 @@
 		
 	</div>
 </div>
-
+<div class="navbar navbar-fixed-bottom">
+	<div class="towson-footer">
+		(C) Towson University, 2013 <br /> A COSC 880 project by Suraj Bhattarai
+	</div>
+</div>
 </body>
 </html>

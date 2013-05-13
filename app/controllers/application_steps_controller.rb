@@ -14,16 +14,21 @@ class ApplicationStepsController < ApplicationController
         @contact = @cs_application.build_mailing_address
       end
     when :educational
-      if !params[:new].nil?
+      if !params[:Add].nil?
+        
         @institution = @cs_application.institutions.build
+        
         @institution_all = @cs_application.institutions
+        puts '-------------------------------add-----------------'
       else
         if @cs_application.institutions.present?
           @institution_all = @cs_application.institutions
           @institution = @cs_application.institutions.last
+          puts '-------------------------------if-----------------'
         else
           @institution_all = @cs_application.institutions
           @institution = @cs_application.institutions.build
+          puts '-------------------------------else-----------------'
         end
       end
     when :purpose
@@ -72,17 +77,20 @@ class ApplicationStepsController < ApplicationController
       
     when :educational
       
-      if params[:commit]== "new"
+      if params[:commit]== "Add"
         @institution = Institution.new
         @institution.cs_application_id = @cs_application.id
+        @institution.update_attributes(params[:institution])
         @institution.save
         @cs_application.progress = 60
         @cs_application.save
-        render_wizard params[:new => true]
+        puts '-------------------------------add-----------------'
+        render_wizard #params[:Add => true]
       else
         if @cs_application.institutions.present?
           @institution = @cs_application.institutions.last
           @institution.update_attributes(params[:institution])
+          puts '-------------------------------if-----------------'
         else
           @institution = Institution.new(params[:institution])
         end
@@ -95,11 +103,20 @@ class ApplicationStepsController < ApplicationController
     when :purpose
       
       if params[:commit]== "Upload"
-        @transcript = Transcript.new(:document => params[:cs_application][:transcripts][:document])
-        @transcript.cs_application_id = @cs_application.id
-        @transcript.save
-        #@cs_application.save
-        render_wizard
+          check = params[:cs_application][:transcripts][:document].nil? rescue true
+          if check
+            render_wizard
+            
+          else
+          @transcript = Transcript.new(:document => params[:cs_application][:transcripts][:document])
+          @transcript.cs_application_id = @cs_application.id
+          @transcript.save
+          #@cs_application.save
+          render_wizard
+          end
+          
+          
+      
       else
         if !params[:cs_application].blank?
           @cs_application.purpose = params[:cs_application][:purpose]
@@ -110,6 +127,7 @@ class ApplicationStepsController < ApplicationController
           render_wizard @cs_application
         end
       end
+      
       
     when :send_recommendations
       if @cs_application.recommendations.size==1
@@ -146,6 +164,7 @@ class ApplicationStepsController < ApplicationController
       
       render_wizard @cs_application
     end
+    rescue ActiveRecord::RecordNotFound
   end
   
   

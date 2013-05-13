@@ -56,7 +56,7 @@ class ApplicationReviewPdf < Prawn::Document
   def institution_rows
     [["Institution", "City, State", "Dates Attended", "Degree Earned (or Expected)"]] +
     @cs_application.institutions.map do |institution|
-      [institution.institution, institution.city + ", " + institution.state.name, institution.attended_from + " to " + institution.attended_to, institution.degree]
+      [institution.institution, (institution.city.blank? ? '-' : institution.city)  + ", " + (institution.state.nil? ? '-' : institution.state.name), institution.attended_from + " to " + institution.attended_to, institution.degree]
     end
   end
   
