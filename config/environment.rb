@@ -8,6 +8,7 @@ TUCCSA2::Application.initialize!
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.raise_delivery_errors = true
+#Use at your own risk.
 ActionMailer::Base.smtp_settings = {
   :address => 'smtpout.secureserver.net',
   :domain  => 'www.iandrobot.net',
