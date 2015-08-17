@@ -2,60 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d782d27-0386-43e9-a1a2-163a62f2af96" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/functional/.gitkeep" afterPath="$PROJECT_DIR$/test/controllers/.gitkeep" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/functional/application_steps_controller_test.rb" afterPath="$PROJECT_DIR$/test/controllers/application_steps_controller_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/functional/cs_applications_controller_test.rb" afterPath="$PROJECT_DIR$/test/controllers/cs_applications_controller_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/functional/institutions_controller_test.rb" afterPath="$PROJECT_DIR$/test/controllers/institutions_controller_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/functional/mailing_addresses_controller_test.rb" afterPath="$PROJECT_DIR$/test/controllers/mailing_addresses_controller_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/functional/ratings_controller_test.rb" afterPath="$PROJECT_DIR$/test/controllers/ratings_controller_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/functional/recommendations_controller_test.rb" afterPath="$PROJECT_DIR$/test/controllers/recommendations_controller_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/.gitkeep" afterPath="$PROJECT_DIR$/test/models/.gitkeep" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/admin_user_test.rb" afterPath="$PROJECT_DIR$/test/models/admin_user_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/cs_application_test.rb" afterPath="$PROJECT_DIR$/test/models/cs_application_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/helpers/application_steps_helper_test.rb" afterPath="$PROJECT_DIR$/test/models/helpers/application_steps_helper_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/helpers/cs_applications_helper_test.rb" afterPath="$PROJECT_DIR$/test/models/helpers/cs_applications_helper_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/helpers/institutions_helper_test.rb" afterPath="$PROJECT_DIR$/test/models/helpers/institutions_helper_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/helpers/mailing_addresses_helper_test.rb" afterPath="$PROJECT_DIR$/test/models/helpers/mailing_addresses_helper_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/helpers/ratings_helper_test.rb" afterPath="$PROJECT_DIR$/test/models/helpers/ratings_helper_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/helpers/recommendations_helper_test.rb" afterPath="$PROJECT_DIR$/test/models/helpers/recommendations_helper_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/institution_test.rb" afterPath="$PROJECT_DIR$/test/models/institution_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/mailing_address_test.rb" afterPath="$PROJECT_DIR$/test/models/mailing_address_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/rating_test.rb" afterPath="$PROJECT_DIR$/test/models/rating_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/recommendation_test.rb" afterPath="$PROJECT_DIR$/test/models/recommendation_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/state_test.rb" afterPath="$PROJECT_DIR$/test/models/state_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/transcript_test.rb" afterPath="$PROJECT_DIR$/test/models/transcript_test.rb" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/test/unit/user_test.rb" afterPath="$PROJECT_DIR$/test/models/user_test.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130218225838_move_admin_notes_to_comments.rb" afterPath="$PROJECT_DIR$/db/migrate/20130218225838_move_admin_notes_to_comments.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/TUCCSA2.iml" afterPath="$PROJECT_DIR$/.idea/TUCCSA2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/active_admin.rb" afterPath="$PROJECT_DIR$/config/initializers/active_admin.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/boot.rb" afterPath="$PROJECT_DIR$/config/boot.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/bootstrap.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/bootstrap.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap_and_overrides.css.less" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap_and_overrides.css.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/cs_application.rb" afterPath="$PROJECT_DIR$/app/models/cs_application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.yml" afterPath="$PROJECT_DIR$/config/database.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/en.yml" afterPath="$PROJECT_DIR$/config/locales/en.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environment.rb" afterPath="$PROJECT_DIR$/config/environment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/inflections.rb" afterPath="$PROJECT_DIR$/config/initializers/inflections.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/mime_types.rb" afterPath="$PROJECT_DIR$/config/initializers/mime_types.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/recommendation.rb" afterPath="$PROJECT_DIR$/app/models/recommendation.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/secret_token.rb" afterPath="$PROJECT_DIR$/config/initializers/secret_token.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/session_store.rb" afterPath="$PROJECT_DIR$/config/initializers/session_store.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/test.rb" afterPath="$PROJECT_DIR$/config/environments/test.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/transcript.rb" afterPath="$PROJECT_DIR$/app/models/transcript.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/wrap_parameters.rb" afterPath="$PROJECT_DIR$/config/initializers/wrap_parameters.rb" />
     </list>
     <ignored path="TUCCSA2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -183,7 +130,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="91" />
+    <option name="x" value="157" />
     <option name="y" value="23" />
     <option name="width" value="1189" />
     <option name="height" value="709" />
@@ -521,7 +468,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="91" y="23" width="1189" height="709" extended-state="0" />
+    <frame x="157" y="23" width="1189" height="709" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -531,6 +478,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30688754" sideWeight="0.76076555" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29860032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30688754" sideWeight="0.23923445" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3732504" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -538,10 +487,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3281493" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849604" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29860032" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
