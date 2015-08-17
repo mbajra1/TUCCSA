@@ -7,6 +7,6 @@ class Recommendation < ActiveRecord::Base
   belongs_to :cs_application
   has_one :rating
   
-  validate :email, :email_format => {:message => 'is not correct format'}
+  validates :email, :email_format => {:message => 'is not correct format'}
   
 end

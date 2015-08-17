@@ -1,34 +1,34 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '4.2.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg', :group => :production
-gem 'devise'
-gem 'activeadmin'
+#gem 'pg', :group => :production
+gem 'devise', '~> 3.5.1'
+gem 'activeadmin', github: 'activeadmin'
 gem 'wicked'
 gem 'paperclip'
-gem 'validates_email_format_of'
+gem 'validates_email_format_of', '~> 1.6.3'
 gem 'prawn'
-gem 'rubyzip', :require => 'zip/zip'
+gem 'rubyzip', '>= 1.0.0'
+gem 'protected_attributes'
+
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'bootstrap-datepicker-rails'
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'twitter-bootstrap-rails'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer'
-  gem 'less-rails'
+gem 'sass-rails', '~> 5.0.3'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'twitter-bootstrap-rails', '~> 3.2.0'
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer'
+gem 'less-rails'
+gem 'uglifier', '~> 2.7.1'
 
-  gem 'uglifier', '>= 1.0.3'
-end
 
 group :development do
-  gem 'mysql2'
+  gem 'mysql2', '0.3.19'
   gem 'better_errors'
   #gem 'binding_of_caller'
   gem 'meta_request'

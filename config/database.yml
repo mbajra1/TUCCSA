@@ -2,9 +2,9 @@ development:
   adapter: mysql2
   database: tucsa_development
   username: root
-  password: 'surajj'
-  host: localhost
-  encoding: UTF8
+  password: ''
+  #host: localhost
+  #encoding: UTF8
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,13 +14,13 @@ test:
   database: tucsa_development
   username: root
   password: ''
-  host: localhost
-  encoding: UTF8
+  #host: localhost
+  #encoding: UTF8
 
 production:
   adapter: mysql2
   database: tucsa_development
   username: root
-  password: 'surajj'
-  host: localhost
-  encoding: UTF8
+  password: ''
+  #host: localhost
+  #encoding: UTF8

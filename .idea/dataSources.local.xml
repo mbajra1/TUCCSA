@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails TUCCSA2: development" uuid="1db5eec4-81c7-4cbc-9e5f-619f333a78d4">
+      <secret-storage>memory</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>tucsa_development.*</schema-pattern>
+      <default-schemas>tucsa_development.*</default-schemas>
+    </data-source>
+    <data-source name="Rails TUCCSA2: production" uuid="69225a50-d1ee-4c51-affe-33754cfcac1a">
+      <user-name>root</user-name>
+    </data-source>
+    <data-source name="Rails TUCCSA2: test" uuid="a03c02a9-5203-4ac6-b003-3ec4cfef5a16">
+      <user-name>root</user-name>
+    </data-source>
+  </component>
+</project>

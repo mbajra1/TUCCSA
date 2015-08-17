@@ -9,6 +9,8 @@ class CsApplication < ActiveRecord::Base
   
   has_attached_file :purpose
   accepts_nested_attributes_for :recommendations
+
+  validates_attachment_content_type :purpose, :content_type => %w(application/msword)
   
   STATUS_STARTED = 0
   STATUS_SUBMITTED = 1

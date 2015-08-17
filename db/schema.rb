@@ -9,154 +9,154 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430021132) do
+ActiveRecord::Schema.define(version: 20130430021132) do
 
-  create_table "active_admin_comments", :force => true do |t|
-    t.string   "resource_id",   :null => false
-    t.string   "resource_type", :null => false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.text     "body"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "namespace"
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "resource_id",   limit: 255,   null: false
+    t.string   "resource_type", limit: 255,   null: false
+    t.integer  "author_id",     limit: 4
+    t.string   "author_type",   limit: 255
+    t.text     "body",          limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "namespace",     limit: 255
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_admin_notes_on_resource_type_and_resource_id", using: :btree
 
-  create_table "admin_users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",          limit: 4,   default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
-  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "cs_applications", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "first"
-    t.string   "middle"
-    t.string   "last"
-    t.integer  "tuid"
-    t.string   "email"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
-    t.string   "telephone"
-    t.boolean  "is_citizen"
-    t.string   "signed_name"
-    t.integer  "status"
-    t.integer  "progress"
-    t.text     "purpose_statement"
-    t.string   "purpose_file_name"
-    t.string   "purpose_content_type"
-    t.integer  "purpose_file_size"
+  create_table "cs_applications", force: :cascade do |t|
+    t.integer  "user_id",              limit: 4
+    t.string   "first",                limit: 255
+    t.string   "middle",               limit: 255
+    t.string   "last",                 limit: 255
+    t.integer  "tuid",                 limit: 4
+    t.string   "email",                limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "telephone",            limit: 255
+    t.boolean  "is_citizen",           limit: 1
+    t.string   "signed_name",          limit: 255
+    t.integer  "status",               limit: 4
+    t.integer  "progress",             limit: 4
+    t.text     "purpose_statement",    limit: 65535
+    t.string   "purpose_file_name",    limit: 255
+    t.string   "purpose_content_type", limit: 255
+    t.integer  "purpose_file_size",    limit: 4
     t.datetime "purpose_updated_at"
   end
 
-  create_table "institutions", :force => true do |t|
-    t.string   "institution"
-    t.string   "city"
-    t.integer  "state_id"
-    t.text     "attended_from"
-    t.text     "attended_to"
-    t.string   "degree"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.integer  "cs_application_id"
+  create_table "institutions", force: :cascade do |t|
+    t.string   "institution",       limit: 255
+    t.string   "city",              limit: 255
+    t.integer  "state_id",          limit: 4
+    t.text     "attended_from",     limit: 65535
+    t.text     "attended_to",       limit: 65535
+    t.string   "degree",            limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "cs_application_id", limit: 4
   end
 
-  create_table "mailing_addresses", :force => true do |t|
-    t.string   "name"
-    t.string   "line1"
-    t.string   "line2"
-    t.string   "city"
-    t.integer  "state_id"
-    t.integer  "zip"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.integer  "cs_application_id"
+  create_table "mailing_addresses", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.string   "line1",             limit: 255
+    t.string   "line2",             limit: 255
+    t.string   "city",              limit: 255
+    t.integer  "state_id",          limit: 4
+    t.integer  "zip",               limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "cs_application_id", limit: 4
   end
 
-  create_table "ratings", :force => true do |t|
-    t.integer  "recommendation_id"
-    t.integer  "intellect"
-    t.integer  "leadership"
-    t.integer  "written"
-    t.integer  "verbal"
-    t.integer  "reliability"
-    t.integer  "timeliness"
-    t.integer  "maturity"
-    t.integer  "skill"
-    t.integer  "commitment"
-    t.integer  "independent"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.text     "notes"
-    t.string   "password"
-    t.integer  "status",            :default => 0
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "recommendation_id", limit: 4
+    t.integer  "intellect",         limit: 4
+    t.integer  "leadership",        limit: 4
+    t.integer  "written",           limit: 4
+    t.integer  "verbal",            limit: 4
+    t.integer  "reliability",       limit: 4
+    t.integer  "timeliness",        limit: 4
+    t.integer  "maturity",          limit: 4
+    t.integer  "skill",             limit: 4
+    t.integer  "commitment",        limit: 4
+    t.integer  "independent",       limit: 4
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.text     "notes",             limit: 65535
+    t.string   "password",          limit: 255
+    t.integer  "status",            limit: 4,     default: 0
   end
 
-  create_table "recommendations", :force => true do |t|
-    t.integer  "cs_application_id"
-    t.string   "name"
-    t.string   "title"
-    t.string   "email"
+  create_table "recommendations", force: :cascade do |t|
+    t.integer  "cs_application_id", limit: 4
+    t.string   "name",              limit: 255
+    t.string   "title",             limit: 255
+    t.string   "email",             limit: 255
     t.datetime "time_known_from"
     t.datetime "time_known_to"
-    t.integer  "status"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "status",            limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
-  create_table "states", :force => true do |t|
-    t.string   "name"
-    t.string   "code"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "states", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "transcripts", :force => true do |t|
-    t.integer  "cs_application_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.string   "document_file_name"
-    t.string   "document_content_type"
-    t.integer  "document_file_size"
+  create_table "transcripts", force: :cascade do |t|
+    t.integer  "cs_application_id",     limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "document_file_name",    limit: 255
+    t.string   "document_content_type", limit: 255
+    t.integer  "document_file_size",    limit: 4
     t.datetime "document_updated_at"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "username"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "username",               limit: 255
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",          limit: 4,   default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.boolean  "is_admin",               :default => false
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.boolean  "is_admin",               limit: 1,   default: false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
