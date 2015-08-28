@@ -55,9 +55,9 @@
 	
 <div class="container">
 	<div class="row">
-		<div class = "span9"><%= yield %></div>
+		<div class = "col-md-8"><%= yield %></div>
 		<% if params[:controller]!="ratings" %>
-			<div class = "span3">
+			<div class = "col-md-4">
 				<h3>Your Application Status: </h3>
 				<% if user_signed_in? %>
 					<% if !current_user.cs_application.nil? %>
@@ -98,7 +98,7 @@
 				<% end %>
 			</div>
 		<% else%>
-			<div class = "span3">
+			<div class = "col-md-8">
 				<h2>TU Cybercorps Scholarship Program</h2>
 				Student recommendation form.
 				<h2>About this scholarship</h2>

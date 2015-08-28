@@ -24,4 +24,5 @@ TUCCSA2::Application.routes.draw do
   get '/cs_application/submit_application/:id', :controller=>'cs_applications', :action=>'submit_application', :as => :submit_application
   #get '/cs_application/edit/:id', :controller=>'cs_applications', :action=>'edit', :as => :edit_cs_application
   get '/cs_application/remove_attachment/:id', :controller=>'cs_applications', :action=>'remove_attachment', :as=> :remove_attachment
+  get '/cs_application/:id/remove_purpose', to: 'cs_applications#remove_purpose', as: 'remove_purpose'
 end

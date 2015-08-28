@@ -87,7 +87,6 @@ class CsApplicationsController < ApplicationController
   end
   
   def send_invitation
-    
     recommendation = Recommendation.find_by_id(params[:recommendation_id])
     recommendation.cs_application.progress = recommendation.cs_application.progress + 20
     recommendation.cs_application.save
@@ -99,15 +98,13 @@ class CsApplicationsController < ApplicationController
     rating.notes = "Enter you additional notes"
     rating.save
     link = "http://#{request.host}:#{request.port}/ratings/verify_password/#{rating.id}"
-    UserMailer.send_invitation(recommendation, link, rating).deliver
+    UserMailer.send_invitation(recommendation, link, rating).deliver_later
     redirect_to '/application_steps/send_email/', :notice => 'Invitation Email Sent' 
     #redirect_to verify_password_path(rating.id), :notice => 'Invitation Email Sent' 
   end
   
   def review
-    
     @cs_application = CsApplication.find_by_id(params[:id])
-    
     respond_to do |format|
       format.html
       format.pdf do
@@ -212,6 +209,13 @@ class CsApplicationsController < ApplicationController
     attachment = current_user.cs_application.transcripts.find_by_id(params[:id])
     attachment.destroy
     redirect_to :back, :notice => 'Attachment removed'
+  end
+
+  def remove_purpose
+    cs_app = CsApplication.find_by_id(params[:id])
+    cs_app.purpose = nil
+    cs_app.save
+    redirect_to :back, flash: { success: 'Purpose Statement has been removed.' }
   end
   
 end
