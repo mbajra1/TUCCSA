@@ -1,6 +1,6 @@
 class ApplicationStepsController < ApplicationController
   include Wicked::Wizard
-  steps :contact, :educational, :purpose, :send_recommendations, :send_email, :complete
+  steps :contact, :educational, :purpose, :transcripts, :send_recommendations, :send_email, :complete
   
   def show
     @cs_application = current_user.cs_application
@@ -31,7 +31,7 @@ class ApplicationStepsController < ApplicationController
           puts '-------------------------------else-----------------'
         end
       end
-    when :purpose
+    when :transcripts
       #if !params[:new].nil?
         @transcript = @cs_application.transcripts.build
         @transcript_all = @cs_application.transcripts
@@ -100,7 +100,26 @@ class ApplicationStepsController < ApplicationController
           @cs_application.save
           render_wizard @cs_application
       end
-    when :purpose
+
+
+      when :purpose
+
+        if params[:commit]== "Upload"
+          check = params[:cs_application][:purpose].nil? rescue true
+          if check
+            render_wizard
+
+          else
+            @cs_application.purpose = params[:cs_application][:purpose]
+            @cs_application.progress = 70
+            @cs_application.save
+            render_wizard
+          end
+        else
+          render_wizard @cs_application
+        end
+
+      when :transcripts
       
       if params[:commit]== "Upload"
           check = params[:cs_application][:transcripts][:document].nil? rescue true
@@ -114,21 +133,10 @@ class ApplicationStepsController < ApplicationController
           #@cs_application.save
           render_wizard
           end
-          
-          
-      
       else
-        if !params[:cs_application].blank?
-          @cs_application.purpose = params[:cs_application][:purpose]
-          @cs_application.progress = 70
-          @cs_application.save
-          render_wizard @cs_application
-        else
-          render_wizard @cs_application
-        end
+        render_wizard @cs_application
       end
-      
-      
+
     when :send_recommendations
       if @cs_application.recommendations.size==1
         @recommendation1 = @cs_application.recommendations.first

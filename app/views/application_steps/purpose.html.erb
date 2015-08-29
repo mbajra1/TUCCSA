@@ -10,6 +10,7 @@
 	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)
 	       <br />
           <%= f.file_field :purpose %>
+          <%= f.submit "Save", :value => 'Upload' ,:class => 'btn' %>
               <% if !@cs_application.purpose_file_name.nil?%>
                   <strong>File received: <%= link_to @cs_application.purpose_file_name, @cs_application.purpose.url, :target => '_blank'%></strong>
                   <%=link_to t('.Remove'), remove_purpose_path(@cs_application.id), :confirm => 'You are about to remove your uploaded file. Continue?'%>
@@ -19,32 +20,7 @@
 	    </div>
 	</div>
 	<hr />
-	<div class="control-group">
-		<%= f.label :submit_transcripts, :class => 'control-label' %>
-		<div class="controls">
-			Attach your transcripts. Click on 'Upload' after selecting your file to add another attachment. Attachments can be 
-			images of your scanned transcripts.
-			<br />
-			<%= f.fields_for :transcripts do |transcript|%>
-				<%= transcript.file_field :document %>
-				<%= transcript.submit "Save", :value => 'Upload' ,:class => 'btn' %>
-			<%end%>
-			<br /><br />
-			<strong>Here are your uploaded transcripts</strong> <br />
-			<ol>
-				<% @transcript_all = @cs_application.transcripts%>
-				<% @transcript_all.each do |transcript|%>
-					 <% if !transcript.id.nil? %>
-					 <li>
-							<%=link_to transcript.document_file_name, transcript.document.url%>
-							<%=link_to t('.Remove'), remove_attachment_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?'%>
-					</li>
-					<% end%>
-					
-				<% end%>
-			</ol>
-		</div>
-	</div>
+
   	<div class="form-actions">
   		<%= link_to t('.back'), previous_wizard_path, :class => 'btn' %>
     	<%= f.submit "Next", :class => 'btn btn-primary' %>
