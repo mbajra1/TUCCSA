@@ -1,6 +1,10 @@
 class CsApplicationsController < ApplicationController
   before_filter :authenticate_user!
 
+  require 'rubygems'
+  require 'zip'
+  require "open-uri"
+
   # GET /cs_applications
   # GET /cs_applications.json
   def index
@@ -115,11 +119,11 @@ class CsApplicationsController < ApplicationController
                                 disposition: "inline"
                                 
         #Saving file
-        pdf = ApplicationReviewPdf.new(@cs_application, view_context)
-        save_path = Rails.root.join('pdfs_out',"filename.pdf")
-        File.open(save_path, 'wb') do |file|
-          file << pdf
-        end
+       # pdf = ApplicationReviewPdf.new(@cs_application, view_context)
+       # save_path = Rails.root.join('pdfs',"filename.pdf")
+        #File.open(save_path, 'wb') do |file|
+         # file << pdf
+        #end
           
       end
     end
@@ -163,15 +167,14 @@ class CsApplicationsController < ApplicationController
   def download_package
       cs_application = CsApplication.find_by_id(params[:id])
       file_name = "package.zip"
-      purpose = cs_application
-      transcripts_list      = cs_application.transcripts
+      transcripts_list = cs_application.transcripts
       file_name  = "applicant_#{cs_application.user.id}_application_#{cs_application.id}"
       file_name  = "#{file_name}.zip"
       
       temp_file  = Tempfile.new("#{file_name}-#{cs_application.id}")
-      Zip::ZipOutputStream.open(temp_file.path) do |zos|
-        zos.put_next_entry(purpose.purpose_file_name)
-        zos.print IO.read(purpose.purpose.path)
+      Zip::OutputStream.open(temp_file.path) do |zos|
+       # zos.put_next_entry(cs_application.purpose_file_name)
+       # zos.print IO.read(cs_application.purpose.path)
         transcripts_list.each do |file|
           zos.put_next_entry(file.document_file_name)
           zos.print IO.read(file.document.path)

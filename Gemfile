@@ -12,6 +12,7 @@ gem 'wicked'
 gem 'paperclip'
 gem 'validates_email_format_of', '~> 1.6.3'
 gem 'prawn'
+gem 'prawn-table', '~> 0.2.2'
 gem 'rubyzip', '>= 1.0.0'
 gem 'protected_attributes'
 

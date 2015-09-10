@@ -152,6 +152,8 @@ GEM
     prawn (2.0.2)
       pdf-core (~> 0.6.0)
       ttfunk (~> 1.4.0)
+    prawn-table (0.2.2)
+      prawn (>= 1.3.0, < 3.0.0)
     protected_attributes (1.1.3)
       activemodel (>= 4.0.1, < 5.0)
     rack (1.6.4)
@@ -247,6 +249,7 @@ DEPENDENCIES
   mysql2 (= 0.3.19)
   paperclip
   prawn
+  prawn-table (~> 0.2.2)
   protected_attributes
   rails (= 4.2.1)
   rubyzip (>= 1.0.0)
