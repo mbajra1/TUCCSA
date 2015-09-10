@@ -78,7 +78,8 @@
 						<% end %>
 					<h4>Progress</h4>
 						<div class="progress progress-striped active">
-	  					<div class="bar" style="width: <%=get_progress%>%;"></div>
+                          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%=get_progress%>%;"></div>
+	  					<!--<div class="bar" style="width: <%#=get_progress%>%;"></div>-->
 					</div>
 					<% else %>
 						Application not started

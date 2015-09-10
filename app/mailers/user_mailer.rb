@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
     @link = link
     mail(to: @invite.email, subject: 'Towson University Cyber Security Student Recommendation Request')
   end
-  
+
   def send_denied_message(application)
     @application = application
     mail(:to => "#{application.email}", :subject => "Towson University CyberCorps Application Status")
@@ -18,8 +18,7 @@ class UserMailer < ActionMailer::Base
     @application = application
     mail(:to => "#{application.email}", :subject => "Towson University CyberCorps Application Status")
   end
-  
-  
+
   #Change to_email to real admin email cybercorps@towson.edu
   def submit_application_admin(application)
     @application = application

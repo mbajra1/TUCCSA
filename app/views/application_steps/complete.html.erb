@@ -4,4 +4,11 @@
 
 <!-- <edit_cs_application_path(@cs_application)> -->
 
-<h3><%= link_to t('.back'), previous_wizard_path, :class => 'btn' %> <%= link_to 'Review Application' ,review_application_path(@cs_application), :class=>'btn'%> <%= link_to 'Send' ,root_url, :class=>'btn'%></h3>
+<h3><%= link_to t('.back'), previous_wizard_path, :class => 'btn' %> <%= link_to 'Review Application' ,review_application_path(@cs_application), :class=>'btn'%>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              cs_application_path(@cs_application),
+              :method => :delete,
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-mini btn-danger' %>
+  <%#= link_to 'Send' ,root_url, :class=>'btn'%>
+</h3>

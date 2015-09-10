@@ -5,8 +5,7 @@ TUCCSA2::Application.routes.draw do
   resources :application_steps
   resources :institutions
   resources :mailing_addresses
-  ActiveAdmin.routes(self)
-  devise_for :admin_users, ActiveAdmin::Devise.config
+
   devise_for :users
   root :to => 'cs_applications#index'
 
@@ -22,7 +21,10 @@ TUCCSA2::Application.routes.draw do
   get '/cs_application/mark_as_denied/:id', :controller=>'cs_applications', :action=>'mark_as_denied', :as => :mark_as_denied
   get '/cs_application/mark_as_approved/:id', :controller=>'cs_applications', :action=>'mark_as_approved', :as => :mark_as_approved
   get '/cs_application/submit_application/:id', :controller=>'cs_applications', :action=>'submit_application', :as => :submit_application
-  #get '/cs_application/edit/:id', :controller=>'cs_applications', :action=>'edit', :as => :edit_cs_application
+  get '/cs_application/edit/:id', :controller=>'cs_applications', :action=>'edit', :as => :edit_application
   get '/cs_application/remove_attachment/:id', :controller=>'cs_applications', :action=>'remove_attachment', :as=> :remove_attachment
   get '/cs_application/:id/remove_purpose', to: 'cs_applications#remove_purpose', as: 'remove_purpose'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 end
