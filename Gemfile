@@ -5,7 +5,9 @@ gem 'rails', '4.2.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'pg', :group => :production
+group :production do
+  gem 'pg', '~> 0.18.2'
+end
 gem 'devise', '~> 3.5.1'
 gem 'activeadmin', github: 'activeadmin'
 gem 'wicked'
@@ -26,7 +28,6 @@ gem 'twitter-bootstrap-rails', '~> 3.2.0'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'uglifier', '~> 2.7.1'
-
 
 group :development do
   gem 'mysql2', '0.3.19'

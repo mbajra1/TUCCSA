@@ -121,10 +121,10 @@ class CsApplicationsController < ApplicationController
         #Saving file
        # pdf = ApplicationReviewPdf.new(@cs_application, view_context)
        # save_path = Rails.root.join('pdfs',"filename.pdf")
-        #File.open(save_path, 'wb') do |file|
-         # file << pdf
-        #end
-          
+        # File.open(save_path, 'wb') do |file|
+          # file << pdf
+       # end
+
       end
     end
   end
