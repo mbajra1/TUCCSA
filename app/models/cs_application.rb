@@ -8,8 +8,8 @@ class CsApplication < ActiveRecord::Base
   has_many :transcripts, :dependent => :destroy
 
   has_attached_file :purpose
-  #validates_attachment_content_type :purpose, :content_type => [ 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ]
-  validates_attachment_content_type :purpose, :content_type => %w(application/msword)
+  validates_attachment :purpose, :content_type => { :content_type => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }
+  #validates_attachment_content_type :purpose, :content_type => [ 'application/force-download' ]
   #validates_attachment_content_type :purpose, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   accepts_nested_attributes_for :recommendations
   

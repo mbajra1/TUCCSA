@@ -80,20 +80,20 @@ ActiveAdmin.register CsApplication do
     
     panel "Purpose Statement" do
       if !cs_application.purpose.nil?
-        (link_to cs_application.purpose_file_name, cs_application.purpose.url)
+        strong {link_to cs_application.purpose_file_name, cs_application.purpose.url}
       else
         h4 + "Not Provided"
       end
     end
     
     panel "Transcripts" do
-      count = cs_application.transcripts.count
+     count = cs_application.transcripts.count
       if count==0
-        h4 + "Not Provided"
-      else
-        cs_application.transcripts.each do |transcript|
-          (link_to transcript.document_file_name, transcript.document.url)
-        end
+       h4 + "Not Provided"
+     else
+       cs_application.transcripts.each do |transcript|
+         strong {link_to transcript.document_file_name, transcript.document.url }
+       end
       end
     end
     
