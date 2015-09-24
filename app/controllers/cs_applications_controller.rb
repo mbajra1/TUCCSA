@@ -173,8 +173,8 @@ class CsApplicationsController < ApplicationController
       
       temp_file  = Tempfile.new("#{file_name}-#{cs_application.id}")
       Zip::OutputStream.open(temp_file.path) do |zos|
-       # zos.put_next_entry(cs_application.purpose_file_name)
-       # zos.print IO.read(cs_application.purpose.path)
+        zos.put_next_entry(cs_application.purpose_file_name)
+        zos.print IO.read(cs_application.purpose.path)
         transcripts_list.each do |file|
           zos.put_next_entry(file.document_file_name)
           zos.print IO.read(file.document.path)

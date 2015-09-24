@@ -1,4 +1,5 @@
 class InstitutionsController < InheritedResources::Base
+  before_filter :authenticate_user!
   def update
     @institution = Institution.find(params[:id])
 

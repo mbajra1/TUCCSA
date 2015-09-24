@@ -29,10 +29,10 @@
         <ul class="nav">
         	<li><%= link_to "About TU", "http://www.towson.edu/main/abouttu/index.asp", :target=>'_blank'%></li>
         	<li><%= link_to "About Cyber Security","http://cis1.towson.edu/~cisweb/",:target=>'_blank'%></li>
-        	<li><% if !current_admin_user.nil? %>
-        			<%= link_to "Admin Dashboard", "/admin" %>
-        		<% end%>
-        	</li>
+        	<!--<li><%# if !current_admin_user.nil? %>
+        			<%#= link_to "Admin Dashboard", "/admin" %>
+        		<%# end%>
+        	</li>-->
         </ul>
       </div>
     </div>

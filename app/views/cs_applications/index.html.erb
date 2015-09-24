@@ -30,16 +30,14 @@
 	      	  </tr>
 	      	</tbody>
 		    </table>
-    	
   	
-	<% else %>
+	    <% else %>
 		You have already submitted your application. Please check on left panel of this page to view your application status.
 		<br />
 		You are not allowed to edit your application after it has been submitted.
 		<br /><br />
-		View your submitted application: <%= link_to t('.view'),
-	                review_application_path(format: "pdf", id: CsApplication.find_by_user_id(current_user.id)), :target => '_blank', :class => 'btn btm-primary' %>
-	<% end%>
+		View your submitted application: <%= link_to t('.view'), review_application_path(format: "pdf", id: CsApplication.find_by_user_id(current_user.id)), :target => '_blank', :class => 'btn btm-primary' %>
+	    <% end%>
 <% end%>
 
 

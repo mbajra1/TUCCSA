@@ -1,4 +1,5 @@
 class ApplicationStepsController < ApplicationController
+  before_filter :authenticate_user!
   include Wicked::Wizard
   steps :contact, :educational, :purpose, :transcripts, :send_recommendations, :send_email, :complete
   

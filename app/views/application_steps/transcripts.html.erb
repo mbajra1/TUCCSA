@@ -6,7 +6,7 @@
       <%= f.label :submit_transcripts, :class => 'control-label' %>
       <div class="controls">
         Attach your transcripts. Click on 'Upload' after selecting your file to add another attachment. Attachments can be
-        images of your scanned transcripts.
+        images of your scanned transcripts or PDF.
         <br />
         <%= f.fields_for :transcripts do |transcript|%>
             <%= transcript.file_field :document %>

@@ -27,7 +27,25 @@
 //
 // Example:
 // @link-color: #ff0000;
-.navbar-fixed-top, .navbar-fixed-bottom{
-  position: relative !important;
+
+body{
+  position: relative;
+  height: 100%;
 }
+.container{
+  width: auto;
+  margin-bottom: 100px;
+  overflow:auto;
+  margin: 0px 10px 100px 10px;
+
+}
+.navbar-fixed-top, .navbar-fixed-bottom{
+  bottom: 0;
+  height: 2em;
+  left: 0;
+  position: relative; //changed to relative from fixed also works if position is not there
+  width:100%;
+  background-color: #FC0;
+}
+
 

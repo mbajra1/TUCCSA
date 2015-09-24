@@ -1,5 +1,5 @@
 class RatingsController < InheritedResources::Base
-  
+  before_filter :authenticate_user!
   def update
     @rating = Rating.find(params[:id])
     respond_to do |format|
