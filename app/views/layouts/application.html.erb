@@ -8,36 +8,43 @@
 </head>
 <body>
 <div class="towson-line"></div>
-<div class="navbar navbar-inverse">
-	
-  <div class="navbar-inner">
-    <div class="container">
- 
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
+<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+  <div class="navbar-header">
 
- 
-      <!-- Be sure to leave the brand out there if you want it shown -->
-      <a class="brand" href="/"><%= image_tag 'tucsa.png', :height=> '20px', :width=>'20px' %> TU Cyber Security Scholarship Application</a>
- 
-      <!-- Everything you want hidden at 940px or less, place within here -->
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-        	<li><%= link_to "About TU", "http://www.towson.edu/main/abouttu/index.asp", :target=>'_blank'%></li>
-        	<li><%= link_to "About Cyber Security","http://cis1.towson.edu/~cisweb/",:target=>'_blank'%></li>
-        	<!--<li><%# if !current_admin_user.nil? %>
-        			<%#= link_to "Admin Dashboard", "/admin" %>
-        		<%# end%>
-        	</li>-->
-        </ul>
-      </div>
-    </div>
+    <a class="navbar-brand" href="/"><%#= image_tag 'tucsa.png', :height=> '20px', :width=>'20px' %>TUCSSA</a>
   </div>
-</div>
+  <div class="collapse navbar-collapse" id="navbar-collapse-01">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "About TU", "http://www.towson.edu/main/abouttu/index.asp", :target=>'_blank'%></li>
+      <li><%= link_to "About Cyber Security","http://cis1.towson.edu/~cisweb/",:target=>'_blank'%></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="divider-vertical"></li>
+      <li class="dropdown">
+        <% if user_signed_in? %>
+
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%=current_user.email%><strong class="caret"></strong></a>
+            <div class="dropdown-menu">
+              <ul>
+                <li>
+                  <%= link_to "Profile", cs_application_path(@cs_application) %>
+                </li>
+                <li>
+                  <%= link_to "Sign out", destroy_user_session_path, :method => 'delete'%>
+                </li>
+              </ul>
+            </div>
+
+        <% end %>
+
+
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
 
 <% flash.each do |name, msg|%>
 	<% if msg[0..4]=="Error"%>
@@ -58,6 +65,7 @@
 		<div class = "col-md-8"><%= yield %></div>
 		<% if params[:controller]!="ratings" %>
 			<div class = "col-md-4">
+              <div class="status-info">
 				<h3>Your Application Status: </h3>
 				<% if user_signed_in? %>
 					<% if !current_user.cs_application.nil? %>
@@ -76,27 +84,26 @@
 						<% else %>
 							<h4>You have not submitted your application yet.</h4>
 						<% end %>
-					<h4>Progress</h4>
-						<div class="progress progress-striped active">
-                          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%=get_progress%>%;"></div>
-	  					<!--<div class="bar" style="width: <%#=get_progress%>%;"></div>-->
-					</div>
+                        <div class="bar">
+					        <h4>Application Progress Bar</h4>
+						    <div class="progress progress-striped active">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%=get_progress%>%;"></div>
+	  					    <!--<div class="bar" style="width: <%#=get_progress%>%;"></div>-->
+					        </div>
+                        </div>
 					<% else %>
-						Application not started
+						<p>Application not started</p>
 					<% end %>
 				<% else %>
-					Please sign in to view your progress on the application. If you do not have your log-in username and password, you need to register
-					to the site first.
-				
+					<p>Please sign in to view your progress on the application. If you do not have your log-in username and password, you need to register
+					to the site first.</p>
 				<% end %>
-				<h2>About this scholarship</h2>
-				Please refer to application rules and conditions before applying this application.
-				<br />
-				<br />
-				<% if user_signed_in? %>
-					<h4>User: <%=current_user.email%></h4>
-					<%=button_to "Sign out", destroy_user_session_path, :method => 'delete'%>
-				<% end %>
+              </div>
+              <div class="info">
+                <h2>About this scholarship</h2>
+                <p>Please refer to application rules and conditions before applying this application.</p>
+              </div>
+
 			</div>
 		<% else%>
 			<div class = "col-md-8">
@@ -110,9 +117,14 @@
 		
 	</div>
 </div>
-<div class="navbar navbar-fixed-bottom">
+<div id="footer">
 	<div class="towson-footer">
-		Towson University <br /> A COSC 880 project by <%=link_to 'Suraj Bhattarai','http://github.com/XurajB',:target=>'_blank'%>, SP 2013 <br /> - Dev Staging Only -
+      <ul>
+        <li><a href="http://www.towson.edu/" class="footlink">Towson University</a></li><span>|</span>
+        <li><a href="http://cis.towson.edu/" class="footlink">Computer and Information Sciences Department</a></li><span>|</span>
+        <li><a href="http://cis1.towson.edu/~cisweb/about-us-2/cybersecurity/" class="footlink">Cybersecurity at Towson University</a></li><span>|</span>
+        <li><a href="http://www.sfs.opm.gov/" class="footlink">Scholarship for Service</a></li>
+      </ul><p>Copyright © 2015. Towson University. All Rights Reserved. </p>
 	</div>
 </div>
 </body>

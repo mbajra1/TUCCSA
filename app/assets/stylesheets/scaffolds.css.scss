@@ -1,9 +1,13 @@
 body {
-  background-color: #fff;
+  background: #F9FAFA none repeat scroll 0% 0%;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  min-height:100%;
+  position:relative;
+  padding-bottom: 140px;
+
 }
 
 p, ol, ul, td {

@@ -29,9 +29,9 @@
       </div>
     </div>
     <div class="form-actions">
-      <%= link_to t('.back'), previous_wizard_path, :class => 'btn' %>
+      <%= link_to t('.back'), previous_wizard_path, :class => 'btn btn-default' %>
       <%= f.submit "Next", :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn btn-warning' %>
     </div>
 
 <% end%>

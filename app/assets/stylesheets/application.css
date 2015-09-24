@@ -14,14 +14,72 @@
  *= require bootstrap-datepicker
  */
 
+/**** global css ****/
+
+a{
+    text-decoration: none !important;
+}
+
+ul >li {list-style-type: none;}
+
+/**** navbar section ****/
+
 .towson-line {
 	height: 10px;
 	background-color: #ffcc00;
 }
+
+.navbar {
+    border-radius: 0px !important;
+}
+.navbar-inverse .navbar-brand {
+    color: #FFF !important;
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+    color: #ffcc00 !important;
+    background-color: transparent;
+}
+
+.navbar-brand:hover, .navbar-brand:focus {
+    text-decoration: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #FFF !important;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #ffcc00 !important;
+    background-color: transparent;
+}
+
+/**** footer css ****/
+
+#footer {
+    background-color: #ffcc00;
+    width: 100%;
+    height: 120px;
+    position: absolute;
+    bottom: 0;
+    padding-top: 10px;
+}
 .towson-footer {
-   #background-color: #ffcc00;
-    width:100%;
-    color: black;
+    width: 100%;
     text-align: center;
-    padding-top: 5px;
+}
+
+.towson-footer ul>li{
+    color: black;
+    display: inline;
+    padding: 1em 1em;
+}
+
+.towson-footer ul>li a, .towson-footer ul>li a:link{
+    color: #000000;
+    background-color: transparent;
+}
+.towson-footer ul>li a:hover, .towson-footer ul>li a:focus {
+    color: #ccc;
+    background-color: transparent;
 }

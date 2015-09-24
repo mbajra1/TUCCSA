@@ -28,24 +28,58 @@
 // Example:
 // @link-color: #ff0000;
 
-body{
-  position: relative;
-  height: 100%;
-}
 .container{
   width: auto;
-  margin-bottom: 100px;
   overflow:auto;
   margin: 0px 10px 100px 10px;
+}
+/*** dropdown css ***/
+.dropdown-menu {
+  min-width: 180px;
+  background-color: #080808;
+  height: 4em;
+  padding: .5em;
 
+  ul>li:first-child {
+    border-bottom: 1px solid #fff;
+  }
+  ul {
+    padding-left: 1em;
+    li {
+      list-style: none;
+    }
+  }
+
+  a, a:link, a:visited {
+    color: #FFF;
+  }
+
+  a, a:hover, a:focus {
+    color: #ffcc00;
+  }
 }
-.navbar-fixed-top, .navbar-fixed-bottom{
-  bottom: 0;
-  height: 2em;
-  left: 0;
-  position: relative; //changed to relative from fixed also works if position is not there
-  width:100%;
+
+/**** right column css ****/
+.status-info{
+  position: relative;
+  background-color: #EFF0F2;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  padding: 2em;
+
+  .bar{
+    border-top: 1px solid #CCCCCC;
+    padding-top: 1em;
+  }
+
+  h3 {color: #5DADE2;}
+}
+.info {
   background-color: #FC0;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+  padding: 2em;
 }
+
 
 
