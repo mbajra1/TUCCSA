@@ -59,8 +59,16 @@
   }
 }
 
+/**** left column css ****/
+.col-md-8 {
+  position: relative;
+  background-color: #EDEFF0;
+  border-radius: 1em;
+  padding: 1em 2em 0.8em 2em;
+}
+
 /**** right column css ****/
-.status-info{
+.status-info {
   position: relative;
   background-color: #EFF0F2;
   border-top-left-radius: 1em;
@@ -81,5 +89,58 @@
   padding: 2em;
 }
 
+/*** button ***/
+.btn-submit, input[type="submit"]{
+  color: #FFF !important;
+  background-color: #5CB85C;
+  border-color: #4CAE4C;
+  background-image: none !important;
+  border-radius: 4px !important;
+  padding: 10px 14px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
 
+form input[type="submit"]{
+  color: #FFF !important;
+  background-color: #428BCA !important;
+  border-color: #357EBD !important;
+  margin: 2em 0em !important;
+}
 
+.btn-danger, .btn-warning, .btn-info, .btn-inverse, .btn-success, .btn-primary{color: #fff !important;}
+.form-actions{
+  padding:1em 0em 2em 0em;
+}
+
+.custom-btn{padding:.3em; margin-left: 1em;}
+
+.has-success .form-control, .has-success .select2-search input[type="text"] {
+  color: #2ECC71;
+  border-color: #2ECC71;
+  box-shadow: none;
+}
+
+.has-error .form-control, .has-error .select2-search input[type="text"] {
+  color: #E74C3C;
+  border-color: #E74C3C;
+  box-shadow: none;
+}
+
+.form-control, .select2-search input[type="text"] {
+  height: 42px;
+  padding: 8px 12px;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.467;
+  color: #34495E;
+  border: 2px solid #BDC3C7;
+  border-radius: 6px;
+  box-shadow: none;
+  transition: border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;
+}
+
+form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"], form input[type="url"], form input[type="tel"], form input[type="date"], form textarea {
+  width: calc(60% - 22px) !important;
+  margin-bottom: 1em;
+}

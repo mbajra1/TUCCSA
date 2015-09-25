@@ -8,12 +8,12 @@
 	    <div class="controls">
 	      Attach a MS-Word file (.docx) containing a brief statement of purpose describing your goals
 	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)
-	       <br />
+	       <br /><br />
           <%= f.file_field :purpose %>
-          <%= f.submit "Save", :value => 'Upload' ,:class => 'btn' %>
+          <%= f.submit "Save", :value => 'Upload' ,:class => 'btn btn-primary' %>
               <% if !@cs_application.purpose_file_name.nil?%>
                   <strong>File received: <%= link_to @cs_application.purpose_file_name, @cs_application.purpose.url, :target => '_blank'%></strong>
-                  <%=link_to t('.Remove'), remove_purpose_path(@cs_application.id), :confirm => 'You are about to remove your uploaded file. Continue?'%>
+                  <%=link_to t('.Remove'), remove_purpose_path(@cs_application.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
                   <!-- <br /> <br />
                   Use the button to replace your file--> <br />
               <% end%>

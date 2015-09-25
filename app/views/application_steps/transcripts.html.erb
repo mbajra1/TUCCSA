@@ -7,20 +7,20 @@
       <div class="controls">
         Attach your transcripts. Click on 'Upload' after selecting your file to add another attachment. Attachments can be
         images of your scanned transcripts or PDF.
-        <br />
+        <br /><br />
         <%= f.fields_for :transcripts do |transcript|%>
             <%= transcript.file_field :document %>
             <%= transcript.submit "Save", :value => 'Upload' ,:class => 'btn' %>
         <%end%>
         <br /><br />
-        <strong>Here are your uploaded transcripts</strong> <br />
+        <strong>Uploaded transcripts</strong> <br /><br />
         <ol>
           <% @transcript_all = @cs_application.transcripts%>
           <% @transcript_all.each do |transcript|%>
               <% if !transcript.id.nil? %>
                   <li>
                     <%=link_to transcript.document_file_name, transcript.document.url%>
-                    <%=link_to t('.Remove'), remove_attachment_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?'%>
+                    <%=link_to t('.Remove'), remove_attachment_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
                   </li>
               <% end%>
 
