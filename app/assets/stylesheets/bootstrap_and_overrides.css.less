@@ -28,6 +28,7 @@
 // Example:
 // @link-color: #ff0000;
 
+
 .container{
   width: auto;
   overflow:auto;
@@ -64,7 +65,7 @@
   position: relative;
   background-color: #EDEFF0;
   border-radius: 1em;
-  padding: 1em 2em 0.8em 2em;
+  padding: 1em 2em 2.8em 2em;
 }
 
 /**** right column css ****/
@@ -116,15 +117,14 @@ form input[type="submit"]{
 .custom-btn{padding:.3em; margin-left: 1em;}
 
 .has-success .form-control, .has-success .select2-search input[type="text"] {
-  color: #2ECC71;
-  border-color: #2ECC71;
-  box-shadow: none;
+  // color: #2ECC71;
+  // border-color: #2ECC71;
+  // box-shadow: none;
 }
 
 .has-error .form-control, .has-error .select2-search input[type="text"] {
-  color: #E74C3C;
-  border-color: #E74C3C;
-  box-shadow: none;
+  // color: #E74C3C;  // border-color: #E74C3C;
+  // box-shadow: none;
 }
 
 .form-control, .select2-search input[type="text"] {
@@ -140,7 +140,20 @@ form input[type="submit"]{
   transition: border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;
 }
 
-form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"], form input[type="url"], form input[type="tel"], form input[type="date"], form textarea {
+form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"],
+form input[type="url"], form input[type="tel"], form input[type="date"], form textarea {
   width: calc(60% - 22px) !important;
   margin-bottom: 1em;
+}
+
+.field_with_errors {
+  display: inherit !important;
+  background-color: transparent !important;
+}
+
+.field_with_errors input[type="text"], .field_with_errors input[type="text"],.field_with_errors input[type="password"],
+.field_with_errors input[type="email"],.field_with_errors input[type="number"],.field_with_errors input[type="url"],
+.field_with_errors input[type="tel"],.field_with_errors input[type="date"],.field_with_errors textarea {
+   border-color: #E74C3C !important;
+   box-shadow: none;
 }

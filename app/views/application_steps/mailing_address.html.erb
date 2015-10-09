@@ -1,0 +1,68 @@
+<%= form_for @contact, method: :put, url: wizard_path do |contact| %>
+    <% if @contact.errors.any? %>
+        <div class="error_messages">
+          <% @contact.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+          <% end %>
+        </div>
+    <% end %>
+
+    <div class="page-header">
+      <h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
+    </div>
+
+    <h3>Provide Your Contact Information</h3>
+    <br />
+
+    <fieldset>
+
+      <div class="control-group">
+        <%= contact.label :name, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.text_field :name, :class => 'text_field' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :line1, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.text_field :line1, :class => 'text_field' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :line2, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.text_field :line2, :class => 'text_field' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :city, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.text_field :city, :class => 'text_field' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :state_id, :class => 'control-label' %>
+        <div class="controls">
+          <%=contact.collection_select(:state_id, State.all, :id, :name, {:prompt => 'Select'}) %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :zip, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.number_field :zip, :class => 'number_field' %>
+        </div>
+      </div>
+
+      <%#= fields_for @cs_application do |cs|%>
+
+
+      <%#end%>
+
+      <div class="form-actions">
+        <%= link_to t('.back'), edit_cs_application_path(@cs_application), :class => 'btn btn-default' %>
+        <%= contact.submit "Next", :class => 'btn' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn btn-warning' %>
+      </div>
+
+    </fieldset>
+<% end %>

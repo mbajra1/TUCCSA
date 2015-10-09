@@ -1,18 +1,29 @@
 <%= form_for @cs_application, url: wizard_path, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|  %>
-	<div class="page-header">
+    <% if @cs_application.errors.any? %>
+        <div class="error_messages">
+          <% @cs_application.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+          <% end %>
+        </div>
+    <% end %>
+
+    <div class="page-header">
   		<h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
 	</div>
 	<h3>Purpose Statment</h3>
 	<div class="control-group">
 	    <%= f.label :purpose_statement, :class => 'control-label' %>
 	    <div class="controls">
-	      Attach a MS-Word file (.docx) containing a brief statement of purpose describing your goals
+	      Attach a PDF file (.pdf) containing a brief statement of purpose describing your goals
 	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)
-	       <br /><br />
+	       <br />
           <%= f.file_field :purpose %>
-          <%= f.submit "Save", :value => 'Upload' ,:class => 'btn btn-primary' %>
+          <%= f.submit "Save", :value => 'Upload' ,:class => 'btn' %>
+          <br /><br />
+          <strong>Uploaded File:</strong>
+          <br /><br />
               <% if !@cs_application.purpose_file_name.nil?%>
-                  <strong>File received: <%= link_to @cs_application.purpose_file_name, @cs_application.purpose.url, :target => '_blank'%></strong>
+                  File received: <%= link_to @cs_application.purpose_file_name, @cs_application.purpose.url, :target => '_blank'%>
                   <%=link_to t('.Remove'), remove_purpose_path(@cs_application.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
                   <!-- <br /> <br />
                   Use the button to replace your file--> <br />
@@ -24,7 +35,7 @@
   	<div class="form-actions">
   		<%= link_to t('.back'), previous_wizard_path, :class => 'btn btn-default' %>
     	<%= f.submit "Next", :class => 'btn btn-primary' %>
-    	<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn btn-warning' %>
+    	<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn btn-danger' %>
   	</div>
   	
 <% end%>

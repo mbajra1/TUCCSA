@@ -36,7 +36,7 @@
 		<br />
 		You are not allowed to edit your application after it has been submitted.
 		<br /><br />
-		View your submitted application: <%= link_to t('.view'), review_application_path(format: "pdf", id: CsApplication.find_by_user_id(current_user.id)), :target => '_blank', :class => 'btn btm-primary' %>
+		View your submitted application: <%= link_to t('.view'), review_application_path(format: "pdf", id: CsApplication.find_by_user_id(current_user.id)), :target => '_blank', :class => 'btn btn-primary' %>
 	    <% end%>
 <% end%>
 

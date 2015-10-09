@@ -10,7 +10,6 @@
 <div class="towson-line"></div>
 <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
   <div class="navbar-header">
-
     <a class="navbar-brand" href="/"><%#= image_tag 'tucsa.png', :height=> '20px', :width=>'20px' %>TUCSSA</a>
   </div>
   <div class="collapse navbar-collapse" id="navbar-collapse-01">
@@ -18,31 +17,24 @@
       <li><%= link_to "About TU", "http://www.towson.edu/main/abouttu/index.asp", :target=>'_blank'%></li>
       <li><%= link_to "About Cyber Security","http://cis1.towson.edu/~cisweb/",:target=>'_blank'%></li>
     </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-      <li class="divider-vertical"></li>
-      <li class="dropdown">
-        <% if user_signed_in? %>
-
+    <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="divider-vertical"></li>
+          <li class="dropdown">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%=current_user.email%><strong class="caret"></strong></a>
             <div class="dropdown-menu">
               <ul>
                 <li>
-                  <%= link_to "Profile", cs_application_path(@cs_application) %>
-
+                  <%#= link_to "Profile", cs_application_path(@cs_application) %>
                 </li>
                 <li>
                   <%= link_to "Sign out", destroy_user_session_path, :method => 'delete'%>
                 </li>
               </ul>
             </div>
-
-        <% end %>
-
-
-      </li>
-    </ul>
-
+          </li>
+        </ul>
+    <%end%>
   </div>
 </nav>
 
@@ -115,7 +107,6 @@
 				<br />
 			</div>
 		<% end%>
-		
 	</div>
 </div>
 <div id="footer">

@@ -1,8 +1,16 @@
-
-<h4>Basic Information</h4>
-<br />
-
 <%= form_for @cs_application, :html => { :class => 'form-horizontal' } do |f| %>
+
+    <% if @cs_application.errors.any? %>
+        <div class="error_messages">
+          <% @cs_application.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+          <% end %>
+        </div>
+    <% end %>
+    <br />
+    <h3>Basic Information</h3>
+    <br />
+
   <div class="control-group">
     <%= f.label :first, :class => 'control-label' %>
     <div class="controls">
@@ -33,6 +41,17 @@
       <%= f.text_field :email, :class => 'text_field', :value => current_user.email %>
     </div>
   </div>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.check_box :is_citizen, :class => 'number_field' %> This application requires applicants to be a US citizen.<br /> Check if you are a US citizen.
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :telephone, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :telephone, :class => 'number_field' %>
+      </div>
+    </div>
 	<%= f.hidden_field :user_id, :value => current_user.id%>
   <div class="form-actions">
     <%= f.submit "Next", :class => 'btn btn-primary' %>

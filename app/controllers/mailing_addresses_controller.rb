@@ -1,7 +1,8 @@
 class MailingAddressesController < InheritedResources::Base
   before_filter :authenticate_user!
+
     def create
-    @contact = CsApplication.new(params[:contact])
+    @contact = CsApplication.new(params[:mailing_address])
 
     respond_to do |format|
       if @contact.save

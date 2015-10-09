@@ -1,11 +1,20 @@
-<%= form_for @cs_application, url: wizard_path, :html => { :class => 'form-horizontal' }  do |f|  %>
+<%= form_for @institution, method: :put, url: wizard_path, :html => { :class => 'form-horizontal' }  do |institute|  %>
+
+    <% if @institution.errors.any? %>
+        <div class="error_messages">
+          <% @institution.errors.full_messages.each do |error| %>
+              <p><%= error %></p>
+          <% end %>
+        </div>
+    <% end %>
+
 	<div class="page-header">
   		<h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
 	</div>
 	<h3>Provide Your Educational Information</h3>
 	<br />
 
-	<%= fields_for @institution do |institute|%>
+	<%#= fields_for :institution do |institute|%>
 
 		<div class="control-group">
 			<%= institute.label :institution, :class => 'control-label' %>
@@ -22,7 +31,7 @@
 		<div class="control-group">
 			<%= institute.label :state_id, :class => 'control-label' %>
 			<div class="controls">
-				<%=institute.collection_select(:state_id, State.all, :id, :name, {:include_blank => '-- Please select your state --'}) %>
+				<%=institute.collection_select(:state_id, State.all, :id, :name, :selected => @institution.state_id)%>
 			</div>
 		</div>
 		<div class="control-group">
@@ -44,13 +53,13 @@
 			</div>
 		</div>
 
-	<% end%>
+	<%# end%>
 
 	<div class="form-actions">
 		
-		<%= f.submit "Save", :value => 'Add' ,:class => 'btn btn-inverse' %>
+		<%= institute.submit "Save", :value => 'Add' ,:class => 'btn btn-inverse' %>
 		<%= link_to t('.back'), previous_wizard_path, :class => 'btn btn-default' %>
-		<%= f.submit "Next", :class => 'btn btn-primary' %>
+		<%= institute.submit "Next", :class => 'btn btn-primary' %>
 		<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn btn-warning' %>
 	</div>
 <% end%>

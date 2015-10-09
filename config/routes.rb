@@ -6,6 +6,10 @@ TUCCSA2::Application.routes.draw do
   resources :institutions
   resources :mailing_addresses
 
+  #resources :mailing_addresses, only: [:new, :create, :show, :index] do
+   # resources :application_steps, only: [:show, :update], controller: 'application_steps'
+  #end
+
   devise_for :users
   root :to => 'cs_applications#index'
 
