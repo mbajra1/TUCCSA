@@ -620,7 +620,13 @@
       <option name="project" value="LOCAL" />
       <updated>1445067375843</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fixed the purpose attachment with validation, changed field name in table cs_applications and mailing_addresses and updated active admin">
+      <created>1445067452056</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1445067452056</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
