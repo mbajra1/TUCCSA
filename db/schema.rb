@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130430021132) do
+ActiveRecord::Schema.define(version: 20151017063514) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   limit: 255,   null: false
@@ -47,24 +47,20 @@ ActiveRecord::Schema.define(version: 20130430021132) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "cs_applications", force: :cascade do |t|
-    t.integer  "user_id",              limit: 4
-    t.string   "first",                limit: 255
-    t.string   "middle",               limit: 255
-    t.string   "last",                 limit: 255
-    t.integer  "tuid",                 limit: 4
-    t.string   "email",                limit: 255
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "telephone",            limit: 255
-    t.boolean  "is_citizen",           limit: 1
-    t.string   "signed_name",          limit: 255
-    t.integer  "status",               limit: 4
-    t.integer  "progress",             limit: 4
-    t.text     "purpose_statement",    limit: 65535
-    t.string   "purpose_file_name",    limit: 255
-    t.string   "purpose_content_type", limit: 255
-    t.integer  "purpose_file_size",    limit: 4
-    t.datetime "purpose_updated_at"
+    t.integer  "user_id",           limit: 4
+    t.string   "first_name",        limit: 255
+    t.string   "middle_name",       limit: 255
+    t.string   "last_name",         limit: 255
+    t.integer  "towson_id_number",  limit: 4
+    t.string   "email",             limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "phone",             limit: 255
+    t.boolean  "is_citizen",        limit: 1
+    t.string   "signed_name",       limit: 255
+    t.string   "status",            limit: 255
+    t.integer  "progress",          limit: 4
+    t.text     "purpose_statement", limit: 65535
   end
 
   create_table "institutions", force: :cascade do |t|
@@ -81,14 +77,24 @@ ActiveRecord::Schema.define(version: 20130430021132) do
 
   create_table "mailing_addresses", force: :cascade do |t|
     t.string   "name",              limit: 255
-    t.string   "line1",             limit: 255
-    t.string   "line2",             limit: 255
+    t.string   "address_line1",     limit: 255
+    t.string   "address_line2",     limit: 255
     t.string   "city",              limit: 255
     t.integer  "state_id",          limit: 4
     t.integer  "zip",               limit: 4
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "cs_application_id", limit: 4
+  end
+
+  create_table "purpose_statements", force: :cascade do |t|
+    t.integer  "cs_application_id",    limit: 4,   null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "purpose_file_name",    limit: 255
+    t.string   "purpose_content_type", limit: 255
+    t.integer  "purpose_file_size",    limit: 4
+    t.datetime "purpose_updated_at"
   end
 
   create_table "ratings", force: :cascade do |t|

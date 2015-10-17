@@ -12,10 +12,12 @@ class ApplicationStepsController < ApplicationController
       when "mailing_address"
         if @cs_application.mailing_address.present?
           @contact = @cs_application.mailing_address
+          @contact.name = @cs_application.first_name + " " + @cs_application.last_name
           puts 'found record......'
         else
           puts 'new record......'
           @contact = @cs_application.build_mailing_address
+          @contact.name = @cs_application.first + " " + @cs_application.last
         end
 
       when "educational"
@@ -36,6 +38,14 @@ class ApplicationStepsController < ApplicationController
             puts '-------------------------------else-----------------'
           end
         end
+
+      when "purpose_statement"
+        if @cs_application.purpose_statement.present?
+        @purpose_statement = @cs_application.purpose_statement
+        else
+        @purpose_statement = @cs_application.build_purpose_statement
+        end
+
 
       when "transcripts"
         #if !params[:new].nil?
@@ -110,42 +120,55 @@ class ApplicationStepsController < ApplicationController
           render_wizard @institution
       end
 
-      when "purpose"
+      when "purpose_statement"
+        @purpose_statement = @cs_application.purpose_statement
+
         if params[:commit]== "Upload"
-          check = params[:cs_application][:purpose].nil? rescue true
+          check = params[:purpose_statement][:purpose].nil? rescue true
           if check
             render_wizard
-
+          elsif @cs_application.purpose_statement.present?
+            @purpose_statement.update(form_params(step))
+            puts "update upload"
+            render_wizard
           else
-            puts "here"
-            @cs_application.purpose = params[:cs_application][:purpose]
-            @cs_application.progress = 70
-            @cs_application.save
+            @purpose_statement = PurposeStatement.new(:purpose => params[:purpose_statement][:purpose])
+            @purpose_statement.cs_application_id = @cs_application.id
+            @purpose_statement.save
+            puts "new upload"
             render_wizard
           end
         else
-          render_wizard @cs_application
+          if !@cs_application.purpose_statement.present?
+
+            @purpose_statement = PurposeStatement.new
+          end
+
+          @cs_application.progress = 70
+          @cs_application.save
+          render_wizard @purpose_statement
         end
 
       when "transcripts"
       if params[:commit]== "Upload"
-        check = params[:transcript][:document].nil? rescue true
+          check = params[:transcript][:document].nil? rescue true
           if check
             render_wizard
-
           else
           @transcript = Transcript.new(:document => params[:transcript][:document])
           @transcript.cs_application_id = @cs_application.id
           @transcript.save
           @cs_application.progress = 80
           @cs_application.save
+          puts "new"
           render_wizard
           end
 
       else
         if @cs_application.transcripts.present?
-          @transcript = @cs_application.institutions.last
+          @transcript = @cs_application.transcripts.last
           @transcript.update(form_params(step))
+          puts "update"
         else
           @transcript = Transcript.new
         end
@@ -199,15 +222,15 @@ class ApplicationStepsController < ApplicationController
   def form_params(step)
     permitted_attributes = case step
                              when "mailing_address"
-                               [:city, :line1, :line2, :name, :state_id, :zip]
+                               [:city, :address_line1, :address_line2, :name, :state_id, :zip, :cs_application_id]
                              when "educational"
-                               [ :attended_from, :attended_to, :city, :degree, :institution, :state_id, :cs_application_id]
+                               [:attended_from, :attended_to, :city, :degree, :institution, :state_id, :cs_application_id]
                              when "send_recommendations"
                                [:cs_application_id, :email, :name, :status, :time_known_from, :time_known_to, :title]
                              when "transcript"
                                [:cs_application_id, :document]
-                             when "purpose"
-                               [:purpose]
+                             when "purpose_statement"
+                               [:cs_application_id, :purpose]
                            end
 
     if step == "mailing_address"
@@ -218,8 +241,8 @@ class ApplicationStepsController < ApplicationController
       params.require(:recommendation).permit(permitted_attributes).merge(form_step: step)
     elsif step == "transcript"
       params.require(:transcript).permit(permitted_attributes).merge(form_step: step)
-    elsif step == "purpose"
-      params.require(:cs_application).permit(permitted_attributes).merge(form_step: step)
+    elsif step == "purpose_statement"
+      params.require(:purpose_statement).permit(permitted_attributes).merge(form_step: step)
     end
   end
 

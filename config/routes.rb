@@ -6,10 +6,6 @@ TUCCSA2::Application.routes.draw do
   resources :institutions
   resources :mailing_addresses
 
-  #resources :mailing_addresses, only: [:new, :create, :show, :index] do
-   # resources :application_steps, only: [:show, :update], controller: 'application_steps'
-  #end
-
   devise_for :users
   root :to => 'cs_applications#index'
 
@@ -24,7 +20,7 @@ TUCCSA2::Application.routes.draw do
   get '/cs_application/submit_application/:id', :controller=>'cs_applications', :action=>'submit_application', :as => :submit_application
   get '/cs_application/edit/:id', :controller=>'cs_applications', :action=>'edit', :as => :edit_application
   get '/cs_application/remove_attachment/:id', :controller=>'cs_applications', :action=>'remove_attachment', :as=> :remove_attachment
-  get '/cs_application/:id/remove_purpose', to: 'cs_applications#remove_purpose', as: 'remove_purpose'
+  get '/cs_application/remove_purpose/:id', :controller=>'cs_applications', :action=>'remove_purpose', :as=> :remove_purpose
 
   #devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

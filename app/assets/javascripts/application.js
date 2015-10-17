@@ -16,5 +16,10 @@
 //= require bootstrap-datepicker
 //= require_tree .
 
+$(document).ready(function() {
+    $('input[disabled=disabled]').click(function(event){
+        event.preventDefault(); // Prevent link from following its href
+    });
+});
 $(".alert-message").alert()
 $(".alert-message").alert('close')

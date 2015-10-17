@@ -1,9 +1,9 @@
 ActiveAdmin.register CsApplication do
   index do
     column :id
-    column :first
-    column :last
-    column :tuid
+    column :first_name
+    column :last_name
+    column :towson_id_number
     column :email
     column :progress
     column :status
@@ -44,18 +44,18 @@ ActiveAdmin.register CsApplication do
     
     h2 'Application ID: ' + cs_application.id.to_s
     panel "Basic Information" do
-      h4 'Applcant First Name: ' + cs_application.first
-      h4 'Applcant Middle Name: ' + cs_application.middle
-      h4 'TU ID: ' + cs_application.tuid.to_s
+      h4 'Applcant First Name: ' + cs_application.first_name
+      h4 'Applcant Middle Name: ' + cs_application.middle_name
+      h4 'TU ID: ' + cs_application.towson_id_number.to_s
       h4 'Email address: ' + cs_application.email
-      h4 'Telephone: ' + cs_application.telephone
+      h4 'Telephone: ' + cs_application.phone
       h4 'US Citizen: ' + cs_application.is_citizen.to_s
     end
     
     panel "Contact Information" do
       h4 "Full Name: " + (!cs_application.mailing_address.name.blank? ? cs_application.mailing_address.name : 'Not Provided')
-      h4 "Address Line 1: " + (!cs_application.mailing_address.line1.blank? ? cs_application.mailing_address.line1 : 'Not Provided')
-      h4 "Address Line 2: " + (!cs_application.mailing_address.line2.blank? ? cs_application.mailing_address.line2 : 'Not Provided')
+      h4 "Address Line 1: " + (!cs_application.mailing_address.address_line1.blank? ? cs_application.mailing_address.address_line1 : 'Not Provided')
+      h4 "Address Line 2: " + (!cs_application.mailing_address.address_line2.blank? ? cs_application.mailing_address.laddress_line2 : 'Not Provided')
       h4 "City: " + (!cs_application.mailing_address.city.blank? ? cs_application.mailing_address.city : 'Not Provided')
       h4 "State: " + (!cs_application.mailing_address.state_id.blank? ? cs_application.mailing_address.state.name : 'Not Provided')
       h4 "Zip: " + (!cs_application.mailing_address.zip.blank? ? cs_application.mailing_address.zip.to_s : 'Not Provided')
@@ -79,8 +79,8 @@ ActiveAdmin.register CsApplication do
     end
     
     panel "Purpose Statement" do
-      if !cs_application.purpose.nil?
-        strong {link_to cs_application.purpose_file_name, cs_application.purpose.url}
+      if !cs_application.purpose_statement.purpose.nil?
+        strong {link_to cs_application.purpose_statement.purpose_file_name, cs_application.purpose_statement.purpose.url}
       else
         h4 + "Not Provided"
       end

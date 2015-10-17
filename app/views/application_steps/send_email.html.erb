@@ -10,13 +10,13 @@
 		<% @recommendation1 = @cs_application.recommendations.first%>
 		Name: <%= @recommendation1.name%> <br />
 		Title: <%= @recommendation1.title%> <br />
-		Email: <%= @recommendation1.email%> <br />
+		Email: <%= @recommendation1.email%> <br /><br />
 		<% if !@recommendation1.email.nil? %>
 			<% if @recommendation1.status==1 || @recommendation1.status==2%>
-				<strong>Invitation Sent</strong>
-				<%= link_to "Resend Invitation", send_invitation_path(@recommendation1) %>
+				<strong>Invitation Sent</strong><br />
+				<%= link_to "Resend Invitation", send_invitation_path(@recommendation1), :class => 'btn btn-success' %>
 			<%else%>
-				<%= link_to "Send Invitation", send_invitation_path(@recommendation1) %>
+				<%= link_to "Send Invitation", send_invitation_path(@recommendation1), :class => 'btn btn-success' %>
 			<% end%>
 			
 		<% else %>
@@ -25,18 +25,19 @@
 	<% else%>
 		Information not available
 	<% end%>
+    <br /><br />
 	<h4>Recommendation 2</h4>
 	<% if !@cs_application.recommendations.second.nil? %>
 		<% @recommendation2 = @cs_application.recommendations.second%>
 		Name: <%= @recommendation2.name%> <br />
 		Title: <%= @recommendation2.title%> <br />
-		Email: <%= @recommendation2.email%> <br />
+		Email: <%= @recommendation2.email%> <br /><br />
 		<% if !@recommendation2.email.nil?%>
 			<% if @recommendation2.status==1 || @recommendation2.status==2%>
-				<strong>Invitation Sent</strong>
-				<%= link_to "Resend Invitation", send_invitation_path(@recommendation2) %>
+				<strong>Invitation Sent</strong> <br />
+				<%= link_to "Resend Invitation", send_invitation_path(@recommendation2), :class => 'btn btn-success' %>
 			<%else%>
-				<%= link_to "Send Invitation", send_invitation_path(@recommendation2) %>
+				<%= link_to "Send Invitation", send_invitation_path(@recommendation2), :class => 'btn btn-success' %>
 				
 			<% end%>
 			

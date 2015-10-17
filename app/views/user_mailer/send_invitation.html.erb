@@ -7,8 +7,8 @@ helpful for the scholarship comittee to select appropriate candidate for the sch
 
 <br />
 Here is the student detail: <br />
-Student's Name: <%= @invite.cs_application.first%>&nbsp;<%= @invite.cs_application.middle unless @invite.cs_application.middle.nil? %>&nbsp;<%= @invite.cs_application.last%><br />
-Student's TU ID: <%= @invite.cs_application.tuid%><br />
+Student's Name: <%= @invite.cs_application.first_name%>&nbsp;<%= @invite.cs_application.middle_name unless @invite.cs_application.middle_name.nil? %>&nbsp;<%= @invite.cs_application.last_name%><br />
+Student's TU ID: <%= @invite.cs_application.towson_id_number%><br />
 Student's email: <%= @invite.cs_application.email%><br />
 
 <br />

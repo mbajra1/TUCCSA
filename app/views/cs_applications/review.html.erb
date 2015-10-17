@@ -35,25 +35,25 @@
 		First Name
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.first.blank? ? @cs_application.first : 'Not Provided' %>
+		<%= !@cs_application.first_name.blank? ? @cs_application.first_name : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Middle Name
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.middle.blank? ? @cs_application.middle : 'Not Provided' %>
+		<%= !@cs_application.middle_name.blank? ? @cs_application.middle_name : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Last Name
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.last.blank? ? @cs_application.last : 'Not Provided' %>
+		<%= !@cs_application.last_name.blank? ? @cs_application.last_name : 'Not Provided' %>
 	</div>
 		<div class="left_col">
 		TU ID
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.tuid.blank? ? @cs_application.tuid : 'Not Provided' %>
+		<%= !@cs_application.towson_id_number.blank? ? @cs_application.towson_id_number : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Contact Email
@@ -82,13 +82,13 @@
 		Address Line1
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.mailing_address.line1.blank? ? @cs_application.mailing_address.line1 : 'Not Provided' %>
+		<%= !@cs_application.mailing_address.address_line1.blank? ? @cs_application.mailing_address.address_line1 : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Address Line2
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.mailing_address.line2.blank? ? @cs_application.mailing_address.line2 : 'Not Provided' %>
+		<%= !@cs_application.mailing_address.address_line2.blank? ? @cs_application.mailing_address.address_line2 : 'Not Provided' %>
 	</div>
 		<div class="left_col">
 		City
@@ -112,7 +112,7 @@
 		Telephone
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.telephone.blank? ? @cs_application.telephone : 'Not Provided' %>
+		<%= !@cs_application.phone.blank? ? @cs_application.phone : 'Not Provided' %>
 	</div>
 	
 	<div class="title">
@@ -159,7 +159,8 @@
 		Purpose Statement
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.purpose.nil? ? (link_to @cs_application.purpose_file_name, @cs_application.purpose.url) : "Not Provided"%>
+        <% @purpose_statement = @cs_application.purpose_statement%>
+		<%= !@purpose_statement.purpose.nil? ? (link_to @purpose_statement.purpose_file_name, @purpose_statement.purpose.url) : "Not Provided"%>
 	</div>
 	<div class="left_col">
 		Transcript(s)

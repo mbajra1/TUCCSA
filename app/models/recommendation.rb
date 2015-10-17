@@ -1,8 +1,7 @@
 class Recommendation < ActiveRecord::Base
   attr_accessible :cs_application_id, :email, :name, :status, :time_known_from, :time_known_to, :title
 
-  STATUS_SENT = 1
-  STATUS_COMPLETED = 2
+  STATUS_SENT = "SENT"
   
   belongs_to :cs_application
   has_one :rating

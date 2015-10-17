@@ -46,7 +46,8 @@ class CsApplicationsController < ApplicationController
   # POST /cs_applications
   # POST /cs_applications.json
   def create
-    @cs_application = CsApplication.new(params[:cs_application])
+   # @cs_application = CsApplication.new(params[:cs_application])
+     @cs_application = CsApplication.new(form_params)
    
     respond_to do |format|
       if @cs_application.save
@@ -65,10 +66,13 @@ class CsApplicationsController < ApplicationController
   # PUT /cs_applications/1
   # PUT /cs_applications/1.json
   def update
-    @cs_application = CsApplication.find(params[:id])
+   @cs_application = CsApplication.find(params[:id])
 
     respond_to do |format|
-      if @cs_application.update_attributes(params[:cs_application])
+
+     # if @cs_application.update_attributes(params[:cs_application])
+
+      if @cs_application.update(form_params)
         format.html { redirect_to application_steps_path, notice: 'Cs application was successfully updated.' }
         format.json { head :no_content }
       else
@@ -136,7 +140,7 @@ class CsApplicationsController < ApplicationController
     else
       cs_application.status = CsApplication::STATUS_REVIEWED
       cs_application.save
-      redirect_to :back, :notice=>'Application is now marked as reviewed. Student has been notified.'
+      redirect_to :back #:notice=>'Application is now marked as reviewed. Student has been notified.'
     end
   end
   
@@ -147,8 +151,8 @@ class CsApplicationsController < ApplicationController
     else
       cs_application.status = CsApplication::STATUS_DENIED
       cs_application.save
-      UserMailer.send_denied_message(cs_application).deliver
-      redirect_to :back, :notice=>'Application is now marked as denied. Student has been notified.'
+     # UserMailer.send_denied_message(cs_application).deliver
+     redirect_to :back #:notice=>'Application is now marked as denied. Student has been notified.'
     end
   end
   
@@ -159,8 +163,8 @@ class CsApplicationsController < ApplicationController
     else
       cs_application.status = CsApplication::STATUS_APPROVED
       cs_application.save
-      UserMailer.send_approved_message(cs_application).deliver
-      redirect_to :back, :notice=>'Application is now marked as approved. Student has been notified.'
+     # UserMailer.send_approved_message(cs_application).deliver
+     redirect_to :back #:notice=>'Application is now marked as approved. Student has been notified.'
     end
   end
   
@@ -168,13 +172,14 @@ class CsApplicationsController < ApplicationController
       cs_application = CsApplication.find_by_id(params[:id])
       file_name = "package.zip"
       transcripts_list = cs_application.transcripts
+      purpose= cs_application.purpose_statement
       file_name  = "applicant_#{cs_application.user.id}_application_#{cs_application.id}"
       file_name  = "#{file_name}.zip"
       
       temp_file  = Tempfile.new("#{file_name}-#{cs_application.id}")
       Zip::OutputStream.open(temp_file.path) do |zos|
-        zos.put_next_entry(cs_application.purpose_file_name)
-        zos.print IO.read(cs_application.purpose.path)
+        zos.put_next_entry(purpose.purpose_file_name)
+        zos.print IO.read(purpose.purpose.path)
         transcripts_list.each do |file|
           zos.put_next_entry(file.document_file_name)
           zos.print IO.read(file.document.path)
@@ -203,22 +208,25 @@ class CsApplicationsController < ApplicationController
       application.save
       UserMailer.submit_application_applicant(application).deliver
       UserMailer.submit_application_admin(application).deliver
-      redirect_to root_url, :notice => "Congratulations!! You have successfully submitted the application. You will be notified via email about the approval."
+      redirect_to root_url, :notice => "Congratulations!! You have successfully submitted the application. We will get in touch with you."
     end
   end
   
   def remove_attachment
-    
     attachment = current_user.cs_application.transcripts.find_by_id(params[:id])
     attachment.destroy
     redirect_to :back, :notice => 'Attachment removed'
   end
 
   def remove_purpose
-    cs_app = CsApplication.find_by_id(params[:id])
-    cs_app.purpose = nil
-    cs_app.save
-    redirect_to :back, flash: { success: 'Purpose Statement has been removed.' }
+    cs_app = current_user.cs_application.purpose_statement.find_by_id(params[:id])
+    cs_app.destroy
+    redirect_to :back, flash:{success: 'Purpose Statement has been removed.'}
   end
-  
+
+  private
+  def form_params
+    params.require(:cs_application).permit(:email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :user_id)
+  end
+
 end

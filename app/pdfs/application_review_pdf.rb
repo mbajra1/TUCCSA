@@ -23,21 +23,21 @@ class ApplicationReviewPdf < Prawn::Document
   
   def basic
     move_down 20
-    text "Last Name: <u><i>#{@cs_application.last}</u></i>                                    First Name: <u><i>#{@cs_application.first}</u></i>                            Middle: <u><i>#{@cs_application.middle}</u></i>", size: 10, :inline_format => true
+    text "Last Name: <u><i>#{@cs_application.last_name}</u></i>                                    First Name: <u><i>#{@cs_application.first_name}</u></i>                            Middle: <u><i>#{@cs_application.middle_name}</u></i>", size: 10, :inline_format => true
     move_down 10
-    text "Towson Student ID: <u><i>#{@cs_application.tuid}</i></u>", size: 10, :inline_format => true
+    text "Towson Student ID: <u><i>#{@cs_application.towson_id_number}</i></u>", size: 10, :inline_format => true
     move_down 10
     text "Preferred mailing address for scholarship correspondence: ", size: 10
     move_down 5
     text "<u><i>#{@cs_application.mailing_address.name}</i></u>", :inline_format => true, size: 10
-    text "<u><i>#{@cs_application.mailing_address.line1}, #{@cs_application.mailing_address.line2}</i></u>", :inline_format => true, size: 10
+    text "<u><i>#{@cs_application.mailing_address.address_line1}, #{@cs_application.mailing_address.address_line2}</i></u>", :inline_format => true, size: 10
     text "<u><i>#{@cs_application.mailing_address.city}, #{@cs_application.mailing_address.state.name} #{@cs_application.mailing_address.zip}</u></i>", :inline_format=>true, size: 10
     move_down 10
-    text "Email: <u><i>#{@cs_application.email}</i></u>                       Telephone: <u><i>#{@cs_application.telephone}</i></u>", size: 10, :inline_format=>true
+    text "Email: <u><i>#{@cs_application.email}</i></u>                       Telephone: <u><i>#{@cs_application.phone}</i></u>", size: 10, :inline_format=>true
     move_down 10
     text "<b>I declare that I am a citizen of the United State of America:</b>  <u><i>#{@cs_application.is_citizen? ? "[X]" : "[]"}</i></u>", size: 10, :inline_format=>true 
     move_down 5
-    text "<u><i>#{@cs_application.first} #{@cs_application.last}\t\t</i></u>", :inline_format => true, size: 10
+    text "<u><i>#{@cs_application.first_name} #{@cs_application.last_name}\t\t</i></u>", :inline_format => true, size: 10
     text "Print name", :inline_format => true, size: 10
     move_down 10
     text "Please list all colleges or universities that you have attended below, starting with all current", size: 10
@@ -65,7 +65,7 @@ class ApplicationReviewPdf < Prawn::Document
     text "<b>Please include:</b>", size: 10, :inline_format=>true
     move_down 3
     text "1.  A brief statement of purpose describing your goals and motivations to pursue a career in", size: 10
-    text "    Information Assurance and Comupter Security (maximum 2 pages): <u><i>#{!@cs_application.purpose.blank? ? "Attached: #{@cs_application.purpose_file_name}" : "Not Provided"}</i></u>", size: 10, :inline_format=>true
+    text "    Information Assurance and Comupter Security (maximum 2 pages): <u><i>#{!@cs_application.purpose_statement.purpose.blank? ? "Attached: #{@cs_application.purpose_statement.purpose_file_name}" : "Not Provided"}</i></u>", size: 10, :inline_format=>true
     move_down 5
     text "2.  Transcript(s) from all of the colleges and universities listed above: <u><i>#{!@cs_application.transcripts.nil? ? "Attached: #{@cs_application.transcripts.size} Transcripts" : "Not Provided"}</i></u>", size: 10, :inline_format=>true
     move_down 5
