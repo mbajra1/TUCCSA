@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151017063514) do
+ActiveRecord::Schema.define(version: 20151018070008) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "resource_id",   limit: 255,   null: false
@@ -109,11 +109,11 @@ ActiveRecord::Schema.define(version: 20151017063514) do
     t.integer  "skill",             limit: 4
     t.integer  "commitment",        limit: 4
     t.integer  "independent",       limit: 4
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.text     "notes",             limit: 65535
     t.string   "password",          limit: 255
-    t.integer  "status",            limit: 4,     default: 0
+    t.string   "status",            limit: 255,   default: "0"
   end
 
   create_table "recommendations", force: :cascade do |t|
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20151017063514) do
     t.string   "email",             limit: 255
     t.datetime "time_known_from"
     t.datetime "time_known_to"
-    t.integer  "status",            limit: 4
+    t.string   "status",            limit: 255
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end

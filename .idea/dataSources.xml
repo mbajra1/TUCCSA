@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1632673455">
+  <component name="DataSourceManagerImpl" format="xml" hash="1367177509">
     <data-source source="LOCAL" name="Rails TUCCSA2: development" uuid="1db5eec4-81c7-4cbc-9e5f-619f333a78d4">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

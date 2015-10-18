@@ -7,7 +7,7 @@ class Transcript < ActiveRecord::Base
 
   attr_accessor :form_step
 
-  validates :document, presence: true, if: -> {required_for_step?(:transcript)}
+  validates :document, presence: {message: "File must be selected" }, if: -> {required_for_step?(:transcript)}
 
   def required_for_step?(step)
     # All fields are required if no form step is present

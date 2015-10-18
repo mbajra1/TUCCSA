@@ -1,11 +1,4 @@
 <%= form_for @purpose_statement, method: :put, url: wizard_path, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|  %>
-    <% if @purpose_statement.errors.any? %>
-        <div class="error_messages">
-          <% @purpose_statement.errors.full_messages.each do |error| %>
-              <p><%= error %></p>
-          <% end %>
-        </div>
-    <% end %>
 
     <div class="page-header">
       <h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
@@ -16,13 +9,18 @@
       <div class="controls">
 	       Attach a PDF file (.pdf) containing a brief statement of purpose describing your goals
 	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)
-	       <br />
+	       <br /> <br />
            <%= f.file_field :purpose %>
+            <% unless !@purpose_statement.errors.has_key?(:purpose)%>
+                <span class="help-inline"><%= @purpose_statement.errors[:purpose].join(", ") %></span>
+            <%end%>
+            <br/>
             <% if :purpose.nil?%>
             <%= f.submit "Save", :value => 'Upload' ,:class => 'btn', disabled: true %>
             <%else%>
             <%= f.submit "Save", :value => 'Upload' ,:class => 'btn' %>
             <%end%>
+
         <br /><br />
            <strong>Uploaded File:</strong>
            <br /><br />

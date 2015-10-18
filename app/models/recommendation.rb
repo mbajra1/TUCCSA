@@ -2,6 +2,7 @@ class Recommendation < ActiveRecord::Base
   attr_accessible :cs_application_id, :email, :name, :status, :time_known_from, :time_known_to, :title
 
   STATUS_SENT = "SENT"
+  STATUS_COMPLETED = "COMPLETED"
   
   belongs_to :cs_application
   has_one :rating
@@ -10,6 +11,7 @@ class Recommendation < ActiveRecord::Base
 
   with_options if: -> { required_for_step?(:send_recommendations)} do |step|
     step.validates :email, :name, :title, presence: true
+    step.validates :name, :title, format: { with: /[a-zA-Z\s]*/, message: "only allows letters" }
     step.validates :email, :email_format => true
   end
 

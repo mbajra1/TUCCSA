@@ -9,7 +9,9 @@ class MailingAddress < ActiveRecord::Base
   belongs_to :cs_application
   belongs_to :state
 
-  validates :city, :address_line1, :name, :zip, presence: true, if: -> {required_for_step?(:mailing_address)}
+  validates :city, :address_line1, :name, :state_id, :zip, presence: true, if: -> {required_for_step?(:mailing_address)}
+  validates :state_id, presence: { message: "state must be selected" }
+  validates :name, :city, format: { with: /[a-zA-Z\s]*/, message: "only allows letters" }
   validates :name, length: { in: 2..100 }, if: -> {required_for_step?(:mailing_address)}
   validates :zip, length: { is: 5 }, if: -> {required_for_step?(:mailing_address)}
   validates :zip, numericality: { only_integer: true}, if: -> {required_for_step?(:mailing_address)}

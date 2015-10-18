@@ -1,13 +1,5 @@
 <%= form_for @transcript, method: :put, url: wizard_path, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|  %>
 
-    <% if @transcript.errors.any? %>
-        <div class="error_messages">
-          <% @transcript.errors.full_messages.each do |error| %>
-              <p><%= error %></p>
-          <% end %>
-        </div>
-    <% end %>
-
     <div class="page-header">
       <h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
     </div>
@@ -17,9 +9,13 @@
       <div class="controls">
         Attach your transcripts. Click on 'Upload' after selecting your file to add another attachment. Attachments can be
         images of your scanned transcripts or PDF.
-        <br /><br />
+        <br /> <br />
         <%#= f.fields_for :transcripts do |transcript|%>
         <%= f.file_field :document %>
+        <% unless !@transcript.errors.has_key?(:document)%>
+            <span class="help-inline"><%= @transcript.errors[:document].join(", ") %></span>
+        <%end%>
+        <br />
         <%= f.submit "Save", :value => 'Upload' ,:class => 'btn' %>
         <%#end%>
         <br /><br />

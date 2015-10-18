@@ -1,13 +1,5 @@
 <%= form_for @institution, method: :put, url: wizard_path, :html => { :class => 'form-horizontal' }  do |institute|  %>
 
-    <% if @institution.errors.any? %>
-        <div class="error_messages">
-          <% @institution.errors.full_messages.each do |error| %>
-              <p><%= error %></p>
-          <% end %>
-        </div>
-    <% end %>
-
 	<div class="page-header">
   		<h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
 	</div>
@@ -20,36 +12,54 @@
 			<%= institute.label :institution, :class => 'control-label' %>
 			<div class="controls">
 				<%= institute.text_field :institution, :class => 'text_field' %>
+                <% unless !@institution.errors.has_key?(:institution)%>
+                  <span class="help-inline"><%= @institution.errors[:institution].join(", ") %></span>
+                <%end%>
 			</div>
 		</div>
 		<div class="control-group">
 			<%= institute.label :city, :class => 'control-label' %>
 			<div class="controls">
-				<%= institute.text_field :city, :class => 'text_field' %>
+              <%= institute.text_field :city, :class => 'text_field' %>
+              <% unless !@institution.errors.has_key?(:city)%>
+                  <span class="help-inline"><%= @institution.errors[:city].join(", ") %></span>
+              <%end%>
 			</div>
 		</div>
 		<div class="control-group">
 			<%= institute.label :state_id, :class => 'control-label' %>
 			<div class="controls">
-				<%=institute.collection_select(:state_id, State.all, :id, :name, :selected => @institution.state_id)%>
-			</div>
+              <%=institute.collection_select(:state_id, State.all, :id, :name, :selected => @institution.state_id)%>
+              <% unless !@institution.errors.has_key?(:state_id)%>
+                  <span class="help-inline"><%= @institution.errors[:state_id][1] %></span>
+              <%end%>
+            </div>
 		</div>
 		<div class="control-group">
 			<%= institute.label :attended_from, :class => 'control-label' %>
 			<div class="controls">
 				<%= institute.text_field :attended_from, :class => 'datepicker' %>
+              <% unless !@institution.errors.has_key?(:attended_from)%>
+                  <span class="help-inline"><%= @institution.errors[:attended_from].join(", ") %></span>
+              <%end%>
 			</div>
 		</div>
 		<div class="control-group">
 			<%= institute.label :attended_to, :class => 'control-label' %>
 			<div class="controls">
 				<%= institute.text_field :attended_to, :class => 'datepicker' %>
+              <% unless !@institution.errors.has_key?(:attended_to)%>
+                  <span class="help-inline"><%= @institution.errors[:attended_to].join(", ") %></span>
+              <%end%>
 			</div>
 		</div>
 		<div class="control-group">
 			<%= institute.label :degree, :class => 'control-label' %>
 			<div class="controls">
 				<%= institute.text_field :degree, :class => 'text_field' %>
+              <% unless !@institution.errors.has_key?(:degree)%>
+                  <span class="help-inline"><%= @institution.errors[:degree].join(", ") %></span>
+              <%end%>
 			</div>
 		</div>
 

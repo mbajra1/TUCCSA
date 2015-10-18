@@ -13,7 +13,7 @@ class PurposeStatement < ActiveRecord::Base
 
   attr_accessor :form_step
 
-  validates :purpose, presence: true, if: -> {required_for_step?(:purpose_statement)}
+  validates :purpose, presence: { message: "File must be selected" }, if: -> {required_for_step?(:purpose_statement)}
 
   def required_for_step?(step)
     # All fields are required if no form step is present

@@ -17,7 +17,7 @@ class ApplicationStepsController < ApplicationController
         else
           puts 'new record......'
           @contact = @cs_application.build_mailing_address
-          @contact.name = @cs_application.first + " " + @cs_application.last
+          @contact.name = @cs_application.first_name + " " + @cs_application.last_name
         end
 
       when "educational"

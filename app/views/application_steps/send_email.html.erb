@@ -12,13 +12,11 @@
 		Title: <%= @recommendation1.title%> <br />
 		Email: <%= @recommendation1.email%> <br /><br />
 		<% if !@recommendation1.email.nil? %>
-			<% if @recommendation1.status==1 || @recommendation1.status==2%>
-				<strong>Invitation Sent</strong><br />
-				<%= link_to "Resend Invitation", send_invitation_path(@recommendation1), :class => 'btn btn-success' %>
-			<%else%>
-				<%= link_to "Send Invitation", send_invitation_path(@recommendation1), :class => 'btn btn-success' %>
+			<% if @recommendation1.status=="SENT" || @recommendation1.status=="COMPLETED" %>
+				<%= link_to "Resend Email", send_invitation_path(@recommendation1), :class => 'btn btn-success' %> <strong>Email Sent</strong>
+            <%else%>
+				<%= link_to "Send Email", send_invitation_path(@recommendation1), :class => 'btn btn-success' %>
 			<% end%>
-			
 		<% else %>
 			<strong>*Please enter all information</strong>
 		<% end %>
@@ -33,14 +31,11 @@
 		Title: <%= @recommendation2.title%> <br />
 		Email: <%= @recommendation2.email%> <br /><br />
 		<% if !@recommendation2.email.nil?%>
-			<% if @recommendation2.status==1 || @recommendation2.status==2%>
-				<strong>Invitation Sent</strong> <br />
-				<%= link_to "Resend Invitation", send_invitation_path(@recommendation2), :class => 'btn btn-success' %>
-			<%else%>
-				<%= link_to "Send Invitation", send_invitation_path(@recommendation2), :class => 'btn btn-success' %>
-				
-			<% end%>
-			
+			<% if @recommendation2.status=="SENT"  || @recommendation2.status=="COMPLETED" %>
+				<%= link_to "Resend Email", send_invitation_path(@recommendation2), :class => 'btn btn-success' %> <strong>Email Sent</strong>
+            <%else%>
+				<%= link_to "Send Email", send_invitation_path(@recommendation2), :class => 'btn btn-success' %>
+            <% end%>
 		<% else %>
 			<strong>*Please enter all information</strong>
 		<% end %>
