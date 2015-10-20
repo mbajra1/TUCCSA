@@ -16,7 +16,7 @@
             <span class="help-inline"><%= @transcript.errors[:document].join(", ") %></span>
         <%end%>
         <br />
-        <%= f.submit "Save", :value => 'Upload' ,:class => 'btn' %>
+        <%= f.submit "Save", :value => 'Upload' ,:class => 'btn', disabled: true  %>
         <%#end%>
         <br /><br />
         <strong>Uploaded transcripts</strong>

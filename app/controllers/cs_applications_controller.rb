@@ -52,7 +52,7 @@ class CsApplicationsController < ApplicationController
     respond_to do |format|
       if @cs_application.save
         @cs_application.progress=20
-         @cs_application.status=0
+         @cs_application.status="STARTED"
         @cs_application.save
         format.html { redirect_to application_steps_path, notice: 'Cs application was successfully created.' }
         format.json { render json: @cs_application, status: :created, location: @cs_application }
@@ -219,14 +219,20 @@ class CsApplicationsController < ApplicationController
   end
 
   def remove_purpose
-    cs_app = current_user.cs_application.purpose_statement.find_by_id(params[:id])
-    cs_app.destroy
+    purpose_statement = current_user.cs_application.purpose_statement
+    purpose_statement.destroy
     redirect_to :back, flash:{success: 'Purpose Statement has been removed.'}
   end
+
+
 
   private
   def form_params
     params.require(:cs_application).permit(:email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :user_id)
+  end
+
+  def remove_attributes(object)
+    object.purpose = nil
   end
 
 end

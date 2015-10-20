@@ -88,8 +88,6 @@ class ApplicationStepsController < ApplicationController
       @contact.cs_application_id = @cs_application.id
       @contact.save
       @cs_application.progress = 40
-     # @cs_application.is_citizen = params[:cs_application][:is_citizen]
-     # @cs_application.telephone = params[:cs_application][:telephone]
       @cs_application.save
       render_wizard @contact
       

@@ -21,5 +21,30 @@ $(document).ready(function() {
         event.preventDefault(); // Prevent link from following its href
     });
 });
+
+$(document).ready(
+    function(){
+        $('input:file').change(
+
+            function(){
+                if ($(this).val()) {
+                    //window.alert("Changed");
+                    $('input:submit').attr('disabled',false);
+                    // or, as has been pointed out elsewhere:
+                    // $('input:submit').removeAttr('disabled');
+                }
+            }
+        );
+
+    });
+
+function validateCheckbox()
+{
+    if(!$('#cs_application_is_citizen').attr('checked')){
+
+        window.alert("you have to accept the terms first");
+        // $('.help-inline .citizen').html("you have to accept the terms first");
+    }
+}
 $(".alert-message").alert()
 $(".alert-message").alert('close')

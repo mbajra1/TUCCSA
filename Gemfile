@@ -17,6 +17,11 @@ gem 'prawn'
 gem 'prawn-table', '~> 0.2.2'
 gem 'rubyzip', '>= 1.0.0'
 gem 'protected_attributes'
+gem 'byebug'
+gem 'web-console'
+gem 'spring'
+gem 'better_errors'
+gem 'rails_layout'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -48,7 +48,7 @@
       <div class="control-group">
         <%= contact.label :state_id, :class => 'control-label' %>
         <div class="controls">
-          <%=contact.collection_select(:state_id, State.all, :id, :name, :selected => @institution.state_id) %>
+          <%=contact.collection_select(:state_id, State.all, :id, :name, :selected => @contact.state_id) %>
           <% unless !@contact.errors.has_key?(:state_id)%>
               <span class="help-inline"><%= @contact.errors[:state_id][1] %></span>
           <%end%>

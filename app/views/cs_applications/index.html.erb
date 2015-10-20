@@ -4,7 +4,7 @@
 </div>
   
   		<% if !(current_user.cs_application.nil?)%>
-  			<% if (@cs_application.status==0)%>
+  			<% if (@cs_application.status=="STARTED")%>
   			<table class="table table-striped">
   			<thead>
     			<tr>

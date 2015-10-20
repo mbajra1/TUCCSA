@@ -2,7 +2,7 @@ class CsApplication < ActiveRecord::Base
   #attr_accessible :email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :user_id
 
   belongs_to :user
-  has_one :purpose_statement, :dependent => :destroy
+  has_one :purpose_statement, :foreign_key => 'cs_application_id', :class_name => 'PurposeStatement', :dependent => :destroy
   has_many :recommendations
   has_one :mailing_address
   has_many :institutions
@@ -18,6 +18,8 @@ class CsApplication < ActiveRecord::Base
   validates :phone, length: { is: 10 }
   validates :towson_id_number,:phone, numericality: { only_integer: true }
   validates :email, email_format: true
+  validates :is_citizen, acceptance:true
+                           #{message: "This application requires applicants to be a US citizen." }
 
   STATUS_STARTED = "STARTED"
   STATUS_SUBMITTED = "SUBMITTED"

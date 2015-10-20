@@ -50,14 +50,6 @@
     </div>
   </div>
     <div class="control-group">
-      <div class="controls">
-        <%= f.check_box :is_citizen, :class => 'number_field' %> Check if you are a US citizen.
-        <% unless !@cs_application.errors.has_key?(:is_citizen)%>
-            <span class="help-inline"><%= @cs_application.errors[:is_citizen].join(", ") %></span>
-        <%end%>
-      </div>
-    </div>
-    <div class="control-group">
       <%= f.label :phone, :class => 'control-label' %>
       <div class="controls">
         <%= f.number_field :phone, :class => 'number_field' %>
@@ -66,9 +58,18 @@
         <%end%>
       </div>
     </div>
+    <br />
+    <div class="control-group">
+      <div class="controls">
+        <%= f.check_box :is_citizen, :class => 'number_field' %> Check if you are a US citizen.
+        <% unless !@cs_application.errors.has_key?(:is_citizen)%>
+            <span class="help-inline citizen"><%= @cs_application.errors[:is_citizen].join(", ") %></span>
+        <%end%>
+      </div>
+    </div>
 	<%= f.hidden_field :user_id, :value => current_user.id%>
   <div class="form-actions">
-    <%= f.submit "Next", :class => 'btn btn-primary' %>
+    <%= f.submit "Next", :class => 'btn btn-primary', :onclick=> "validateCheckbox();" %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 cs_applications_path, :class => 'btn btn-warning' %>
   </div>

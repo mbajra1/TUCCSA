@@ -15,18 +15,13 @@
                 <span class="help-inline"><%= @purpose_statement.errors[:purpose].join(", ") %></span>
             <%end%>
             <br/>
-            <% if :purpose.nil?%>
             <%= f.submit "Save", :value => 'Upload' ,:class => 'btn', disabled: true %>
-            <%else%>
-            <%= f.submit "Save", :value => 'Upload' ,:class => 'btn' %>
-            <%end%>
-
-        <br /><br />
-           <strong>Uploaded File:</strong>
-           <br /><br />
+            <br /><br />
+            <strong>Uploaded File:</strong>
+            <br /><br />
               <% if !@purpose_statement.purpose_file_name.nil?%>
                 File received: <%= link_to @purpose_statement.purpose_file_name, @purpose_statement.purpose.url, :target => '_blank'%>
-                <%=link_to t('.Remove'), remove_purpose_path(@cs_application.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
+                <%=link_to t('.Remove'), remove_purpose_path(@purpose_statement.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
                 <br />
               <% end%>
 	    </div>
