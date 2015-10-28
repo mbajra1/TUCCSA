@@ -3,9 +3,9 @@ class CsApplication < ActiveRecord::Base
 
   belongs_to :user
   has_one :purpose_statement, :foreign_key => 'cs_application_id', :class_name => 'PurposeStatement', :dependent => :destroy
-  has_many :recommendations
-  has_one :mailing_address
-  has_many :institutions
+  has_many :recommendations, :dependent => :destroy
+  has_one :mailing_address, :dependent => :destroy
+  has_many :institutions, :dependent => :destroy
   has_many :transcripts, :dependent => :destroy
 
   accepts_nested_attributes_for :recommendations
@@ -18,8 +18,7 @@ class CsApplication < ActiveRecord::Base
   validates :phone, length: { is: 10 }
   validates :towson_id_number,:phone, numericality: { only_integer: true }
   validates :email, email_format: true
-  validates :is_citizen, acceptance:true
-                           #{message: "This application requires applicants to be a US citizen." }
+  validates :is_citizen, :acceptance => {:accept => true, message: "This application requires applicants to be a US citizen." }
 
   STATUS_STARTED = "STARTED"
   STATUS_SUBMITTED = "SUBMITTED"

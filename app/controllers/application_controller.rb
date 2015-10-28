@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
-  
+
   def authenticate_admin_user!
     authenticate_user!
     #unless user_signed_in? && current_user.is_admin?
@@ -22,5 +23,10 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
-  
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied!"
+    redirect_to root_url
+  end
+
 end

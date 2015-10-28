@@ -1,5 +1,9 @@
 class CsApplicationsController < ApplicationController
   before_filter :authenticate_user!
+  #skip_load_resource
+  load_and_authorize_resource param_method: :form_params
+  skip_authorize_resource :only => [:index]
+  #skip_before_filter :verify_authenticity_token
 
   require 'rubygems'
   require 'zip'
@@ -7,13 +11,13 @@ class CsApplicationsController < ApplicationController
 
   # GET /cs_applications
   # GET /cs_applications.json
-  def index
-    @cs_application = CsApplication.find_by_user_id(current_user.id)
+ def index
+   @cs_application = CsApplication.find_by_user_id(current_user.id)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @cs_applications }
-    end
+     respond_to do |format|
+     format.html # index.html.erb
+     format.json { render json: @cs_applications }
+     end
   end
 
   # GET /cs_applications/1
@@ -224,15 +228,9 @@ class CsApplicationsController < ApplicationController
     redirect_to :back, flash:{success: 'Purpose Statement has been removed.'}
   end
 
-
-
   private
   def form_params
-    params.require(:cs_application).permit(:email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :user_id)
-  end
-
-  def remove_attributes(object)
-    object.purpose = nil
+    params.require(:cs_application).permit(:email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :status, :progress, :user_id)
   end
 
 end

@@ -1,5 +1,6 @@
 class MailingAddressesController < InheritedResources::Base
   before_filter :authenticate_user!
+  load_and_authorize_resource
 
     def create
     @contact = CsApplication.new(params[:mailing_address])

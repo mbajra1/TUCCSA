@@ -5,30 +5,26 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:cs_application_id) %></th>
+      <th><%#= model_class.human_attribute_name(:id) %></th>
+      <th><%#= model_class.human_attribute_name(:cs_application_id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:time_known_from) %></th>
-      <th><%= model_class.human_attribute_name(:time_known_to) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%#= model_class.human_attribute_name(:time_known_from) %></th>
+      <th><%#= model_class.human_attribute_name(:time_known_to) %></th>
+      <th><%#= model_class.human_attribute_name(:status) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @recommendations.each do |recommendation| %>
       <tr>
-        <td><%= link_to recommendation.id, recommendation_path(recommendation) %></td>
-        <td><%= recommendation.cs_application_id %></td>
+        <td><%#= link_to recommendation.id, recommendation_path(recommendation) %></td>
+        <td><%#= recommendation.cs_application_id %></td>
         <td><%= recommendation.name %></td>
         <td><%= recommendation.title %></td>
         <td><%= recommendation.email %></td>
-        <td><%= recommendation.time_known_from %></td>
-        <td><%= recommendation.time_known_to %></td>
-        <td><%= recommendation.status %></td>
-        <td><%=l recommendation.created_at %></td>
+        <td><%#= recommendation.status %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_recommendation_path(recommendation), :class => 'btn btn-mini' %>

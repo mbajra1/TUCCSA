@@ -16,12 +16,6 @@
 //= require bootstrap-datepicker
 //= require_tree .
 
-$(document).ready(function() {
-    $('input[disabled=disabled]').click(function(event){
-        event.preventDefault(); // Prevent link from following its href
-    });
-});
-
 $(document).ready(
     function(){
         $('input:file').change(
@@ -35,15 +29,13 @@ $(document).ready(
                 }
             }
         );
-
     });
 
 function validateCheckbox()
 {
     if(!$('#cs_application_is_citizen').attr('checked')){
-
-        window.alert("you have to accept the terms first");
-        // $('.help-inline .citizen').html("you have to accept the terms first");
+       // window.alert("you have to accept the terms first");
+        $('span .help-inline').html("you have to accept the terms first");
     }
 }
 $(".alert-message").alert()
