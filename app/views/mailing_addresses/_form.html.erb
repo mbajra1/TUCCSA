@@ -1,50 +1,66 @@
-<%= form_for @mailing_address, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :address_line1, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :address_line1, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :address_line2, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :address_line2, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :city, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :city, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :state_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :state_id, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :zip, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :zip, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :cs_application_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :cs_application_id, :class => 'number_field' %>
-    </div>
-  </div>
-  <%= f.hidden_field :cs_application_id, :value => current_user.cs_application.id%>
+<%= form_for @contact, :html => { :class => 'form-horizontal' } do |contact| %>
+
+
+      <div class="control-group">
+        <%= contact.label :name, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.text_field :name, :class => 'text_field' %>
+          <% unless !@contact.errors.has_key?(:name)%>
+              <span class="help-inline"><%= @contact.errors[:name].join(", ") %></span>
+          <%end%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :address_line1, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.text_field :address_line1, :class => 'text_field' %>
+          <% unless !@contact.errors.has_key?(:address_line1)%>
+              <span class="help-inline"><%= @contact.errors[:address_line1].join(", ") %></span>
+          <%end%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :address_line2, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.text_field :address_line2, :class => 'text_field' %>
+          <% unless !@contact.errors.has_key?(:address_line2)%>
+              <span class="help-inline"><%= @contact.errors[:address_line2].join(", ") %></span>
+          <%end%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :city, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.text_field :city, :class => 'text_field' %>
+          <% unless !@contact.errors.has_key?(:city)%>
+              <span class="help-inline"><%= @contact.errors[:city].join(", ") %></span>
+          <%end%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= contact.label :state_id, :class => 'control-label' %>
+        <div class="controls">
+          <%=contact.collection_select(:state_id, State.all, :id, :name, :selected => @contact.state_id) %>
+          <% unless !@contact.errors.has_key?(:state_id)%>
+              <span class="help-inline"><%= @contact.errors[:state_id][1] %></span>
+          <%end%>
+        </div>
+      </div>
+      <br />
+      <div class="control-group">
+        <%= contact.label :zip, :class => 'control-label' %>
+        <div class="controls">
+          <%= contact.number_field :zip, :class => 'number_field' %>
+          <% unless !@contact.errors.has_key?(:zip)%>
+              <span class="help-inline"><%= @contact.errors[:zip].join(", ") %></span>
+          <%end%>
+        </div>
+      </div>
+
+  <%= contact.hidden_field :cs_application_id, :value => current_user.cs_application.id%>
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= contact.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                mailing_addresses_path, :class => 'btn' %>
+                mailing_addresses_path, :class => 'btn btn-warning' %>
   </div>
 <% end %>

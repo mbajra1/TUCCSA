@@ -12,8 +12,21 @@ ActiveAdmin.register CsApplication do
       link = "/admin/cs_applications/#{app.id}"
       link_to "View", link
     end
-    
+
   end
+
+  controller do
+    # This code is evaluated within the controller class
+
+    def edit
+      redirect_to edit_cs_application_path
+    end
+
+    def new
+      redirect_to new_cs_application_path
+    end
+  end
+
 
   action_item :only => :show do
     link_to t('.print'),
@@ -55,7 +68,7 @@ ActiveAdmin.register CsApplication do
     panel "Contact Information" do
       h4 "Full Name: " + (!cs_application.mailing_address.name.blank? ? cs_application.mailing_address.name : 'Not Provided')
       h4 "Address Line 1: " + (!cs_application.mailing_address.address_line1.blank? ? cs_application.mailing_address.address_line1 : 'Not Provided')
-      h4 "Address Line 2: " + (!cs_application.mailing_address.address_line2.blank? ? cs_application.mailing_address.laddress_line2 : 'Not Provided')
+      h4 "Address Line 2: " + (!cs_application.mailing_address.address_line2.blank? ? cs_application.mailing_address.address_line2 : 'Not Provided')
       h4 "City: " + (!cs_application.mailing_address.city.blank? ? cs_application.mailing_address.city : 'Not Provided')
       h4 "State: " + (!cs_application.mailing_address.state_id.blank? ? cs_application.mailing_address.state.name : 'Not Provided')
       h4 "Zip: " + (!cs_application.mailing_address.zip.blank? ? cs_application.mailing_address.zip.to_s : 'Not Provided')

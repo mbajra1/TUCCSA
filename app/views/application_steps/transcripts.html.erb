@@ -27,7 +27,7 @@
               <% if !transcript.id.nil? %>
                   <li>
                     <%=link_to transcript.document_file_name, transcript.document.url%>
-                    <%=link_to t('.Remove'), remove_attachment_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
+                    <%=link_to t('.Remove'), remove_transcript_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
                   </li>
               <% end%>
 

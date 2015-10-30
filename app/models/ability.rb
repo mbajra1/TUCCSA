@@ -11,14 +11,14 @@ class Ability
 
     else
       #can :read, :all
-      can [:create, :review, :update, :destroy], CsApplication do |app|
+      can [:create, :new, :review, :update, :destroy], CsApplication do |app|
         app.try(:user_id) == user.id
       end
       can [:create, :update, :destroy], MailingAddress do |app|
         app.try(:user_id) == user.id
       end
       can [:create, :update, :destroy], Institution do |app|
-        app.try(:user_id) == user.id
+       app.try(:user_id) == user.id
       end
       can [:create, :update, :destroy], Rating do |app|
         app.try(:user_id) == user.id

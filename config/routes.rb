@@ -19,8 +19,8 @@ TUCCSA2::Application.routes.draw do
   get '/cs_application/mark_as_approved/:id', :controller=>'cs_applications', :action=>'mark_as_approved', :as => :mark_as_approved
   get '/cs_application/submit_application/:id', :controller=>'cs_applications', :action=>'submit_application', :as => :submit_application
   get '/cs_application/edit/:id', :controller=>'cs_applications', :action=>'edit', :as => :edit_application
-  get '/cs_application/remove_attachment/:id', :controller=>'cs_applications', :action=>'remove_attachment', :as=> :remove_attachment
-  get '/cs_application/remove_purpose/:id', :controller=>'cs_applications', :action=>'remove_purpose', :as=> :remove_purpose
+  get '/cs_application/remove_transcript/:cs_application_id', :controller=>'cs_applications', :action=>'remove_transcript', :as=> :remove_transcript
+  get '/cs_application/remove_purpose/:cs_application_id', :controller=>'cs_applications', :action=>'remove_purpose', :as=> :remove_purpose
 
   #devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

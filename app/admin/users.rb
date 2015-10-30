@@ -10,7 +10,7 @@ ActiveAdmin.register User do
   end
 
   create_or_edit = Proc.new {
-    @user            = User.where(params[:id]).first_or_create
+    @user            = User.where(id: params[:id]).first_or_create
     @user.is_admin = params[:user][:is_admin]
     @user.attributes = params[:user].delete_if do |k, v|
       (k == "is_admin") ||
@@ -19,7 +19,8 @@ ActiveAdmin.register User do
     if @user.save
       redirect_to :action => :show, :id => @user.id
     else
-      render active_admin_template((@user.new_record? ? 'new' : 'edit') + '.html.erb')
+      #render active_admin_template((@user.new_record? ? 'new' : 'edit') + '.html.erb')
+      render :edit
     end
   }
   member_action :create, :method => :post, &create_or_edit

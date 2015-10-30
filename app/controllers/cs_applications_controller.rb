@@ -1,8 +1,8 @@
 class CsApplicationsController < ApplicationController
   before_filter :authenticate_user!
   #skip_load_resource
-  load_and_authorize_resource param_method: :form_params
-  skip_authorize_resource :only => [:index]
+  load_and_authorize_resource param_method: :my_sanitizer
+  skip_authorize_resource :only => [:index, :new, :remove_purpose, :remove_transcript, :send_invitation, :submit_application]
   #skip_before_filter :verify_authenticity_token
 
   require 'rubygems'
@@ -44,6 +44,7 @@ class CsApplicationsController < ApplicationController
 
   # GET /cs_applications/1/edit
   def edit
+    puts "here"
     @cs_application = CsApplication.find(params[:id])
   end
 
@@ -51,7 +52,7 @@ class CsApplicationsController < ApplicationController
   # POST /cs_applications.json
   def create
    # @cs_application = CsApplication.new(params[:cs_application])
-     @cs_application = CsApplication.new(form_params)
+     @cs_application = CsApplication.new(my_sanitizer)
    
     respond_to do |format|
       if @cs_application.save
@@ -76,7 +77,7 @@ class CsApplicationsController < ApplicationController
 
      # if @cs_application.update_attributes(params[:cs_application])
 
-      if @cs_application.update(form_params)
+      if @cs_application.update(my_sanitizer)
         format.html { redirect_to application_steps_path, notice: 'Cs application was successfully updated.' }
         format.json { head :no_content }
       else
@@ -216,20 +217,23 @@ class CsApplicationsController < ApplicationController
     end
   end
   
-  def remove_attachment
-    attachment = current_user.cs_application.transcripts.find_by_id(params[:id])
-    attachment.destroy
-    redirect_to :back, :notice => 'Attachment removed'
+  def remove_transcript
+    transcript = Transcript.find(params[:cs_application_id])
+    transcript.destroy
+    redirect_to :back, :notice => 'Transcripts has been removed.'
   end
 
+
   def remove_purpose
-    purpose_statement = current_user.cs_application.purpose_statement
-    purpose_statement.destroy
+    purpose = current_user.cs_application.purpose_statement
+    purpose.destroy
+
     redirect_to :back, flash:{success: 'Purpose Statement has been removed.'}
   end
 
+
   private
-  def form_params
+  def my_sanitizer
     params.require(:cs_application).permit(:email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :status, :progress, :user_id)
   end
 

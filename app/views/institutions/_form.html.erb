@@ -1,48 +1,66 @@
-<%= form_for @institution, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :institution, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :institution, :class => 'text_field' %>
+<%= form_for @institution, :html => { :class => 'form-horizontal' } do |institute| %>
+    <div class="control-group">
+      <%= institute.label :institution, :class => 'control-label' %>
+      <div class="controls">
+        <%= institute.text_field :institution, :class => 'text_field' %>
+        <% unless !@institution.errors.has_key?(:institution)%>
+            <span class="help-inline"><%= @institution.errors[:institution].join(", ") %></span>
+        <%end%>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :city, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :city, :class => 'text_field' %>
+    <div class="control-group">
+      <%= institute.label :city, :class => 'control-label' %>
+      <div class="controls">
+        <%= institute.text_field :city, :class => 'text_field' %>
+        <% unless !@institution.errors.has_key?(:city)%>
+            <span class="help-inline"><%= @institution.errors[:city].join(", ") %></span>
+        <%end%>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :state_id, :class => 'control-label' %>
-    <div class="controls">
-      <%=f.collection_select(:state_id, State.all, :id, :name, {:include_blank => '-- Please select your state --'}) %>
+    <div class="control-group">
+      <%= institute.label :state_id, :class => 'control-label' %>
+      <div class="controls">
+        <%=institute.collection_select(:state_id, State.all, :id, :name, :selected => @institution.state_id)%>
+        <% unless !@institution.errors.has_key?(:state_id)%>
+            <span class="help-inline"><%= @institution.errors[:state_id][1] %></span>
+        <%end%>
+      </div>
     </div>
-  </div>
-  <div class="control-group">
-			<%= f.label :attended_from, :class => 'control-label' %>
-			<div class="controls">
-				<%= f.text_field :attended_from, :class => 'datepicker' %>
-			</div>
-		</div>
-		<div class="control-group">
-			<%= f.label :attended_to, :class => 'control-label' %>
-			<div class="controls">
-				<%= f.text_field :attended_to, :class => 'datepicker' %>
-			</div>
-		</div>
-  <div class="control-group">
-    <%= f.label :degree, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :degree, :class => 'text_field' %>
+    <div class="control-group">
+      <%= institute.label :attended_from, :class => 'control-label' %>
+      <div class="controls">
+        <%= institute.text_field :attended_from, :class => 'datepicker' %>
+        <% unless !@institution.errors.has_key?(:attended_from)%>
+            <span class="help-inline"><%= @institution.errors[:attended_from].join(", ") %></span>
+        <%end%>
+      </div>
     </div>
-  </div>
+    <div class="control-group">
+      <%= institute.label :attended_to, :class => 'control-label' %>
+      <div class="controls">
+        <%= institute.text_field :attended_to, :class => 'datepicker' %>
+        <% unless !@institution.errors.has_key?(:attended_to)%>
+            <span class="help-inline"><%= @institution.errors[:attended_to].join(", ") %></span>
+        <%end%>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= institute.label :degree, :class => 'control-label' %>
+      <div class="controls">
+        <%= institute.text_field :degree, :class => 'text_field' %>
+        <% unless !@institution.errors.has_key?(:degree)%>
+            <span class="help-inline"><%= @institution.errors[:degree].join(", ") %></span>
+        <%end%>
+      </div>
+    </div>
 
-  <%= f.hidden_field :cs_application_id, :value => current_user.cs_application.id %>
+  <%= institute.hidden_field :cs_application_id, :value => current_user.cs_application.id %>
 
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= institute.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                institutions_path, :class => 'btn' %>
+                '/application_steps/educational', :class => 'btn btn-warning' %>
   </div>
 <% end %>
 

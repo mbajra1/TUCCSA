@@ -1,8 +1,13 @@
 class ApplicationStepsController < ApplicationController
   before_filter :authenticate_user!
+
+  #load_and_authorize_resource
+  #skip_authorize_resource :only => [:show, :update]
+
   include Wicked::Wizard
   #steps :contact, :educational, :purpose, :transcripts, :send_recommendations, :send_email, :complete
   steps *MailingAddress.form_steps
+
 
   def show
     @cs_application = current_user.cs_application
@@ -48,7 +53,6 @@ class ApplicationStepsController < ApplicationController
 
 
       when "transcripts"
-        #if !params[:new].nil?
         @transcript = @cs_application.transcripts.build
         @transcript_all = @cs_application.transcripts
       #else
@@ -56,14 +60,14 @@ class ApplicationStepsController < ApplicationController
 
       when "send_recommendations"
         if @cs_application.recommendations.size==1
-          @recommendation = @cs_application.recommendations.first
-          @recommendation = @cs_application.recommendations.build
+          @recommendation1 = @cs_application.recommendations.first
+          @recommendation1 = @cs_application.recommendations.build
         elsif @cs_application.recommendations.size==2
-          @recommendation = @cs_application.recommendations.first
-          @recommendation = @cs_application.recommendations.second
+          @recommendation1 = @cs_application.recommendations.first
+          @recommendation2= @cs_application.recommendations.second
         else
-          @recommendation = @cs_application.recommendations.build
-          @recommendation = @cs_application.recommendations.build
+          @recommendation1 = @cs_application.recommendations.build
+          @recommendation2 = @cs_application.recommendations.build
         end
 
       when "send_email"
@@ -80,7 +84,6 @@ class ApplicationStepsController < ApplicationController
     when "mailing_address"
       if @cs_application.mailing_address.present?
         @contact = @cs_application.mailing_address
-        #@contact.update_attributes(params[:mailing_address])
         @contact.update(form_params(step))
       else
         @contact = MailingAddress.new(form_params(step))
@@ -95,17 +98,15 @@ class ApplicationStepsController < ApplicationController
       if params[:commit]== "Add"
         @institution = Institution.new
         @institution.cs_application_id = @cs_application.id
-        #@institution.update_attributes(params[:institution])
         @institution.update(form_params(step))
         @institution.save
         @cs_application.progress = 60
         @cs_application.save
         puts '-------------------------------add-----------------'
-        render_wizard #params[:Add => true]
+        render_wizard
       else
         if @cs_application.institutions.present?
           @institution = @cs_application.institutions.last
-          #@institution.update_attributes(params[:institution])
           @institution.update(form_params(step))
           puts '-------------------------------if-----------------'
         else
@@ -138,10 +139,8 @@ class ApplicationStepsController < ApplicationController
           end
         else
           if !@cs_application.purpose_statement.present?
-
             @purpose_statement = PurposeStatement.new
           end
-
           @cs_application.progress = 70
           @cs_application.save
           render_wizard @purpose_statement
@@ -177,29 +176,29 @@ class ApplicationStepsController < ApplicationController
       when "send_recommendations"
       if @cs_application.recommendations.size==1
         @recommendation = @cs_application.recommendations.first
-        @recommendation.update_attributes(params[:recommendation1])
+        @recommendation.update(form_params(step))
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
-        @recommendation = Recommendation.new(params[:recommendation2])
+        @recommendation = Recommendation.new(recommendation2_params)
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
 
       elsif @cs_application.recommendations.size==2
         @recommendation = @cs_application.recommendations.first
-        @recommendation.update_attributes(params[:recommendation1])
+        @recommendation.update(form_params(step))
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
 
         @recommendation = @cs_application.recommendations.second
-        @recommendation.update_attributes(params[:recommendation2])
+        @recommendation.update(recommendation2_params)
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
       else
-        @recommendation = Recommendation.new(params[:recommendation1])
+        @recommendation = Recommendation.new(form_params(step))
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
 
-        @recommendation = Recommendation.new(params[:recommendation2])
+        @recommendation = Recommendation.new(recommendation2_params)
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
       end
@@ -236,12 +235,17 @@ class ApplicationStepsController < ApplicationController
     elsif step == "educational"
       params.require(:institution).permit(permitted_attributes).merge(form_step: step)
     elsif step == "send_recommendations"
-      params.require(:recommendation).permit(permitted_attributes).merge(form_step: step)
+      params.require(:recommendation1).permit(permitted_attributes).merge(form_step: step)
     elsif step == "transcript"
       params.require(:transcript).permit(permitted_attributes).merge(form_step: step)
     elsif step == "purpose_statement"
       params.require(:purpose_statement).permit(permitted_attributes).merge(form_step: step)
     end
   end
+
+  def recommendation2_params
+    params.require(:recommendation2).permit(:cs_application_id, :email, :name, :status, :time_known_from, :time_known_to, :title).merge(form_step: step)
+  end
+
 
 end

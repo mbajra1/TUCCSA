@@ -1,12 +1,29 @@
 class InstitutionsController < InheritedResources::Base
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource param_method: :my_sanitizer
+  skip_authorize_resource :only => [:update, :edit, :destroy]
+
+  def edit
+    @institution = Institution.find(params[:id])
+    @institutes = Institution.where("cs_application_id=?", current_user.cs_application.id)
+
+     if @institutes.include?(@institution)
+        respond_to do |format|
+          format.html { render action: "edit" }
+        end
+      else
+        flash[:error] = "Access Denied"
+        redirect_to '/application_steps/educational'
+
+      end
+  end
+
   def update
     @institution = Institution.find(params[:id])
 
     respond_to do |format|
-      if @institution.update_attributes(params[:institution])
-        format.html { redirect_to '/application_steps/educational', notice: 'Cs application was successfully updated.' }
+      if @institution.update(my_sanitizer)
+        format.html { redirect_to '/application_steps/educational', notice: 'Instituion Information was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -24,6 +41,8 @@ class InstitutionsController < InheritedResources::Base
       format.json { head :no_content }
     end
   end
-  
-  
+
+  def my_sanitizer
+    params.require(:institution).permit(:attended_from, :attended_to, :city, :degree, :institution, :state_id, :cs_application_id)
+  end
 end

@@ -1,12 +1,4 @@
-<%= form_for @recommendation, method: :put, url: wizard_path, :html => { :class => 'form-horizontal' }  do |recommendation|  %>
-
-    <% if @recommendation.errors.any? %>
-        <div class="error_messages">
-          <% @recommendation.errors.full_messages.each do |error| %>
-              <p><%= error %></p>
-          <% end %>
-        </div>
-    <% end %>
+<%= form_for [@recommendation1,@recommendation2], method: :put, url: wizard_path, :html => { :class => 'form-horizontal' }  do |recommendation|  %>
 
     <div class="page-header">
   		<h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
@@ -22,8 +14,8 @@
 		<%= recommendation.label :name, :class => 'control-label' %>
 		<div class="controls">
           <%= recommendation.text_field :name, :class => 'text_field' %>
-          <% unless !@recommendation.errors.has_key?(:name)%>
-              <span class="help-inline"><%= @recommendation.errors[:name].join(", ") %></span>
+          <% unless !@recommendation1.errors.has_key?(:name)%>
+              <span class="help-inline"><%= @recommendation1.errors[:name].join(", ") %></span>
           <%end%>
 		</div>
 	</div>
@@ -31,8 +23,8 @@
 		<%= recommendation.label :title, :class => 'control-label' %>
 		<div class="controls">
           <%= recommendation.text_field :title, :class => 'text_field' %>
-          <% unless !@recommendation.errors.has_key?(:title)%>
-              <span class="help-inline"><%= @recommendation.errors[:title].join(", ") %></span>
+          <% unless !@recommendation1.errors.has_key?(:title)%>
+              <span class="help-inline"><%= @recommendation1.errors[:title].join(", ") %></span>
           <%end%>
 		</div>
 	</div>
@@ -40,8 +32,8 @@
 		<%= recommendation.label :email, :class => 'control-label' %>
 		<div class="controls">
           <%= recommendation.email_field :email, :class => 'email_field' %>
-          <% unless !@recommendation.errors.has_key?(:email)%>
-              <span class="help-inline"><%= @recommendation.errors[:email].join(", ") %></span>
+          <% unless !@recommendation1.errors.has_key?(:email)%>
+              <span class="help-inline"><%= @recommendation1.errors[:email].join(", ") %></span>
           <%end%>
 		</div>
 	</div>
@@ -55,8 +47,8 @@
 		<%= recommendation.label :name, :class => 'control-label' %>
 		<div class="controls">
           <%= recommendation.text_field :name, :class => 'text_field' %>
-          <% unless !@recommendation.errors.has_key?(:name)%>
-              <span class="help-inline"><%= @recommendation.errors[:name].join(", ") %></span>
+          <% unless !@recommendation2.errors.has_key?(:name)%>
+              <span class="help-inline"><%= @recommendation2.errors[:name].join(", ") %></span>
           <%end%>
 		</div>
 	</div>
@@ -64,8 +56,8 @@
 		<%= recommendation.label :title, :class => 'control-label' %>
 		<div class="controls">
           <%= recommendation.text_field :title, :class => 'text_field' %>
-          <% unless !@recommendation.errors.has_key?(:title)%>
-              <span class="help-inline"><%= @recommendation.errors[:title].join(", ") %></span>
+          <% unless !@recommendation2.errors.has_key?(:title)%>
+              <span class="help-inline"><%= @recommendation2.errors[:title].join(", ") %></span>
           <%end%>
 		</div>
 	</div>
@@ -73,8 +65,8 @@
 		<%= recommendation.label :email, :class => 'control-label' %>
 		<div class="controls">
           <%= recommendation.email_field :email, :class => 'email_field' %>
-          <% unless !@recommendation.errors.has_key?(:email)%>
-              <span class="help-inline"><%= @recommendation.errors[:email].join(", ") %></span>
+          <% unless !@recommendation2.errors.has_key?(:email)%>
+              <span class="help-inline"><%= @recommendation2.errors[:email].join(", ") %></span>
           <%end%>
 		</div>
 	</div>
