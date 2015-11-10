@@ -22,8 +22,13 @@ class MailingAddressesController < InheritedResources::Base
 
     respond_to do |format|
       if @contact.update(my_sanitizer)
+        cs_application = CsApplication.find_by_user_id(current_user.id)
+        if cs_application.progress == 100
+          format.html { redirect_to "/cs_application/review/#{cs_application.id}", notice: 'Mailing address was successfully updated.' }
+        else
         format.html { redirect_to '/application_steps/mailing_address', notice: 'Mailing Address was successfully updated.' }
         format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @cs_application.errors, status: :unprocessable_entity }

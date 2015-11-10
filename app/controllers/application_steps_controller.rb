@@ -90,8 +90,7 @@ class ApplicationStepsController < ApplicationController
       end
       @contact.cs_application_id = @cs_application.id
       @contact.save
-      @cs_application.progress = 40
-      @cs_application.save
+      update_progress(15)
       render_wizard @contact
       
     when "educational"
@@ -100,8 +99,6 @@ class ApplicationStepsController < ApplicationController
         @institution.cs_application_id = @cs_application.id
         @institution.update(form_params(step))
         @institution.save
-        @cs_application.progress = 60
-        @cs_application.save
         puts '-------------------------------add-----------------'
         render_wizard
       else
@@ -114,8 +111,7 @@ class ApplicationStepsController < ApplicationController
         end
           @institution.cs_application_id = @cs_application.id
           @institution.save
-          @cs_application.progress = 60
-          @cs_application.save
+          update_progress(15)
           render_wizard @institution
       end
 
@@ -128,22 +124,20 @@ class ApplicationStepsController < ApplicationController
             render_wizard
           elsif @cs_application.purpose_statement.present?
             @purpose_statement.update(form_params(step))
-            puts "update upload"
             render_wizard
           else
             @purpose_statement = PurposeStatement.new(:purpose => params[:purpose_statement][:purpose])
             @purpose_statement.cs_application_id = @cs_application.id
             @purpose_statement.save
-            puts "new upload"
             render_wizard
           end
         else
           if !@cs_application.purpose_statement.present?
             @purpose_statement = PurposeStatement.new
           end
-          @cs_application.progress = 70
-          @cs_application.save
+          update_progress(10)
           render_wizard @purpose_statement
+
         end
 
       when "transcripts"
@@ -155,23 +149,19 @@ class ApplicationStepsController < ApplicationController
           @transcript = Transcript.new(:document => params[:transcript][:document])
           @transcript.cs_application_id = @cs_application.id
           @transcript.save
-          @cs_application.progress = 80
-          @cs_application.save
-          puts "new"
           render_wizard
           end
-
       else
         if @cs_application.transcripts.present?
           @transcript = @cs_application.transcripts.last
           @transcript.update(form_params(step))
-          puts "update"
         else
           @transcript = Transcript.new
         end
+        update_progress(10)
         render_wizard @transcript
-      end
 
+      end
 
       when "send_recommendations"
       if @cs_application.recommendations.size==1
@@ -202,17 +192,34 @@ class ApplicationStepsController < ApplicationController
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
       end
-      
-      @cs_application.progress = 90
+
+      if @recommendation.status = "SENT"
+        puts "sent"
+        @cs_application.progress = 100
+      else
+        update_progress(10)
+      end
+
       @cs_application.save
       render_wizard @recommendation
 
-    when "send_email"
-      render_wizard @cs_application
+      when "send_email"
+        update_progress(10)
+        render_wizard @cs_application
     end
 
   rescue ActiveRecord::RecordNotFound
 
+  end
+
+  private
+  def update_progress(percent)
+    if @cs_application.progress!=100
+      @cs_application.progress = @cs_application.progress + percent
+    else
+      @cs_application.progress =100
+    end
+    @cs_application.save
   end
 
   private
@@ -246,6 +253,5 @@ class ApplicationStepsController < ApplicationController
   def recommendation2_params
     params.require(:recommendation2).permit(:cs_application_id, :email, :name, :status, :time_known_from, :time_known_to, :title).merge(form_step: step)
   end
-
 
 end

@@ -23,8 +23,13 @@ class InstitutionsController < InheritedResources::Base
 
     respond_to do |format|
       if @institution.update(my_sanitizer)
+       cs_application = CsApplication.find_by_user_id(current_user.id)
+       if cs_application.progress == 100
+         format.html { redirect_to "/cs_application/review/#{cs_application.id}", notice: 'Instituion Information was successfully updated.' }
+         else
         format.html { redirect_to '/application_steps/educational', notice: 'Instituion Information was successfully updated.' }
         format.json { head :no_content }
+         end
       else
         format.html { render action: "edit" }
         format.json { render json: @cs_application.errors, status: :unprocessable_entity }

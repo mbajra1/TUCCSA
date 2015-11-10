@@ -15,6 +15,7 @@
    float:right;
    width:340px;
 }
+
 .title {
 	clear:both;
 	padding-top: 8px;
@@ -67,11 +68,12 @@
 	<div id="right_col">
 		<%= !@cs_application.is_citizen.blank? ? @cs_application.is_citizen : 'Not Provided' %>
 	</div>
-	
-	
+
+    <br />
 	<div class="title">
 		<h4>Contact Information (<%= link_to "Edit", edit_mailing_address_path(@cs_application.mailing_address)%>)</h4>
 	</div>
+
 		<div class="left_col">
 		Name
 	</div>
@@ -115,6 +117,7 @@
 		<%= !@cs_application.phone.blank? ? @cs_application.phone : 'Not Provided' %>
 	</div>
 
+    <br />
 	<% @cs_application.institutions.each do |institution|%>
       <div class="title">
         <h4>Educational Information (<%= link_to "Edit", edit_institution_path(institution.id) %>)</h4>
@@ -152,9 +155,9 @@
 		</div>
 		<div id="empty"> &nbsp; </div>
 	<% end%>
-	
+    <br />
 	<div class="title">
-		<h4>Purpose (<%= link_to "Edit", 'application_steps/purpose_statement' %>)</h4>
+		<h4>Purpose (<%= link_to "Edit", "/application_steps/purpose_statement" %>)</h4>
 	</div>
 	<div class="left_col">
 		Purpose Statement
@@ -164,9 +167,10 @@
 		<%= !@purpose_statement.purpose.nil? ? (link_to @purpose_statement.purpose_file_name, @purpose_statement.purpose.url) : "Not Provided"%>
 	</div>
 
-  <div class="title">
-    <h4>Purpose (<%= link_to "Edit", 'application_steps/transcript'%>)</h4>
-  </div>
+    <br />
+    <div class="title">
+        <h4>Transcript (<%= link_to "Edit", "/application_steps/transcripts" %>)</h4>
+     </div>
 	<div class="left_col">
 		Transcript(s)
 	</div>
@@ -176,9 +180,10 @@
 			<%=link_to transcript.document_file_name, transcript.document.url%>
 		<% end%>
 	</div>
-	
+
+    <br />
 	<div class="title">
-		<h4>Recommendations (<%= link_to "Edit", application_step_path %>)</h4>
+		<h4>Recommendations (<%= link_to "Edit", "/application_steps/send_recommendations" %>)</h4>
 	</div>
 	<% if !@cs_application.recommendations.first.nil? %>
 		<% @recommendation1 = @cs_application.recommendations.first%>

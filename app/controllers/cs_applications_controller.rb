@@ -44,7 +44,6 @@ class CsApplicationsController < ApplicationController
 
   # GET /cs_applications/1/edit
   def edit
-    puts "here"
     @cs_application = CsApplication.find(params[:id])
   end
 
@@ -56,7 +55,6 @@ class CsApplicationsController < ApplicationController
    
     respond_to do |format|
       if @cs_application.save
-        @cs_application.progress=20
          @cs_application.status="STARTED"
         @cs_application.save
         format.html { redirect_to application_steps_path, notice: 'Cs application was successfully created.' }
@@ -73,13 +71,22 @@ class CsApplicationsController < ApplicationController
   def update
    @cs_application = CsApplication.find(params[:id])
 
+   if @cs_application.progress!=100
+   @cs_application.progress=15
+   @cs_application.save
+   end
+
     respond_to do |format|
 
      # if @cs_application.update_attributes(params[:cs_application])
 
       if @cs_application.update(my_sanitizer)
+        if @cs_application.progress == 100
+          format.html { redirect_to "/cs_application/review/#{@cs_application.id}", notice: 'Basic Information was successfully updated.' }
+        else
         format.html { redirect_to application_steps_path, notice: 'Cs application was successfully updated.' }
         format.json { head :no_content }
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @cs_application.errors, status: :unprocessable_entity }
