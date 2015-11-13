@@ -22,6 +22,12 @@ a{
 
 ul >li {list-style-type: none;}
 
+h4 {color: #FFA500 !important;}
+
+table thead {background-color: #FC0 !important;}
+
+.white, .white a {color: #fff;}
+
 /**** navbar section ****/
 
 .towson-line {

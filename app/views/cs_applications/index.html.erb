@@ -1,6 +1,6 @@
 <%- model_class = CsApplication -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => "Your Application" %></h1>
+  <h2><%=t '.title', :default => "CyberCorps Scholarship Application" %></h2>
 </div>
 
     <% if current_user %>
@@ -18,8 +18,10 @@
                     <td><%= @cs_application.id %></td>
                     <td><%=l @cs_application.created_at %></td>
                     <td>
+                      <% if @cs_application.progress < 100 %>
                         <%= link_to t('.edit', :default => t("helpers.links.edit")),
                               edit_application_path(@cs_application), :class => 'btn btn-mini btn-info' %>
+                       <%end %>
                         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                               cs_application_path(@cs_application),
                               :method => :delete,
@@ -33,7 +35,7 @@
                 </table>
 
 	        <% else %>
-                You have already submitted your application. Please check on left panel of this page to view your application status.
+                You have already submitted your application.
                 <br />
                 You are not allowed to edit your application after it has been submitted.
                 <br /><br />

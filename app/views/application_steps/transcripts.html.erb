@@ -1,7 +1,7 @@
 <%= form_for @transcript, method: :put, url: wizard_path, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|  %>
 
     <div class="page-header">
-      <h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
+      <h2><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
     </div>
 
     <div class="control-group">
@@ -21,24 +21,33 @@
         <br /><br />
         <strong>Uploaded transcripts</strong>
         <br /><br />
-        <ol>
+        <table class="table">
+
           <%# @transcript_all = @transcript%>
           <% current_user.cs_application.transcripts.each do |transcript|%>
+              <tr>
               <% if !transcript.id.nil? %>
-                  <li>
-                    <%=link_to transcript.document_file_name, transcript.document.url%>
-                    <%=link_to t('.Remove'), remove_transcript_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
-                  </li>
-              <% end%>
 
+                    <td><%=link_to transcript.document_file_name, transcript.document.url%></td>
+                    <td><%=link_to t('.Remove'), remove_transcript_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%></td>
+
+              <% end%>
+              </tr>
           <% end%>
+
+        </table>
         </ol>
       </div>
     </div>
 
     <div class="form-actions">
-      <%= link_to t('.back'), previous_wizard_path, :class => 'btn btn-default' %>
-      <%= f.submit "Next", :class => 'btn btn-primary' %>
+      <% if @cs_application.progress == 100 %>
+          <%= f.submit "Update Transcript", :class => 'btn btn-primary' %>
+      <%else%>
+          <%= link_to t('.back'), previous_wizard_path, :class => 'btn btn-default' %>
+          <%= f.submit "Next", :class => 'btn btn-primary' %>
+      <%end %>
+
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn btn-warning' %>
     </div>
 

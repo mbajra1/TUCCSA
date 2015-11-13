@@ -40,15 +40,15 @@
       <%end%>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
+  <!--<div class="control-group">
+    <%#= f.label :email, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :email, :class => 'text_field', :value => current_user.email %>
-      <% unless !@cs_application.errors.has_key?(:email)%>
-          <span class="help-inline"><%= @cs_application.errors[:email].join(", ") %></span>
-      <%end%>
+      <%#= f.text_field :email, :class => 'text_field', :value => current_user.email %>
+      <%# unless !@cs_application.errors.has_key?(:email)%>
+          <span class="help-inline"><%#= @cs_application.errors[:email].join(", ") %></span>
+      <%#end%>
     </div>
-  </div>
+  </div>-->
     <div class="control-group">
       <%= f.label :phone, :class => 'control-label' %>
       <div class="controls">
@@ -69,7 +69,11 @@
     </div>
 	<%= f.hidden_field :user_id, :value => current_user.id%>
   <div class="form-actions">
-    <%= f.submit "Next", :class => 'btn btn-primary', :onclick=> "validateCheckbox();" %>
+    <% if @cs_application.progress == 100 %>
+        <%= f.submit "Update Basic Information", :class => 'btn btn-primary', :onclick=> "validateCheckbox();" %>
+    <%else%>
+        <%= f.submit "Next", :class => 'btn btn-primary', :onclick=> "validateCheckbox();" %>
+    <%end%>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 cs_applications_path, :class => 'btn btn-warning' %>
   </div>

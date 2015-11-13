@@ -19,7 +19,8 @@ ActiveAdmin.register CsApplication do
     # This code is evaluated within the controller class
 
     def edit
-      redirect_to edit_cs_application_path
+      @cs_application = CsApplication.find(params[:id])
+      redirect_to "/cs_application/review/#{@cs_application.id}"
     end
 
     def new

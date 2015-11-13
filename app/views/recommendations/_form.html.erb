@@ -1,71 +1,49 @@
-<%= form_for [@recommendation1,@recommendation2], method: :put, :html => { :class => 'form-horizontal' }  do |recommendation|  %>
-
-<%= fields_for :recommendation1 do |recommendation|%>
-        <div class="control-group">
-          <%= recommendation.label :name, :class => 'control-label' %>
-          <div class="controls">
-            <%= recommendation.text_field :name, :class => 'text_field' %>
-            <% unless !@recommendation1.errors.has_key?(:name)%>
-                <span class="help-inline"><%= @recommendation1.errors[:name].join(", ") %></span>
-            <%end%>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= recommendation.label :title, :class => 'control-label' %>
-          <div class="controls">
-            <%= recommendation.text_field :title, :class => 'text_field' %>
-            <% unless !@recommendation1.errors.has_key?(:title)%>
-                <span class="help-inline"><%= @recommendation1.errors[:title].join(", ") %></span>
-            <%end%>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= recommendation.label :email, :class => 'control-label' %>
-          <div class="controls">
-            <%= recommendation.email_field :email, :class => 'email_field' %>
-            <% unless !@recommendation1.errors.has_key?(:email)%>
-                <span class="help-inline"><%= @recommendation1.errors[:email].join(", ") %></span>
-            <%end%>
-          </div>
-        </div>
-
-    <%end%>
-
-    <hr />
-
-    <%= fields_for :recommendation2 do |recommendation|%>
-        <div class="control-group">
-          <%= recommendation.label :name, :class => 'control-label' %>
-          <div class="controls">
-            <%= recommendation.text_field :name, :class => 'text_field' %>
-            <% unless !@recommendation2.errors.has_key?(:name)%>
-                <span class="help-inline"><%= @recommendation2.errors[:name].join(", ") %></span>
-            <%end%>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= recommendation.label :title, :class => 'control-label' %>
-          <div class="controls">
-            <%= recommendation.text_field :title, :class => 'text_field' %>
-            <% unless !@recommendation2.errors.has_key?(:title)%>
-                <span class="help-inline"><%= @recommendation2.errors[:title].join(", ") %></span>
-            <%end%>
-          </div>
-        </div>
-        <div class="control-group">
-          <%= recommendation.label :email, :class => 'control-label' %>
-          <div class="controls">
-            <%= recommendation.email_field :email, :class => 'email_field' %>
-            <% unless !@recommendation2.errors.has_key?(:email)%>
-                <span class="help-inline"><%= @recommendation2.errors[:email].join(", ") %></span>
-            <%end%>
-          </div>
-        </div>
-
-    <%end%>
+<%= form_for @recommendation, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :cs_application_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :cs_application_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :time_known_from, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :time_known_from, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :time_known_to, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :time_known_to, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :status, :class => 'number_field' %>
+    </div>
+  </div>
 
   <div class="form-actions">
-    <%= recommendation.submit nil, :class => 'btn btn-primary' %>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 recommendations_path, :class => 'btn' %>
   </div>

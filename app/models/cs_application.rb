@@ -10,14 +10,14 @@ class CsApplication < ActiveRecord::Base
 
   accepts_nested_attributes_for :recommendations
 
-  validates :email, :first_name, :last_name, :towson_id_number, :phone, presence: true
+  validates :first_name, :last_name, :towson_id_number, :phone, presence: true
   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
-  validates :email,:towson_id_number, uniqueness: true
+  validates :towson_id_number, uniqueness: true, on: :create
   validates :first_name, :last_name,length: { in: 2..50 }
   validates :towson_id_number, length: { within:6..7 }
   validates :phone, length: { is: 10 }
   validates :towson_id_number,:phone, numericality: { only_integer: true }
-  validates :email, email_format: true
+  #validates :email, email_format: true
   validates :is_citizen, :acceptance => {:accept => true, message: "This application requires applicants to be a US citizen." }
 
   STATUS_STARTED = "STARTED"

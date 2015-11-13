@@ -1,9 +1,7 @@
 class CsApplicationsController < ApplicationController
   before_filter :authenticate_user!
-  #skip_load_resource
   load_and_authorize_resource param_method: :my_sanitizer
   skip_authorize_resource :only => [:index, :new, :remove_purpose, :remove_transcript, :send_invitation, :submit_application]
-  #skip_before_filter :verify_authenticity_token
 
   require 'rubygems'
   require 'zip'
@@ -52,12 +50,15 @@ class CsApplicationsController < ApplicationController
   def create
    # @cs_application = CsApplication.new(params[:cs_application])
      @cs_application = CsApplication.new(my_sanitizer)
+     @cs_application.email = current_user.email
+     @cs_application.progress=15
+     @cs_application.save
    
     respond_to do |format|
       if @cs_application.save
          @cs_application.status="STARTED"
         @cs_application.save
-        format.html { redirect_to application_steps_path, notice: 'Cs application was successfully created.' }
+        format.html { redirect_to application_steps_path }
         format.json { render json: @cs_application, status: :created, location: @cs_application }
       else
         format.html { render action: "new" }
@@ -72,8 +73,10 @@ class CsApplicationsController < ApplicationController
    @cs_application = CsApplication.find(params[:id])
 
    if @cs_application.progress!=100
-   @cs_application.progress=15
-   @cs_application.save
+     if @cs_application.progress < 30
+       @cs_application.progress=15
+       @cs_application.save
+     end
    end
 
     respond_to do |format|
@@ -84,7 +87,7 @@ class CsApplicationsController < ApplicationController
         if @cs_application.progress == 100
           format.html { redirect_to "/cs_application/review/#{@cs_application.id}", notice: 'Basic Information was successfully updated.' }
         else
-        format.html { redirect_to application_steps_path, notice: 'Cs application was successfully updated.' }
+        format.html { redirect_to application_steps_path}
         format.json { head :no_content }
         end
       else
@@ -108,8 +111,10 @@ class CsApplicationsController < ApplicationController
   
   def send_invitation
     recommendation = Recommendation.find_by_id(params[:recommendation_id])
-    recommendation.cs_application.progress = recommendation.cs_application.progress + 20
-    recommendation.cs_application.save
+    if recommendation.cs_application.progress !=100 && recommendation.cs_application.progress <=90
+      recommendation.cs_application.progress = recommendation.cs_application.progress + 10
+      recommendation.cs_application.save
+    end
     rating = Rating.new()
     recommendation.status = Recommendation::STATUS_SENT
     recommendation.save
@@ -118,7 +123,7 @@ class CsApplicationsController < ApplicationController
     rating.notes = "Enter you additional notes"
     rating.save
     link = "http://#{request.host}:#{request.port}/ratings/verify_password/#{rating.id}"
-    UserMailer.send_invitation(recommendation, link, rating).deliver_later
+    UserMailer.send_invitation(recommendation, link, rating).deliver
     redirect_to '/application_steps/send_email/', :notice => 'Invitation Email Sent' 
     #redirect_to verify_password_path(rating.id), :notice => 'Invitation Email Sent' 
   end
@@ -227,7 +232,7 @@ class CsApplicationsController < ApplicationController
   def remove_transcript
     transcript = Transcript.find(params[:cs_application_id])
     transcript.destroy
-    redirect_to :back, :notice => 'Transcripts has been removed.'
+    redirect_to :back, :notice => 'Transcript has been removed.'
   end
 
 

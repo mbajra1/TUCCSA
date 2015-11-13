@@ -60,17 +60,17 @@ class ApplicationStepsController < ApplicationController
 
       when "send_recommendations"
         if @cs_application.recommendations.size==1
-          @recommendation1 = @cs_application.recommendations.first
-          @recommendation1 = @cs_application.recommendations.build
+          @recommendation = @cs_application.recommendations.first
+          @recommendation = @cs_application.recommendations.build
         elsif @cs_application.recommendations.size==2
-          @recommendation1 = @cs_application.recommendations.first
-          @recommendation2= @cs_application.recommendations.second
+          @recommendation = @cs_application.recommendations.first
+          @recommendation = @cs_application.recommendations.second
         else
-          @recommendation1 = @cs_application.recommendations.build
-          @recommendation2 = @cs_application.recommendations.build
+          @recommendation = @cs_application.recommendations.build
+          @recommendation = @cs_application.recommendations.build
         end
 
-      when "send_email"
+     # when "send_email"
 
     end
 
@@ -90,7 +90,9 @@ class ApplicationStepsController < ApplicationController
       end
       @contact.cs_application_id = @cs_application.id
       @contact.save
-      update_progress(15)
+
+
+      update_progress(15, 30)
       render_wizard @contact
       
     when "educational"
@@ -111,8 +113,9 @@ class ApplicationStepsController < ApplicationController
         end
           @institution.cs_application_id = @cs_application.id
           @institution.save
-          update_progress(15)
-          render_wizard @institution
+          update_progress(15, 45)
+          redirect_to_review(@institution)
+
       end
 
       when "purpose_statement"
@@ -135,8 +138,9 @@ class ApplicationStepsController < ApplicationController
           if !@cs_application.purpose_statement.present?
             @purpose_statement = PurposeStatement.new
           end
-          update_progress(10)
-          render_wizard @purpose_statement
+          update_progress(15, 60)
+          #render_wizard @purpose_statement
+          redirect_to_review(@purpose_statement)
 
         end
 
@@ -158,8 +162,9 @@ class ApplicationStepsController < ApplicationController
         else
           @transcript = Transcript.new
         end
-        update_progress(10)
-        render_wizard @transcript
+        update_progress(15, 75)
+       # render_wizard @transcript
+        redirect_to_review(@transcript)
 
       end
 
@@ -187,24 +192,23 @@ class ApplicationStepsController < ApplicationController
         @recommendation = Recommendation.new(form_params(step))
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
-
         @recommendation = Recommendation.new(recommendation2_params)
         @recommendation.cs_application_id = @cs_application.id
         @recommendation.save
       end
 
-      if @recommendation.status = "SENT"
-        puts "sent"
-        @cs_application.progress = 100
-      else
-        update_progress(10)
-      end
+      #if @recommendation1.status == "SENT"
+        #puts "sent"
+        #@cs_application.progress = 100
+      #else
+        update_progress(15, 90)
+      #end
 
-      @cs_application.save
+     # @cs_application.save
       render_wizard @recommendation
 
       when "send_email"
-        update_progress(10)
+        #update_progress(10, 100)
         render_wizard @cs_application
     end
 
@@ -213,13 +217,30 @@ class ApplicationStepsController < ApplicationController
   end
 
   private
-  def update_progress(percent)
-    if @cs_application.progress!=100
-      @cs_application.progress = @cs_application.progress + percent
-    else
+  def update_progress(percent_update, percent_completed)
+
+    if @cs_application.progress!=100 && @cs_application.progress < percent_completed
+      @cs_application.progress = @cs_application.progress + percent_update
+    elsif @cs_application.progress == 100
       @cs_application.progress =100
+    else
+      @cs_application.save
     end
+
     @cs_application.save
+  end
+
+  private
+  def redirect_to_review(object)
+    if @cs_application.progress<100
+      render_wizard object
+    else
+      if object.save
+        redirect_to "/cs_application/review/#{@cs_application.id}"
+      else
+        render_wizard
+      end
+    end
   end
 
   private

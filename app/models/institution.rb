@@ -8,7 +8,7 @@ class Institution < ActiveRecord::Base
 
   validates :attended_from, :attended_to, :city, :degree, :institution, presence: true, if: -> {required_for_step?(:educational)}
   validates :state_id, presence: { message: "state must be selected" }
-  validates :city, :degree, :institution, format: { with: /[a-zA-Z\s]*/, message: "only allows letters" }
+  validates :city, :degree, :institution, format: { with: /[a-zA-Z\s]*/, message: "only allows letters" }, if: -> {required_for_step?(:educational)}
 
   def required_for_step?(step)
     # All fields are required if no form step is present

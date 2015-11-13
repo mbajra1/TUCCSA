@@ -154,7 +154,6 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pdf-core (0.6.0)
-    pg (0.18.3)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
     prawn (2.0.2)
@@ -265,7 +264,6 @@ DEPENDENCIES
   meta_request
   mysql2 (= 0.3.19)
   paperclip
-  pg (~> 0.18.2)
   prawn
   prawn-table (~> 0.2.2)
   protected_attributes

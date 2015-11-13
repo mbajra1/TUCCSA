@@ -1,7 +1,7 @@
 <%= form_for @purpose_statement, method: :put, url: wizard_path, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|  %>
 
     <div class="page-header">
-      <h1><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h1>
+      <h2><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
 	</div>
 	<h3>Purpose Statement</h3>
 	<div class="control-group">
@@ -29,8 +29,13 @@
 	<hr />
 
   	<div class="form-actions">
-  		<%= link_to t('.back'), previous_wizard_path, :class => 'btn btn-default' %>
-    	<%= f.submit "Next", :class => 'btn btn-primary' %>
+
+      <% if @cs_application.progress == 100 %>
+          <%= f.submit "Update Purpose Statement", :class => 'btn btn-primary' %>
+      <%else%>
+          <%= link_to t('.back'), previous_wizard_path, :class => 'btn btn-default' %>
+          <%= f.submit "Next", :class => 'btn btn-primary' %>
+      <%end %>
     	<%= link_to t('.cancel', :default => t("helpers.links.cancel")), cs_applications_path, :class => 'btn btn-danger' %>
   	</div>
 <% end%>

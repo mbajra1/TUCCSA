@@ -25,10 +25,12 @@
 	padding-top: 3px;
 }
 </style>
-<h2>Review Your Application</h2>
 
 <br />
+<h2>Review Your Application</h2>
+<br />
 <div id="wrap">
+  <br />
 	<div class="title">
 		<h4>Basic Information (<%= link_to "Edit", edit_cs_application_path(@cs_application) %>)</h4>
 	</div>
@@ -66,15 +68,22 @@
 		US Citizen?
 	</div>
 	<div id="right_col">
-		<%= !@cs_application.is_citizen.blank? ? @cs_application.is_citizen : 'Not Provided' %>
-	</div>
+      <% if @cs_application.is_citizen == true ? citizen = "Yes" : citizen ="No" %>
+           <%= !@cs_application.is_citizen.blank? ? citizen : 'Not Provided' %>
+	    <%end%>
+    </div>
+        <div class="left_col">
+        Telephone
+    </div>
+    <div id="right_col">
+    <%= !@cs_application.phone.blank? ? @cs_application.phone : 'Not Provided' %>
+    </div>
 
     <br />
 	<div class="title">
 		<h4>Contact Information (<%= link_to "Edit", edit_mailing_address_path(@cs_application.mailing_address)%>)</h4>
 	</div>
-
-		<div class="left_col">
+    <div class="left_col">
 		Name
 	</div>
 	<div id="right_col">
@@ -110,19 +119,12 @@
 	<div id="right_col">
 		<%= !@cs_application.mailing_address.zip.blank? ? @cs_application.mailing_address.zip : 'Not Provided' %>
 	</div>
-	<div class="left_col">
-		Telephone
-	</div>
-	<div id="right_col">
-		<%= !@cs_application.phone.blank? ? @cs_application.phone : 'Not Provided' %>
-	</div>
 
     <br />
 	<% @cs_application.institutions.each do |institution|%>
       <div class="title">
-        <h4>Educational Information (<%= link_to "Edit", edit_institution_path(institution.id) %>)</h4>
+        <h4>Educational Information (<%= link_to "Edit", "/application_steps/educational" %>)</h4>
       </div>
-      <br />
 		<div class="left_col">
 			Institution
 		</div>
@@ -153,7 +155,6 @@
 		<div id="right_col">
 			<%= !institution.degree.blank? ? institution.degree : 'Not Provided' %>
 		</div>
-		<div id="empty"> &nbsp; </div>
 	<% end%>
     <br />
 	<div class="title">
@@ -186,13 +187,13 @@
 		<h4>Recommendations (<%= link_to "Edit", "/application_steps/send_recommendations" %>)</h4>
 	</div>
 	<% if !@cs_application.recommendations.first.nil? %>
-		<% @recommendation1 = @cs_application.recommendations.first%>
+		<% @recommendation = @cs_application.recommendations.first%>
 		<div class="left_col">
-			Name: <%= @recommendation1.name%> 
+			Name: <%= @recommendation.name%>
 		</div>
 		<div id="right_col">
 			Status:
-			<% if @recommendation1.status==1 || @recommendation1.status==2%>
+			<% if @recommendation.status=="SENT"%>
 				Invitation Sent
 			<% else%>
 				Not Sent
@@ -208,13 +209,13 @@
 	<% end%>
 	
 	<% if !@cs_application.recommendations.second.nil? %>
-		<% @recommendation1 = @cs_application.recommendations.second%>
+		<% @recommendation = @cs_application.recommendations.second%>
 		<div class="left_col">
-			Name: <%= @recommendation1.name%> 
+			Name: <%= @recommendation.name%>
 		</div>
 		<div id="right_col">
 			Status:
-			<% if @recommendation1.status==1 || @recommendation1.status==2%>
+			<% if @recommendation.status=="SENT"%>
 				Invitation Sent
 			<% else%>
 				Not Sent
@@ -228,7 +229,7 @@
 			Status: -
 		</div>
 	<% end%>
-
+  <br /><br />
 </div>
 <br /><br />
 
