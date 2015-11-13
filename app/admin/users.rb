@@ -1,4 +1,13 @@
 ActiveAdmin.register User do
+  index do
+    column :id
+    column :email
+    column :updated_at
+    column :sign_in_count
+    column :is_admin
+
+  end
+
   form do |f|
     f.inputs "User Details" do
       f.input :email

@@ -27,3 +27,21 @@
 // .active_admin       applies to any Active Admin namespace
 // .admin_namespace    applies to the admin namespace (eg: /admin)
 // .other_namespace    applies to a custom namespace named other (eg: /other)
+
+/** Css for header and title bar **/
+#header{background: #101010 !important; background-image:none !important;}
+#title_bar {background-color: #ffcc00 !important; background-image:none !important;}
+.breadcrumb a {color: #000 !important;}
+#title_bar h2 {font-family: Arial, Helvetica, sans-serif; font-size: large;}
+#title_bar {padding: 4px 30px !important;}
+#title_bar .action_items span.action_item > a, #title_bar .action_items span.action_item > .dropdown_menu > a{
+  border-style: none; padding: 21px 17px; border-radius: 0px;}
+#header ul.tabs > li:hover > a { border-radius:0px; color:#ffffff !important; background: #101010 !important;}
+#header ul.tabs > li.current > a { background: #101010; color: #ffcc00;}
+
+/** Css for section, panel, comments **/
+.section > h3, .panel > h3 { background-image:none !important;}
+.section, .panel {background: #F4F4F4 none repeat scroll 0% 0%;border-radius: 4px;
+  box-shadow: 0px 1px 4px #DDD inset;margin: 1%;width: 48%;float: left;}
+.sidebar_section{width: 100% !important;}
+.comments .cs_application .panel {float: none;}

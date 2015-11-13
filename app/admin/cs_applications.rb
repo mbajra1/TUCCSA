@@ -7,6 +7,7 @@ ActiveAdmin.register CsApplication do
     column :email
     column :progress
     column :status
+    column :updated_at
     
     column "View" do |app|
       link = "/admin/cs_applications/#{app.id}"
@@ -56,7 +57,7 @@ ActiveAdmin.register CsApplication do
   
   show do
     
-    h2 'Application ID: ' + cs_application.id.to_s
+   # h2 'Application ID: ' + cs_application.id.to_s
     panel "Basic Information" do
       h4 'Applcant First Name: ' + cs_application.first_name
       h4 'Applcant Middle Name: ' + cs_application.middle_name
@@ -75,6 +76,30 @@ ActiveAdmin.register CsApplication do
       h4 "Zip: " + (!cs_application.mailing_address.zip.blank? ? cs_application.mailing_address.zip.to_s : 'Not Provided')
     end
     
+
+    panel "Purpose Statement" do
+      if !cs_application.purpose_statement.purpose.nil?
+        strong {link_to cs_application.purpose_statement.purpose_file_name, cs_application.purpose_statement.purpose.url}
+      else
+        h4 + "Not Provided"
+      end
+    end
+
+
+
+    panel "Transcripts" do
+      count = cs_application.transcripts.count
+      if count==0
+        h4 + "Not Provided"
+      else
+        cs_application.transcripts.each do |transcript|
+          strong {link_to transcript.document_file_name, transcript.document.url }
+        end
+      end
+    end
+
+
+
     panel "Educational Information" do
       count = cs_application.institutions.count
       if count == 0
@@ -87,30 +112,11 @@ ActiveAdmin.register CsApplication do
           h4 "Attended From: " + inst.attended_from
           h4 "Attended To: " + inst.attended_to
           h4 "Degree: " + inst.degree
-          h4 "____________________________________________ "
+          h4 "___________________________________________________________________________"
         end
       end
     end
-    
-    panel "Purpose Statement" do
-      if !cs_application.purpose_statement.purpose.nil?
-        strong {link_to cs_application.purpose_statement.purpose_file_name, cs_application.purpose_statement.purpose.url}
-      else
-        h4 + "Not Provided"
-      end
-    end
-    
-    panel "Transcripts" do
-     count = cs_application.transcripts.count
-      if count==0
-       h4 + "Not Provided"
-     else
-       cs_application.transcripts.each do |transcript|
-         strong {link_to transcript.document_file_name, transcript.document.url }
-       end
-      end
-    end
-    
+
     panel "Recommendations and Ratings" do
       if !cs_application.recommendations.first.nil?
         recommendation1 = cs_application.recommendations.first
@@ -133,7 +139,7 @@ ActiveAdmin.register CsApplication do
           h4 "Status: Invitation Not Sent"
         end
       end
-      h4 "________________________________________________________________________________________"
+      h4 "___________________________________________________________________________"
       if !cs_application.recommendations.second.nil?
         recommendation1 = cs_application.recommendations.second
         h4 "Recommender: " +  recommendation1.name
@@ -156,7 +162,10 @@ ActiveAdmin.register CsApplication do
         end
       end
     end
+
+
     active_admin_comments
+
   end
 
 end

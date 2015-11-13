@@ -12,6 +12,7 @@ ActiveAdmin.setup do |config|
   #
   config.site_title_link = "/admin/dashboard"
 
+
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
   #
@@ -67,7 +68,6 @@ ActiveAdmin.setup do |config|
   # to return the currently logged in user.
   config.current_user_method = :current_admin_user
   # config.current_user_method = false
-
 
   # == Logging Out
   #
