@@ -11,6 +11,12 @@
 @fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
 @fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
 
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/assets/glyphicons-halflings-regular.eot');
+  src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
 // Font Awesome
 @import "fontawesome/font-awesome";
 
@@ -28,47 +34,13 @@
 // Example:
 // @link-color: #ff0000;
 
-
-.container{
-  width: auto;
-  overflow:auto;
-  margin: 0px 10px 100px 10px;
-}
-/*** dropdown css ***/
-.dropdown-menu {
-  min-width: 180px;
-  background-color: #101010;
-  height: 4em;
-  padding: .5em;
-
-  ul>li:first-child {
-    border-bottom: 1px solid #fff;
-  }
-  ul {
-    padding-left: 1em;
-    li {
-      list-style: none;
-    }
-  }
-
-  a, a:link, a:visited {
-    color: #FFF;
-  }
-
-  a, a:hover, a:focus {
-    color: #ffcc00;
-  }
-
-}
-.nav > li > a {display: inline-block !important;}
-
-
 /**** left column css ****/
 .col-md-8 {
   position: relative;
   background-color: #EDEFF0;
   border-radius: 1em;
   padding: 1em 2em 2.8em 2em;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 /**** right column css ****/
@@ -78,12 +50,10 @@
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
   padding: 2em;
-
   .bar{
     border-top: 1px solid #CCCCCC;
     padding-top: 1em;
   }
-
   h3 {color: #5DADE2;}
 }
 .info {
@@ -104,32 +74,15 @@
   box-shadow: none !important;
   text-shadow: none !important;
 }
-
 form input[type="submit"]{
   color: #FFF !important;
   background-color: #428BCA !important;
   border-color: #357EBD !important;
   margin: 2em 0em !important;
 }
-
 .btn-danger, .btn-warning, .btn-info, .btn-inverse, .btn-success, .btn-primary{color: #fff !important;}
-.form-actions{
-  padding:1em 0em 2em 0em;
-}
-
+.form-actions{ padding:1em 0em 2em 0em;  }
 .custom-btn{padding:.3em; margin-left: 1em;}
-
-.has-success .form-control, .has-success .select2-search input[type="text"] {
-  // color: #2ECC71;
-  // border-color: #2ECC71;
-  // box-shadow: none;
-}
-
-.has-error .form-control, .has-error .select2-search input[type="text"] {
-  // color: #E74C3C;  // border-color: #E74C3C;
-  // box-shadow: none;
-}
-
 .form-control, .select2-search input[type="text"] {
   height: 42px;
   padding: 8px 12px;
@@ -142,7 +95,6 @@ form input[type="submit"]{
   box-shadow: none;
   transition: border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;
 }
-
 form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"],
 form input[type="url"], form input[type="tel"], form input[type="date"], form textarea {
   width: calc(60% - 22px) !important;
@@ -151,19 +103,16 @@ form input[type="url"], form input[type="tel"], form input[type="date"], form te
 form input[type="file"] {
   display: inline;
 }
-
 .field_with_errors {
   display: inline !important;
   background-color: transparent !important;
 }
-
 .field_with_errors input[type="text"], .field_with_errors input[type="text"],.field_with_errors input[type="password"],
 .field_with_errors input[type="email"],.field_with_errors input[type="number"],.field_with_errors input[type="url"],
 .field_with_errors input[type="tel"],.field_with_errors input[type="date"],.field_with_errors textarea, .field_with_errors select {
    border-color: #E74C3C !important;
    box-shadow: none;
 }
-
 .help-inline {
   color:#fff;
   margin-left: 1em;
@@ -171,4 +120,23 @@ form input[type="file"] {
   font-size: 0.7em;
   padding: 0.5em;
   border-radius: 0.5em;
+}
+
+/*** datepicker CSS ***/
+#ui-datepicker-div {
+  //top: 524.3px !important;
+  //left: 282.5px !important;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-title {
+  font-size: 0.9em !important;
+  font-weight: normal !important;
+}
+
+.ui-datepicker .ui-datepicker-header {
+  height: 30px !important;
+  width: inherit !important;
+}
+.ui-datepicker .ui-datepicker-header::before{
+  border-top-left-radius: 2px !important;
+  border-top-right-radius: 2px !important;
 }

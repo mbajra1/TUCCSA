@@ -20,12 +20,9 @@
     <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li class="divider-vertical"></li>
-          <li class="dropdown">
-            <span class="glyphicon glyphicon-user"></span><a class="dropdown-toggle" href="#" ><%=current_user.email%></a>
-          </li>
-          <li>
-          <%= link_to "Sign out", destroy_user_session_path, :method => 'delete'%>
-          </li>
+          <li><span class="glyphicon glyphicon-user white"></span></li>
+          <li><span><%=current_user.email%></span></li>
+          <li><%= link_to "", destroy_user_session_path, :method => 'delete', :class=>'glyphicon glyphicon glyphicon-off'%></li>
         </ul>
     <%end%>
   </div>

@@ -1,4 +1,10 @@
 TUCCSA2::Application.routes.draw do
+
+  #for error page
+  %w( 404 422 500 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
+
   resources :cs_applications
   resources :ratings
   resources :recommendations
@@ -21,6 +27,7 @@ TUCCSA2::Application.routes.draw do
   get '/cs_application/edit/:id', :controller=>'cs_applications', :action=>'edit', :as => :edit_application
   get '/cs_application/remove_transcript/:cs_application_id', :controller=>'cs_applications', :action=>'remove_transcript', :as=> :remove_transcript
   get '/cs_application/remove_purpose/:cs_application_id', :controller=>'cs_applications', :action=>'remove_purpose', :as=> :remove_purpose
+
 
   #devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
