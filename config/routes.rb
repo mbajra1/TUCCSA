@@ -11,6 +11,7 @@ TUCCSA2::Application.routes.draw do
   resources :application_steps
   resources :institutions
   resources :mailing_addresses
+  resources :dashboard
 
   devise_for :users
   root :to => 'cs_applications#index'

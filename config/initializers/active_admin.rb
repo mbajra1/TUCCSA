@@ -153,4 +153,39 @@ ActiveAdmin.setup do |config|
   #
   # Set the CSV builder options (default is {})
   # config.csv_options = {}
+
+  # Display email address of current user in menu bar of active admin
+  config.namespace :admin do |admin|
+    admin.build_menu :utility_navigation do |menu|
+      menu.add  :label  => proc { current_user.email },
+               :url    =>  proc{ admin_user_path(current_active_admin_user) },
+                :id     => 'current_user',
+                :if     => proc{ current_active_admin_user? }
+     #admin.add_current_user_to_menu  menu
+      admin.add_logout_button_to_menu menu
+    end
+  end
+
+  module ActiveAdmin
+    module Comments
+      module Views
+        class Comments < ActiveAdmin::Views::Panel
+          def build_comment(comment)
+            div :for => comment do
+              div :class => "active_admin_comment_meta" do
+                user_name = current_user.email
+                h4(user_name, :class => "active_admin_comment_author")
+                span(pretty_format(comment.created_at))
+              end
+              div :class => "active_admin_comment_body" do
+                simple_format(comment.body)
+              end
+              div :style => "clear:both;"
+              div link_to "Delete comment", "/admin/comments/#{comment.id}", :method => :delete
+            end
+          end
+        end
+      end
+    end
+  end
 end

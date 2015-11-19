@@ -12,10 +12,14 @@ class CsApplicationsController < ApplicationController
  def index
    @cs_application = CsApplication.find_by_user_id(current_user.id)
 
+   if current_user.is_admin?
+       redirect_to "/admin/dashboard"
+   else
      respond_to do |format|
      format.html # index.html.erb
      format.json { render json: @cs_applications }
      end
+   end
   end
 
   # GET /cs_applications/1
@@ -237,7 +241,8 @@ class CsApplicationsController < ApplicationController
 
 
   def remove_purpose
-    purpose = current_user.cs_application.purpose_statement
+    purpose = PurposeStatement.find(params[:cs_application_id])
+    #purpose = current_user.cs_application.purpose_statement
     purpose.destroy
 
     redirect_to :back, flash:{success: 'Purpose Statement has been removed.'}

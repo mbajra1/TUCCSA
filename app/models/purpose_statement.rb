@@ -1,11 +1,11 @@
 class PurposeStatement < ActiveRecord::Base
- # attr_accessible :cs_application_id, :purpose
+ attr_accessible :cs_application_id, :purpose
 
   belongs_to :cs_application
 
   has_attached_file :purpose
   validates_attachment_content_type :purpose, content_type: ['application/pdf']
-  validates_attachment_presence :purpose
+  #validates_attachment_presence :purpose
   #validates_attachment_content_type :purpose, content_type: [ 'application/msword']
   #validates_attachment :purpose, :content_type => {:content_type => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }
   #validates_attachment_content_type :purpose, :content_type => [ 'application/force-download' ]

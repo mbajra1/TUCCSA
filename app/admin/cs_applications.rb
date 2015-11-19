@@ -112,7 +112,6 @@ ActiveAdmin.register CsApplication do
           h4 "Attended From: " + inst.attended_from
           h4 "Attended To: " + inst.attended_to
           h4 "Degree: " + inst.degree
-          h4 "___________________________________________________________________________"
         end
       end
     end
@@ -139,7 +138,7 @@ ActiveAdmin.register CsApplication do
           h4 "Status: Invitation Not Sent"
         end
       end
-      h4 "___________________________________________________________________________"
+
       if !cs_application.recommendations.second.nil?
         recommendation1 = cs_application.recommendations.second
         h4 "Recommender: " +  recommendation1.name
@@ -163,9 +162,7 @@ ActiveAdmin.register CsApplication do
       end
     end
 
-
     active_admin_comments
 
   end
-
 end

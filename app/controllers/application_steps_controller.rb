@@ -124,11 +124,14 @@ class ApplicationStepsController < ApplicationController
         if params[:commit]== "Upload"
           check = params[:purpose_statement][:purpose].nil? rescue true
           if check
+            puts "check"
             render_wizard
           elsif @cs_application.purpose_statement.present?
+            puts "exist"
             @purpose_statement.update(form_params(step))
             render_wizard
           else
+            puts "new"
             @purpose_statement = PurposeStatement.new(:purpose => params[:purpose_statement][:purpose])
             @purpose_statement.cs_application_id = @cs_application.id
             @purpose_statement.save

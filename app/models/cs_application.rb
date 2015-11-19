@@ -14,7 +14,7 @@ class CsApplication < ActiveRecord::Base
   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates :towson_id_number, uniqueness: true, on: :create
   validates :first_name, :last_name,length: { in: 2..50 }
-  validates :towson_id_number, length: { within:6..7 }
+  validates :towson_id_number, length: { within: 6..7 }
   validates :phone, length: { is: 10 }
   validates :towson_id_number,:phone, numericality: { only_integer: true }
   #validates :email, email_format: true
