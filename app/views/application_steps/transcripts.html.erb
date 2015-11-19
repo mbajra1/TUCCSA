@@ -5,38 +5,33 @@
     </div>
 
     <div class="control-group">
-      <%#= f.label :submit_transcripts, :class => 'control-label' %>
       <div class="controls">
         Attach your transcripts. Click on 'Upload' after selecting your file to add another attachment. Attachments can be
         images of your scanned transcripts or PDF.
         <br /> <br />
-        <%#= f.fields_for :transcripts do |transcript|%>
         <%= f.file_field :document %>
         <% unless !@transcript.errors.has_key?(:document)%>
             <span class="help-inline"><%= @transcript.errors[:document].join(", ") %></span>
         <%end%>
         <br />
         <%= f.submit "Save", :value => 'Upload' ,:class => 'btn', disabled: true  %>
-        <%#end%>
+
         <br /><br />
         <strong>Uploaded transcripts</strong>
         <br /><br />
+
         <table class="table">
 
-          <%# @transcript_all = @transcript%>
           <% current_user.cs_application.transcripts.each do |transcript|%>
               <tr>
               <% if !transcript.id.nil? %>
-
                     <td><%=link_to transcript.document_file_name, transcript.document.url%></td>
                     <td><%=link_to t('.Remove'), remove_transcript_path(transcript.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%></td>
-
               <% end%>
               </tr>
           <% end%>
 
         </table>
-        </ol>
       </div>
     </div>
 

@@ -1,5 +1,5 @@
 class CsApplication < ActiveRecord::Base
-  #attr_accessible :email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :user_id
+  attr_accessible :email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :user_id
 
   belongs_to :user
   has_one :purpose_statement, :foreign_key => 'cs_application_id', :class_name => 'PurposeStatement', :dependent => :destroy

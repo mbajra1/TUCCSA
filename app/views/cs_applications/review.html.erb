@@ -1,31 +1,3 @@
-<style type="text/css">
-#wrap {
-   width:700px;
-   margin:0 auto 2em auto;
-   padding: 5px;
-   float:left;
-   border: 1px solid;
-   border-radius: 5px;
-}
-.left_col {
-   float:left;
-   width:340px;
-}
-.right_col {
-   float:right;
-   width:340px;
-}
-
-.title {
-	clear:both;
-	padding-top: 8px;
-	padding-bottom: 2px;
-}
-.empty {
-	padding-top: 3px;
-}
-</style>
-
 <br />
 <h2>Review Your Application</h2>
 <br />
@@ -37,37 +9,37 @@
 	<div class="left_col">
 		First Name
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.first_name.blank? ? @cs_application.first_name : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Middle Name
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.middle_name.blank? ? @cs_application.middle_name : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Last Name
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.last_name.blank? ? @cs_application.last_name : 'Not Provided' %>
 	</div>
 		<div class="left_col">
 		TU ID
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.towson_id_number.blank? ? @cs_application.towson_id_number : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Contact Email
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.email.blank? ? @cs_application.email : 'Not Provided' %>
 	</div>
 		<div class="left_col">
 		US Citizen?
 	</div>
-	<div id="right_col">
+	<div class="right_col">
       <% if @cs_application.is_citizen == true ? citizen = "Yes" : citizen ="No" %>
            <%= !@cs_application.is_citizen.blank? ? citizen : 'Not Provided' %>
 	    <%end%>
@@ -75,7 +47,7 @@
         <div class="left_col">
         Telephone
     </div>
-    <div id="right_col">
+    <div class="right_col">
     <%= !@cs_application.phone.blank? ? @cs_application.phone : 'Not Provided' %>
     </div>
 
@@ -86,37 +58,37 @@
     <div class="left_col">
 		Name
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.mailing_address.name.blank? ? @cs_application.mailing_address.name : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Address Line1
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.mailing_address.address_line1.blank? ? @cs_application.mailing_address.address_line1 : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Address Line2
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.mailing_address.address_line2.blank? ? @cs_application.mailing_address.address_line2 : 'Not Provided' %>
 	</div>
 		<div class="left_col">
 		City
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.mailing_address.city.blank? ? @cs_application.mailing_address.city : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		State
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.mailing_address.state_id.blank? ? @cs_application.mailing_address.state.name : 'Not Provided' %>
 	</div>
 	<div class="left_col">
 		Zip
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<%= !@cs_application.mailing_address.zip.blank? ? @cs_application.mailing_address.zip : 'Not Provided' %>
 	</div>
 
@@ -128,31 +100,31 @@
 		<div class="left_col">
 			Institution
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			<%= !institution.institution.blank? ? institution.institution : 'Not Provided' %>
 		</div>
 		<div class="left_col">
 			City
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			<%= !institution.city.blank? ? institution.city : 'Not Provided' %>
 		</div>
 		<div class="left_col">
 			Attended From
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			<%= !institution.attended_from.blank? ? institution.attended_from : 'Not Provided' %>
 		</div>
 		<div class="left_col">
 			Attended To
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			<%= !institution.attended_to.blank? ? institution.attended_to : 'Not Provided' %>
 		</div>
 		<div class="left_col">
 			Degree
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			<%= !institution.degree.blank? ? institution.degree : 'Not Provided' %>
 		</div>
 	<% end%>
@@ -163,7 +135,7 @@
 	<div class="left_col">
 		Purpose Statement
 	</div>
-	<div id="right_col">
+	<div class="right_col">
         <% @purpose_statement = @cs_application.purpose_statement%>
 		<%= !@purpose_statement.purpose.nil? ? (link_to @purpose_statement.purpose_file_name, @purpose_statement.purpose.url) : "Not Provided"%>
 	</div>
@@ -175,11 +147,13 @@
 	<div class="left_col">
 		Transcript(s)
 	</div>
-	<div id="right_col">
+	<div class="right_col">
 		<% @transcript_all = @cs_application.transcripts%>
+      <ul>
 		<% @transcript_all.each do |transcript|%>
-			<%=link_to transcript.document_file_name, transcript.document.url%>
+			<li><%=link_to transcript.document_file_name, transcript.document.url%></li>
 		<% end%>
+      </ul>
 	</div>
 
     <br />
@@ -191,7 +165,7 @@
 		<div class="left_col">
 			Name: <%= @recommendation.name%>
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			Status:
 			<% if @recommendation.status=="SENT"%>
 				Invitation Sent
@@ -203,7 +177,7 @@
 		<div class="left_col">
 			Name: Not Provided
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			Status: -
 		</div>
 	<% end%>
@@ -213,7 +187,7 @@
 		<div class="left_col">
 			Name: <%= @recommendation.name%>
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			Status:
 			<% if @recommendation.status=="SENT"%>
 				Invitation Sent
@@ -225,7 +199,7 @@
 		<div class="left_col">
 			Name: Not Provided
 		</div>
-		<div id="right_col">
+		<div class="right_col">
 			Status: -
 		</div>
 	<% end%>

@@ -138,10 +138,10 @@ class CsApplicationsController < ApplicationController
       format.html
       format.pdf do
         pdf = ApplicationReviewPdf.new(@cs_application, view_context)
-          send_data pdf.render, 
-                                filename: "user_#{current_user.id}_#{@cs_application.id}.pdf",
-                                type: "application/pdf",
-                                disposition: "inline"
+         send_data pdf.render,
+                               filename: "user_#{current_user.id}_#{@cs_application.id}.pdf",
+                               type: "application/pdf",
+                               disposition: "inline"
                                 
         #Saving file
        # pdf = ApplicationReviewPdf.new(@cs_application, view_context)
@@ -152,6 +152,7 @@ class CsApplicationsController < ApplicationController
 
       end
     end
+
   end
   
   def mark_as_reviewed

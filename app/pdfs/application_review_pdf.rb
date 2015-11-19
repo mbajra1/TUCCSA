@@ -66,6 +66,7 @@ class ApplicationReviewPdf < Prawn::Document
     move_down 3
     text "1.  A brief statement of purpose describing your goals and motivations to pursue a career in", size: 10
     text "    Information Assurance and Comupter Security (maximum 2 pages): <u><i>#{!@cs_application.purpose_statement.purpose.blank? ? "Attached: #{@cs_application.purpose_statement.purpose_file_name}" : "Not Provided"}</i></u>", size: 10, :inline_format=>true
+    # pdf.image "#{Rails.root}/public"+ @cs_application.purpose_statement.purpose.url.sub!(/\?.+\Z/, '')
     move_down 5
     text "2.  Transcript(s) from all of the colleges and universities listed above: <u><i>#{!@cs_application.transcripts.nil? ? "Attached: #{@cs_application.transcripts.size} Transcripts" : "Not Provided"}</i></u>", size: 10, :inline_format=>true
     move_down 5

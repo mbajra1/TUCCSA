@@ -250,15 +250,15 @@ class ApplicationStepsController < ApplicationController
   def form_params(step)
     permitted_attributes = case step
                              when "mailing_address"
-                               [:city, :address_line1, :address_line2, :name, :state_id, :zip, :cs_application_id]
+                               [:city, :address_line1, :address_line2, :name, :state_id, :zip]
                              when "educational"
-                               [:attended_from, :attended_to, :city, :degree, :institution, :state_id, :cs_application_id]
+                               [:attended_from, :attended_to, :city, :degree, :institution, :state_id]
                              when "send_recommendations"
-                               [:cs_application_id, :email, :name, :status, :time_known_from, :time_known_to, :title]
+                               [:email, :name, :status, :time_known_from, :time_known_to, :title]
                              when "transcript"
-                               [:cs_application_id, :document]
+                               [:document]
                              when "purpose_statement"
-                               [:cs_application_id, :purpose]
+                               [:purpose]
                            end
 
     if step == "mailing_address"
@@ -275,7 +275,7 @@ class ApplicationStepsController < ApplicationController
   end
 
   def recommendation2_params
-    params.require(:recommendation2).permit(:cs_application_id, :email, :name, :status, :time_known_from, :time_known_to, :title).merge(form_step: step)
+    params.require(:recommendation2).permit(:email, :name, :status, :time_known_from, :time_known_to, :title).merge(form_step: step)
   end
 
 end

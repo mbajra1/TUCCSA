@@ -1,5 +1,5 @@
 class Recommendation < ActiveRecord::Base
-  attr_accessible :cs_application_id, :email, :name, :status, :time_known_from, :time_known_to, :title
+  attr_accessible :email, :name, :status, :time_known_from, :time_known_to, :title
 
   STATUS_SENT = "SENT"
   STATUS_COMPLETED = "COMPLETED"
