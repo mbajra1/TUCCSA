@@ -161,13 +161,13 @@
 		<h4>Recommendations (<%= link_to "Edit", "/application_steps/send_recommendations" %>)</h4>
 	</div>
 	<% if !@cs_application.recommendations.first.nil? %>
-		<% @recommendation = @cs_application.recommendations.first%>
+		<% @recommendation1 = @cs_application.recommendations.first%>
 		<div class="left_col">
-			Name: <%= @recommendation.name%>
+			Name: <%= @recommendation1.name%>
 		</div>
 		<div class="right_col">
 			Status:
-			<% if @recommendation.status=="SENT"%>
+			<% if @recommendation1.status=="SENT"%>
 				Invitation Sent
 			<% else%>
 				Not Sent
@@ -183,13 +183,13 @@
 	<% end%>
 	
 	<% if !@cs_application.recommendations.second.nil? %>
-		<% @recommendation = @cs_application.recommendations.second%>
+		<% @recommendation2 = @cs_application.recommendations.second%>
 		<div class="left_col">
-			Name: <%= @recommendation.name%>
+			Name: <%= @recommendation2.name%>
 		</div>
 		<div class="right_col">
 			Status:
-			<% if @recommendation.status=="SENT"%>
+			<% if @recommendation2.status=="SENT"%>
 				Invitation Sent
 			<% else%>
 				Not Sent

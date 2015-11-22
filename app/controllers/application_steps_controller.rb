@@ -60,14 +60,14 @@ class ApplicationStepsController < ApplicationController
 
       when "send_recommendations"
         if @cs_application.recommendations.size==1
-          @recommendation = @cs_application.recommendations.first
-          @recommendation = @cs_application.recommendations.build
+          @recommendation1 = @cs_application.recommendations.first
+          @recommendation2 = @cs_application.recommendations.build
         elsif @cs_application.recommendations.size==2
-          @recommendation = @cs_application.recommendations.first
-          @recommendation = @cs_application.recommendations.second
+          @recommendation1 = @cs_application.recommendations.first
+          @recommendation2 = @cs_application.recommendations.second
         else
-          @recommendation = @cs_application.recommendations.build
-          @recommendation = @cs_application.recommendations.build
+          @recommendation1 = @cs_application.recommendations.build
+          @recommendation2 = @cs_application.recommendations.build
         end
 
      # when "send_email"
@@ -173,31 +173,31 @@ class ApplicationStepsController < ApplicationController
 
       when "send_recommendations"
       if @cs_application.recommendations.size==1
-        @recommendation = @cs_application.recommendations.first
-        @recommendation.update(form_params(step))
-        @recommendation.cs_application_id = @cs_application.id
-        @recommendation.save
-        @recommendation = Recommendation.new(recommendation2_params)
-        @recommendation.cs_application_id = @cs_application.id
-        @recommendation.save
+        @recommendation1 = @cs_application.recommendations.first
+        @recommendation1.update(form_params(step))
+        @recommendation1.cs_application_id = @cs_application.id
+        @recommendation1.save
+        @recommendation2 = Recommendation.new(recommendation2_params)
+        @recommendation2.cs_application_id = @cs_application.id
+        @recommendation2.save
 
       elsif @cs_application.recommendations.size==2
-        @recommendation = @cs_application.recommendations.first
-        @recommendation.update(form_params(step))
-        @recommendation.cs_application_id = @cs_application.id
-        @recommendation.save
+        @recommendation1 = @cs_application.recommendations.first
+        @recommendation1.update(form_params(step))
+        @recommendation1.cs_application_id = @cs_application.id
+        @recommendation1.save
 
-        @recommendation = @cs_application.recommendations.second
-        @recommendation.update(recommendation2_params)
-        @recommendation.cs_application_id = @cs_application.id
-        @recommendation.save
+        @recommendation2 = @cs_application.recommendations.second
+        @recommendation2.update(recommendation2_params)
+        @recommendation2.cs_application_id = @cs_application.id
+        @recommendation2.save
       else
-        @recommendation = Recommendation.new(form_params(step))
-        @recommendation.cs_application_id = @cs_application.id
-        @recommendation.save
-        @recommendation = Recommendation.new(recommendation2_params)
-        @recommendation.cs_application_id = @cs_application.id
-        @recommendation.save
+        @recommendation1 = Recommendation.new(form_params(step))
+        @recommendation1.cs_application_id = @cs_application.id
+        @recommendation1.save
+        @recommendation2 = Recommendation.new(recommendation2_params)
+        @recommendation2.cs_application_id = @cs_application.id
+        @recommendation2.save
       end
 
       #if @recommendation1.status == "SENT"
@@ -207,8 +207,11 @@ class ApplicationStepsController < ApplicationController
         update_progress(15, 90)
       #end
 
-     # @cs_application.save
-      render_wizard @recommendation
+      if @recommendation1.save && @recommendation2.save
+        redirect_to "/application_steps/send_email/"
+      else
+        render_wizard
+      end
 
       when "send_email"
         #update_progress(10, 100)
