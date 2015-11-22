@@ -1,5 +1,5 @@
 class MoveAdminNotesToComments < ActiveRecord::Migration
-  def self.up
+  def up
     remove_index  :admin_notes, [:admin_user_type, :admin_user_id]
     rename_table  :admin_notes, :active_admin_comments
     rename_column :active_admin_comments, :admin_user_type, :author_type
@@ -15,7 +15,7 @@ class MoveAdminNotesToComments < ActiveRecord::Migration
     #execute "UPDATE #{comments_table_name} SET namespace='#{ActiveAdmin.application.default_namespace}'"
   end
 
-  def self.down
+  def down
     remove_index  :active_admin_comments, :column => [:author_type, :author_id]
     remove_index  :active_admin_comments, :column => [:namespace]
     remove_column :active_admin_comments, :namespace
