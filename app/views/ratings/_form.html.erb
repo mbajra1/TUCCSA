@@ -1,84 +1,88 @@
-Please fill this form as accurately as possible. 5 is the highest score where as 1 is the lowest.
-<br /><br />
-<strong>Student Details </strong>
+<h5>Please fill this form as accurately as possible. </h5>
+
+<h5>5 is the highest score where as 1 is the lowest.</h5>
 <br />
+<strong>Student Details </strong>
+<br /> <br />
 Student's Name: <%= @rating.recommendation.cs_application.first_name%>&nbsp;<%= @rating.recommendation.cs_application.middle_name unless @rating.recommendation.cs_application.middle_name.nil? %>&nbsp;<%= @rating.recommendation.cs_application.last_name%><br />
 Student's TU ID: <%= @rating.recommendation.cs_application.towson_id_number%><br />
 Student's email: <%= @rating.recommendation.cs_application.email%><br />
 <br /><br />
-<strong>Recommender's Details (as provided by the student)</strong><br />
+<strong>Recommender's Details (as provided by the student)</strong>
+<br /><br />
 Name: <%= @rating.recommendation.name%> <br />
 Title: <%=@rating.recommendation.title%> <br />
 Contact: <%=@rating.recommendation.email%>
-<br /><hr />
-
 <br />
-<%= form_for @rating, :html => { :class => 'form-horizontal' } do |f| %>
+<hr>
+<%= form_for @rating, :html => { :class => 'form-horizontal rating-form' } do |f| %>
   <br />
   <%= f.hidden_field :recommendation_id %>
   <%= f.hidden_field :status, :value=>Rating::STATUS_COMPLETED %>
   <div class="control-group">
     <%= f.label :intellect, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
       <%= f.select :intellect,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :leadership, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :leadership,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :written, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :written,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :verbal, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :verbal,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :reliability, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :reliability,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :timeliness, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :timeliness,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :maturity, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :maturity,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :skill, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :skill,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :commitment, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :commitment,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :independent, :class => 'control-label' %>
-    <div class="controls">
+    <div class="controls inline">
     	<%= f.select :independent,[['Horrible',1],['Poor',2],['Mediocre',3],['Good',4],['Excellent',5]], :class => 'number_field' %>
     </div>
   </div>
+    <br /> <br />
   <div class="control-group">
     <%= f.label :additional_notes, :class => 'control-label' %>
+    <br /> <br />
     <div class="controls">
     	<%= f.text_area :notes %>
     </div>
