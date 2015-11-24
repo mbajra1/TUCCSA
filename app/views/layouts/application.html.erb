@@ -58,12 +58,12 @@
 							<h3>Started</h3>
 						<% when CsApplication::STATUS_SUBMITTED %>
 							<h3>Submitted</h3>
-						<% when CsApplication::STATUS_REVIEWED %>
-                            <h3>Reviewed</h3>
-						<% when CsApplication::STATUS_DENIED %>
-                            <h3>Denied</h3>
-						<% when CsApplication::STATUS_APPROVED %>
-                            <h3>Approved. Congratulations!!</h3>
+						<%# when CsApplication::STATUS_REVIEWED %>
+                           <!-- <h3>Reviewed</h3> -->
+						<%# when CsApplication::STATUS_DENIED %>
+                            <!-- <h3>Denied</h3>-->
+						<%#when CsApplication::STATUS_APPROVED %>
+                           <!--  <h3>Approved. Congratulations!!</h3>-->
 						<% else %>
 							<h4>Your application has been submitted.</h4>
 						<% end %>

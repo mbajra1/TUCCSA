@@ -77,6 +77,18 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # sending mailwith default host
+  # sending mail with default host
   # config.action_mailer.default_url_options ={ :host => 'localhost:3000' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: "smtp.towson.edu",
+      port: 25,
+      authentication: "plain",
+      user_name: "mbajra1@students.towson.edu",
+      password: ENV['SMTP_PASSWORD'],
+      enable_starttls_auto: false
+  }
+  config.action_mailer.raise_delivery_errors = true
+
 end
