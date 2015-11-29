@@ -1,5 +1,5 @@
 class PurposeStatement < ActiveRecord::Base
- attr_accessible :purpose
+  attr_accessible :purpose
 
   belongs_to :cs_application
 

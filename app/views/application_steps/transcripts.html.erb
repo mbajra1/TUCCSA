@@ -1,13 +1,15 @@
 <%= form_for @transcript, method: :put, url: wizard_path, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|  %>
 
+    <!--<div class="page-header">
+      <h2><%#=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
+    </div>-->
     <div class="page-header">
-      <h2><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
+        <h2>Attach your Transcripts</h2>
     </div>
-
     <div class="control-group">
       <div class="controls">
-        Attach your transcripts. Click on 'Upload' after selecting your file to add another attachment. Attachments can be
-        images of your scanned transcripts or PDF.
+        <p class ="guide">Click on 'Upload' after selecting your file to add another attachment. Attachments can be
+        images of your scanned transcripts or PDF.</p>
         <br /> <br />
         <%= f.file_field :document %>
         <% unless !@transcript.errors.has_key?(:document)%>

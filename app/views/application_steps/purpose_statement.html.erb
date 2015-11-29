@@ -1,14 +1,16 @@
 <%= form_for @purpose_statement, method: :put, url: wizard_path, :html => { :multipart => true, :class => 'form-horizontal' }  do |f|  %>
 
+    <!--<div class="page-header">
+      <h2><%#=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
+	</div>-->
     <div class="page-header">
-      <h2><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
-	</div>
-	<h3>Purpose Statement</h3>
+	    <h2>Attach your Purpose Statement</h2>
+    </div>
 	<div class="control-group">
 	   <%#= f.label :purpose_statement, :class => 'control-label' %>
       <div class="controls">
-	       Attach a PDF file (.pdf) containing a brief statement of purpose describing your goals
-	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)
+	       <p class ="guide">Attach a PDF file (.pdf) containing a brief statement of purpose describing your goals
+	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)</p>
 	       <br /> <br />
            <%= f.file_field :purpose %>
             <% unless !@purpose_statement.errors.has_key?(:purpose)%>

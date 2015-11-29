@@ -1,5 +1,9 @@
 @import "twitter/bootstrap/bootstrap";
 
+//body { padding-top: 60px; }
+//@import'twitter/bootstrap/responsive.less';
+//@import "twitter/bootstrap/responsive";
+
 // Set the correct sprite paths
 @iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
 @iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
@@ -39,8 +43,9 @@
   position: relative;
   background-color: #EDEFF0;
   border-radius: 1em;
-  padding: 1em 2em 2.8em 2em;
+  padding: 3em 3em 2.8em 2em;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  margin-bottom: 3em;
 }
 
 /**** right column css ****/
@@ -96,10 +101,12 @@ form input[type="submit"]{
   box-shadow: none;
   transition: border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;
 }
+
 form input[type="text"], form input[type="password"], form input[type="email"], form input[type="number"],
 form input[type="url"], form input[type="tel"], form input[type="date"], form textarea {
   width: calc(60% - 22px) !important;
   margin-bottom: 1em;
+  min-width: 250px;
 }
 form input[type="file"] {
   display: inline;
@@ -144,4 +151,4 @@ form input[type="file"] {
 
 /*** rating CSS ***/
 .rating-form {margin-left: 15em; }
-.inline {display: inline-block; float:right; margin: 0.28em 20em 0 0;}
+.inline {display: inline-block; float:right; margin: 0.26em 20em 0 0;}

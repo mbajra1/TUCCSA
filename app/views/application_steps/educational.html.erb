@@ -1,13 +1,12 @@
 <%= form_for @institution, method: :put, url: wizard_path, :html => { :class => 'form-horizontal' }  do |institute|  %>
 
-	<div class="page-header">
-  		<h2><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
+	<!--<div class="page-header">
+  		<h2><%#=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
+	</div>-->
+    <div class="page-header">
+	    <h2>Provide Your Educational Information</h2>
 	</div>
-	<h3>Provide Your Educational Information</h3>
-	<br />
-
 	<%#= fields_for :institution do |institute|%>
-
 		<div class="control-group">
 			<%= institute.label :institution, :class => 'control-label' %>
 			<div class="controls">

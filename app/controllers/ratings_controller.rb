@@ -1,4 +1,6 @@
 class RatingsController < InheritedResources::Base
+  load_and_authorize_resource
+  skip_authorize_resource :only => [:update, :edit, :destroy]
 
   def update
     @rating = Rating.find(params[:id])

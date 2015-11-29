@@ -1,14 +1,12 @@
 <%= form_for @contact, method: :put, url: wizard_path do |contact| %>
 
+    <!--<div class="page-header">
+      <h2><%#=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
+    </div>-->
     <div class="page-header">
-      <h2><%=t '.title', :default => t('Your Application', :default => "Your Application") %></h2>
+     <h2>Provide Your Mailing Information</h2>
     </div>
-
-    <h3>Provide Your Mailing Information</h3>
-    <br />
-
     <fieldset>
-
       <div class="control-group">
         <%= contact.label :name, :class => 'control-label' %>
         <div class="controls">
