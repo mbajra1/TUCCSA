@@ -21,10 +21,6 @@
             <br /><br />
             <strong>Uploaded File:</strong>
             <br /><br />
-
-            <%# purpose = current_user.cs_application.purpose_statement%>
-            <%#if !purpose.id.nil?%>
-
               <% if !@purpose_statement.id.nil?%>
                 File received: <%= link_to @purpose_statement.purpose_file_name, @purpose_statement.purpose.url, :target => '_blank'%>
                 <%=link_to t('.Remove'), remove_purpose_path(@purpose_statement.id), :confirm => 'You are about to remove your uploaded file. Continue?', :class=>'btn btn-danger custom-btn'%>
@@ -35,7 +31,6 @@
 	<hr />
 
   	<div class="form-actions">
-
       <% if @cs_application.progress == 100 %>
           <%= f.submit "Update Purpose Statement", :class => 'btn btn-primary' %>
       <%else%>
