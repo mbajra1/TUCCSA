@@ -10,12 +10,12 @@
       <div class="controls">
         <p class ="guide">Click on 'Upload' after selecting your file to add another attachment. Attachments can be
         images of your scanned transcripts or PDF.</p>
-        <br /> <br />
+        <br />
         <%= f.file_field :document %>
         <% unless !@transcript.errors.has_key?(:document)%>
             <span class="help-inline"><%= @transcript.errors[:document].join(", ") %></span>
         <%end%>
-        <br />
+
         <%= f.submit "Save", :value => 'Upload' ,:class => 'btn', disabled: true  %>
 
         <br /><br />

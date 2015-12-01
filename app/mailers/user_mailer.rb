@@ -2,6 +2,7 @@ class UserMailer < ActionMailer::Base
   
   default from: 'mbajra1@students.towson.edu'
   
+  # send recommendation invitation
   def send_invitation(invite, link, rating)
     @invite = invite
     @rating = rating
@@ -19,15 +20,16 @@ class UserMailer < ActionMailer::Base
     #mail(:to => "#{application.email}", :subject => "Towson University CyberCorps Application Status")
   #end
 
-  #Change to_email to real admin email cybercorps@towson.edu
+  # notifies the admin that application has been submitted
   def submit_application_admin(application)
     @application = application
     mail(:to => "mbajra1@students.towson.edu", :subject => "TU CyberCorps Application Submitted")
   end
-  
+
+  # notifies the applicant that application has been submitted
   def submit_application_applicant(application)
     @application = application
-    mail(:to => "#{application.email}", :subject => "TU CyberCorps::You application has been submitted")
+    mail(:to => "#{application.email}", :subject => "TU CyberCorps::Your application has been submitted")
   end
   
 end

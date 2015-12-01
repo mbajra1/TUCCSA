@@ -1,5 +1,8 @@
 class ApplicationReviewPdf < Prawn::Document
-  
+
+  # Generate the pdf view
+
+  # initialize all the methods
   def initialize(cs_application, view)
     super(top_margin: 50)
     @cs_application = cs_application

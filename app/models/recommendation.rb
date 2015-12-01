@@ -6,7 +6,6 @@ class Recommendation < ActiveRecord::Base
   
   belongs_to :cs_application
   has_one :rating
-
   attr_accessor :form_step
 
   with_options if: -> { required_for_step?(:send_recommendations)} do |step|
@@ -15,9 +14,9 @@ class Recommendation < ActiveRecord::Base
     step.validates :email, :email_format => true
   end
 
+  # Force step form to validate before it renders the next page.
   def required_for_step?(step)
     # All fields are required if no form step is present
-    # puts form_step.nil?|| self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
     return true if form_step.nil?|| self.form_steps.index(step.to_s) <= self.form_steps.index(form_step)
   end
 

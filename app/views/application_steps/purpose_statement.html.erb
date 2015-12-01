@@ -11,12 +11,12 @@
       <div class="controls">
 	       <p class ="guide">Attach a PDF file (.pdf) containing a brief statement of purpose describing your goals
 	       and motivations to pursue a career in Information Assurance and Computer Security (Max 2 pages)</p>
-	       <br /> <br />
+	       <br />
            <%= f.file_field :purpose %>
             <% unless !@purpose_statement.errors.has_key?(:purpose)%>
                 <span class="help-inline"><%= @purpose_statement.errors[:purpose].join(", ") %></span>
             <%end%>
-            <br/>
+
             <%= f.submit "Save", :value => 'Upload' ,:class => 'btn', disabled: true %>
             <br /><br />
             <strong>Uploaded File:</strong>

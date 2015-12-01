@@ -1,14 +1,11 @@
 class ApplicationStepsController < ApplicationController
   before_filter :authenticate_user!
 
-  #load_and_authorize_resource
-  #skip_authorize_resource :only => [:show, :update]
-
+  # included the wizard gem for step form and get steps from mailing address model
   include Wicked::Wizard
-  #steps :contact, :educational, :purpose, :transcripts, :send_recommendations, :send_email, :complete
   steps *MailingAddress.form_steps
 
-
+  # display the next page in the step form
   def show
     @cs_application = current_user.cs_application
 
@@ -70,13 +67,13 @@ class ApplicationStepsController < ApplicationController
           @recommendation2 = @cs_application.recommendations.build
         end
 
-     # when "send_email"
-
     end
 
     render_wizard
+
   end
-  
+
+  # update the form on submission
   def update
     @cs_application = current_user.cs_application
     case step
@@ -199,13 +196,7 @@ class ApplicationStepsController < ApplicationController
         @recommendation2.cs_application_id = @cs_application.id
         @recommendation2.save
       end
-
-      #if @recommendation1.status == "SENT"
-        #puts "sent"
-        #@cs_application.progress = 100
-      #else
         update_progress(15, 90)
-      #end
 
       if @recommendation1.save && @recommendation2.save
         redirect_to "/application_steps/send_email/"
@@ -214,7 +205,6 @@ class ApplicationStepsController < ApplicationController
       end
 
       when "send_email"
-        #update_progress(10, 100)
         render_wizard @cs_application
     end
 
@@ -222,6 +212,7 @@ class ApplicationStepsController < ApplicationController
 
   end
 
+  # update the progress bar
   private
   def update_progress(percent_update, percent_completed)
 
@@ -236,6 +227,8 @@ class ApplicationStepsController < ApplicationController
     @cs_application.save
   end
 
+  # redirect to the review if the progress bar is 100%,
+  # if not render the next page in the step form
   private
   def redirect_to_review(object)
     if @cs_application.progress<100
@@ -249,6 +242,7 @@ class ApplicationStepsController < ApplicationController
     end
   end
 
+  # Strong parameters for forms to permit the attributes on update.
   private
   def form_params(step)
     permitted_attributes = case step

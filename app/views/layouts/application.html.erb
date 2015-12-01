@@ -11,6 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<div class="towson-line"></div>
 <nav class = "navbar navbar-default" role = "navigation">
 
   <div class = "navbar-header">
@@ -41,28 +42,6 @@
   </div>
 
 </nav>
-
-<!--<div class="towson-line"></div>
-<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="/"><%#= image_tag 'tucsa.png', :height=> '20px', :width=>'20px' %>TUCSSA</a>
-  </div>
-  <div class="collapse navbar-collapse" id="navbar-collapse-01">
-    <ul class="nav navbar-nav navbar-left">
-      <li><%#= link_to "About TU", "http://www.towson.edu/main/abouttu/index.asp", :target=>'_blank'%></li>
-      <li><%#= link_to "About Cyber Security","http://cis1.towson.edu/~cisweb/",:target=>'_blank'%></li>
-    </ul>
-    <%# if user_signed_in? %>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="divider-vertical"></li>
-          <li><span class="glyphicon glyphicon-user white"></span></li>
-          <li><span><%#=current_user.email%></span></li>
-          <li><%#= link_to "", destroy_user_session_path, :method => 'delete', :class=>'glyphicon glyphicon glyphicon-off'%></li>
-        </ul>
-    <%#end%>
-  </div>
-</nav>-->
-
 
 <% flash.each do |name, msg|%>
 	<% if msg[0..4]=="Error"%>

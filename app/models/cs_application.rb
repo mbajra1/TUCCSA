@@ -7,7 +7,6 @@ class CsApplication < ActiveRecord::Base
   has_one :mailing_address, :dependent => :destroy
   has_many :institutions, :dependent => :destroy
   has_many :transcripts, :dependent => :destroy
-
   accepts_nested_attributes_for :recommendations
 
   validates :first_name, :last_name, :towson_id_number, :phone, presence: true

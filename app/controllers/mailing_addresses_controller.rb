@@ -1,7 +1,6 @@
 class MailingAddressesController < InheritedResources::Base
   before_filter :authenticate_user!
   load_and_authorize_resource param_method: :my_sanitizer
-
   skip_authorize_resource :only => [:update, :edit]
 
   def edit

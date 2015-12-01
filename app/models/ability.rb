@@ -1,16 +1,18 @@
 class Ability
   include CanCan::Ability
 
+
+ #define the ability of the user
   def initialize(user)
     user ||= User.new
 
    # alias_action :create, :read, :update, :destroy, :to => :crud
 
     if user.is_admin?
-      can :manage, :all
+      can :manage, :all  # admin can manage all
 
     else
-      #can :read, :all
+      # registered can only :update, :destroy the own items
       can [:create, :new, :review, :update, :destroy], CsApplication do |app|
         app.try(:user_id) == user.id
       end

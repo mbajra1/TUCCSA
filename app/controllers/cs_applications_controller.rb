@@ -1,6 +1,9 @@
 class CsApplicationsController < ApplicationController
   before_filter :authenticate_user!
+
+  # load and authorize the actions once instead of defining on each action
   load_and_authorize_resource param_method: :my_sanitizer
+  # skip authorization on the actions
   skip_authorize_resource :only => [:index, :new, :remove_purpose, :remove_transcript, :send_invitation, :submit_application]
 
   require 'rubygems'
@@ -84,9 +87,6 @@ class CsApplicationsController < ApplicationController
    end
 
     respond_to do |format|
-
-     # if @cs_application.update_attributes(params[:cs_application])
-
       if @cs_application.update(my_sanitizer)
         if @cs_application.progress == 100
           format.html { redirect_to "/cs_application/review/#{@cs_application.id}", notice: 'Basic Information was successfully updated.' }
@@ -112,7 +112,9 @@ class CsApplicationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
+
+  # Deliver the recommendation link via email for rating
   def send_invitation
     recommendation = Recommendation.find_by_id(params[:recommendation_id])
     if recommendation.cs_application.progress !=100 && recommendation.cs_application.progress <=90
@@ -131,7 +133,8 @@ class CsApplicationsController < ApplicationController
     redirect_to '/application_steps/send_email/', :notice => 'Invitation Email Sent' 
     #redirect_to verify_password_path(rating.id), :notice => 'Invitation Email Sent' 
   end
-  
+
+  # render the pdf
   def review
     @cs_application = CsApplication.find_by_id(params[:id])
     respond_to do |format|
@@ -154,7 +157,8 @@ class CsApplicationsController < ApplicationController
     end
 
   end
-  
+
+  # mark application status as reviewed
   def mark_as_reviewed
     cs_application = CsApplication.find_by_id(params[:id])
     if cs_application.progress<100
@@ -165,7 +169,8 @@ class CsApplicationsController < ApplicationController
       redirect_to :back #:notice=>'Application is now marked as reviewed. Student has been notified.'
     end
   end
-  
+
+  # mark application status as denied
   def mark_as_denied
     cs_application = CsApplication.find_by_id(params[:id])
     if cs_application.progress<100
@@ -177,7 +182,8 @@ class CsApplicationsController < ApplicationController
      redirect_to :back #:notice=>'Application is now marked as denied. Student has been notified.'
     end
   end
-  
+
+  # mark application status as approved
   def mark_as_approved
     cs_application = CsApplication.find_by_id(params[:id])
     if cs_application.progress!=100
@@ -189,7 +195,8 @@ class CsApplicationsController < ApplicationController
      redirect_to :back #:notice=>'Application is now marked as approved. Student has been notified.'
     end
   end
-  
+
+  # download the attached documents
   def download_package
       cs_application = CsApplication.find_by_id(params[:id])
       file_name = "package.zip"
@@ -214,11 +221,13 @@ class CsApplicationsController < ApplicationController
       temp_file.close
   end
 
+  # generate rating code for the rating page
   def generate_rating_code(size = 8)
     charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
     (0...size).map{ charset.to_a[rand(charset.size)] }.join
   end
-  
+
+  # notifies the application has been submitted
   def submit_application
     application = CsApplication.find_by_id(params[:id])
     
@@ -233,14 +242,15 @@ class CsApplicationsController < ApplicationController
       redirect_to root_url, :notice => "Congratulations!! You have successfully submitted the application. We will get in touch with you."
     end
   end
-  
+
+  # remove the attached transcript
   def remove_transcript
     transcript = Transcript.find(params[:cs_application_id])
     transcript.destroy
     redirect_to :back, :notice => 'Transcript has been removed.'
   end
 
-
+  # remove the attached purpose
   def remove_purpose
     purpose = PurposeStatement.find(params[:cs_application_id])
     #purpose = current_user.cs_application.purpose_statement
@@ -249,7 +259,7 @@ class CsApplicationsController < ApplicationController
     redirect_to :back, flash:{success: 'Purpose Statement has been removed.'}
   end
 
-
+ # strong parameter for cs application to permit attributes on update
   private
   def my_sanitizer
     params.require(:cs_application).permit(:email, :first_name, :last_name, :middle_name, :towson_id_number,:is_citizen, :phone, :status, :progress, :user_id)

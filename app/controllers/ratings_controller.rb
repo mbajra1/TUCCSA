@@ -23,7 +23,8 @@ class RatingsController < InheritedResources::Base
       format.json { render json: @rating }
     end
   end
-  
+
+  # verfify password before accessing the rating page
   def verify_password
     @rating = Rating.find(params[:id])
     respond_to do |format|
@@ -31,7 +32,8 @@ class RatingsController < InheritedResources::Base
       format.json { render json: @rating }
     end
   end
-  
+
+  # check if the password is matched
   def submit_password
     @password = params[:password]
     if @password == Rating.find_by_id(params[:rating_id]).password

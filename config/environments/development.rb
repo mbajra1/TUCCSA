@@ -39,18 +39,31 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.default_url_options ={ :host => 'localhost:3000' }
+  #config.action_mailer.default_url_options ={ :host => 'localhost:3000' }
 
-  #Sending emails using ActionMailer and Gmail
-  config.action_mailer.delivery_method = :sendmail
+  # Sending emails using ActionMailer and Gmail
+  #
   # Defaults to:
   # config.action_mailer.sendmail_settings = {
   #   location: '/usr/sbin/sendmail',
   #   arguments: '-i -t'
   # }
-  config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :sendmail
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.default_options = {from: 'cybercorps@towson.edu'}
+
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :user_name            => "mbajra1@students.towson.edu",
+      :password             => "Arsenal123",
+      :authentication       => "plain",
+      :enable_starttls_auto => true
+  }
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'cybercorps@towson.edu'}
 
 
 end
