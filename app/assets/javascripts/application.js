@@ -37,6 +37,9 @@ function validateCheckbox()
        // window.alert("you have to accept the terms first");
         $('span .help-inline').html("you have to accept the terms first");
     }
+    if(!$('#cs_application_towson_id_number').match(/^\d+$/)){
+        $('span .help-inline').html("invalid Length");
+    }
 }
 $(".alert-message").alert()
 $(".alert-message").alert('close')

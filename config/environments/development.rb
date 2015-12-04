@@ -48,22 +48,22 @@ Rails.application.configure do
   #   location: '/usr/sbin/sendmail',
   #   arguments: '-i -t'
   # }
-  # config.action_mailer.delivery_method = :sendmail
-  # config.action_mailer.perform_deliveries = true
-  # config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_options = {from: 'cybercorps@towson.edu'}
+   config.action_mailer.delivery_method = :sendmail
+   config.action_mailer.perform_deliveries = true
+   config.action_mailer.raise_delivery_errors = true
+   config.action_mailer.default_options = {from: 'cybercorps@towson.edu'}
 
-  config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
-  config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
-      :port                 => 587,
-      :user_name            => "mbajra1@students.towson.edu",
-      :password             => "Arsenal123",
-      :authentication       => "plain",
-      :enable_starttls_auto => true
-  }
-  config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.smtp_settings = {
+     # :address              => "smtp.office365.com",
+     # :port                 => 587,
+     # :user_name            => "skaza@towson.edu",
+     # :password             => ENV['SMTP_PASSWORD'],
+     # :authentication       => "plain",
+     # :enable_starttls_auto => true
+  #}
+ # config.action_mailer.raise_delivery_errors = true
 
 
 end

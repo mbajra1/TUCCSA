@@ -64,7 +64,7 @@ class CsApplicationsController < ApplicationController
     respond_to do |format|
       if @cs_application.save
          @cs_application.status="STARTED"
-        @cs_application.save
+         @cs_application.save
         format.html { redirect_to application_steps_path }
         format.json { render json: @cs_application, status: :created, location: @cs_application }
       else
@@ -91,12 +91,12 @@ class CsApplicationsController < ApplicationController
         if @cs_application.progress == 100
           format.html { redirect_to "/cs_application/review/#{@cs_application.id}", notice: 'Basic Information was successfully updated.' }
         else
-        format.html { redirect_to application_steps_path}
-        format.json { head :no_content }
+          format.html { redirect_to application_steps_path}
+          format.json { head :no_content }
         end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @cs_application.errors, status: :unprocessable_entity }
+          format.html { render action: "edit" }
+          format.json { render json: @cs_application.errors, status: :unprocessable_entity }
       end
     end
   end

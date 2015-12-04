@@ -46,7 +46,7 @@
       <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="middle_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="towson_id_number" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="towson_id_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
       <column name="updated_at" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
