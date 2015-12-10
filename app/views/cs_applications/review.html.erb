@@ -169,7 +169,8 @@
 			<% if @recommendation1.status=="SENT"%>
 				Invitation Sent
 			<% else%>
-				Not Sent
+				Not Sent (<%= link_to "Send an email to complete an application", "/application_steps/send_email" %>)
+
 			<% end%>
 		</div>
 	<% else %>
@@ -191,7 +192,7 @@
 			<% if @recommendation2.status=="SENT"%>
 				Invitation Sent
 			<% else%>
-				Not Sent
+				Not Sent (<%= link_to "Send an email to complete an application", "/application_steps/send_email" %>)
 			<% end%>
 		</div>
 	<% else %>

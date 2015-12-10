@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   
-  default from: 'skaza@towson.edu'
+  default from: 'cybercorps@towson.edu'
   
   # send recommendation invitation
   def send_invitation(invite, link, rating)

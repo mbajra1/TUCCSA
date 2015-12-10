@@ -10,6 +10,8 @@ class CsApplicationsController < ApplicationController
   require 'zip'
   require "open-uri"
 
+  @count = 0
+
   # GET /cs_applications
   # GET /cs_applications.json
  def index
@@ -117,8 +119,8 @@ class CsApplicationsController < ApplicationController
   # Deliver the recommendation link via email for rating
   def send_invitation
     recommendation = Recommendation.find_by_id(params[:recommendation_id])
-    if recommendation.cs_application.progress !=100 && recommendation.cs_application.progress <=90
-      recommendation.cs_application.progress = recommendation.cs_application.progress + 10
+    if recommendation.cs_application.progress !=100 && recommendation.cs_application.progress <100
+      recommendation.cs_application.progress = recommendation.cs_application.progress + 5
       recommendation.cs_application.save
     end
     rating = Rating.new()
@@ -130,8 +132,9 @@ class CsApplicationsController < ApplicationController
     rating.save
     link = "http://#{request.host}:#{request.port}/ratings/verify_password/#{rating.id}"
     UserMailer.send_invitation(recommendation, link, rating).deliver
-    redirect_to '/application_steps/send_email/', :notice => 'Invitation Email Sent' 
+    redirect_to '/application_steps/send_email/', :notice => 'Invitation Email Sent'
     #redirect_to verify_password_path(rating.id), :notice => 'Invitation Email Sent' 
+
   end
 
   # render the pdf

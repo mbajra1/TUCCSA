@@ -35,7 +35,15 @@
     <ul class="nav navbar-nav navbar-right">
       <li class="divider-vertical"></li>
       <li><span class="glyphicon glyphicon-user white"></span></li>
-      <li><span class="user"><%=current_user.email%></span> <span class="text-off">(<%= link_to "Log out", destroy_user_session_path, :method => 'delete'%>)</span></li>
+
+      <li><span class="user">
+        <% if current_user.is_admin? %>
+            <%= link_to current_user.email, admin_dashboard_path%>
+            <%else%>
+            <%= link_to  current_user.email, root_path%>
+        <%end%>
+
+      </span> <span class="text-off">(<%= link_to "Log out", destroy_user_session_path, :method => 'delete'%>)</span></li>
       <li class="icon-off"><%= link_to "", destroy_user_session_path, :method => 'delete', :class=>'glyphicon glyphicon glyphicon-off'%></li>
     </ul>
     <%end%>

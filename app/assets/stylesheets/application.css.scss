@@ -33,8 +33,8 @@ a, a:hover, a:focus {color: #ffcc00; background-color: transparent;}
 .navbar-default .navbar-brand {color: #FFF !important;}
 .navbar-brand:hover, .navbar-brand:focus {text-decoration: none;}
 .navbar-default .navbar-nav > li > a { color: #FFF !important; }
-.navbar-default .navbar-nav > li > span {color: #FC0 !important;padding-top: 15px;padding-bottom: 15px;display: inline-block;padding-left: 5px;}
-.navbar-default .navbar-nav > li > span.white {color:#fff !important;}
+.navbar-default .navbar-nav > li > span a{color: #FC0 !important;padding-top: 15px;padding-bottom: 15px;display: inline-block;padding-left: 5px;}
+.navbar-default .navbar-nav > li > span.white {color:#fff !important; padding-top: 15px;}
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {color: #ffcc00 !important;background-color: transparent;}
 .navbar-default .navbar-nav > li.icon-off{display:block;font-size: larger;font-weight: 500;border-left: 1px solid #fff;margin-left: 20px;}
 .navbar-default .navbar-nav > li >span.text-off{display:none;}
